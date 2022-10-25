@@ -8,8 +8,10 @@ public class HomeController {
 	
 	@RequestMapping("/home")
 	public String home() {
+		System.out.println("Hello test 1");
 		return "home/view";
 	}
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "security/login";
