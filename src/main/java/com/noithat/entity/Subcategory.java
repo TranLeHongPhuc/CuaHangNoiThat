@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,15 +17,18 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "Roles")
-public class Role implements Serializable{
-
+@Table(name = "Subcategories")
+public class Subcategory implements Serializable{
+	
 	@Id
 	String id;
 	String name;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "role")
-	List<Authority> authorities;
+	@OneToMany(mappedBy = "subcategory")
+	List<Product> products;
 	
+	@ManyToOne
+	@JoinColumn(name = "Categoryid")
+	Category category;
 }
