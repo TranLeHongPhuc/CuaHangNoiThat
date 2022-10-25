@@ -1,0 +1,80 @@
+
+<div class="container">
+	<div class="row">
+		<!-- logo -->
+		<div class="col-lg-2 col-sm-4 col-6">
+			<div class="header-logo">
+				<a href="index.html"><img src="/client/img/logo.png" alt="main logo"></a>
+			</div>
+		</div>
+		<!-- primary-menu -->
+		<div class="col-lg-8 col-12 d-none d-lg-block">
+			<nav class="main-menu text-center">
+				<ul>
+					<li class="active"><a href="index.html">Home</a>
+						<ul class="sub-menu">
+							<li class="active"><a href="index.html">Home one</a></li>
+							<li><a href="index-2.html">Home two</a></li>
+							<li><a href="index-3.html">Home three</a></li>
+							<li><a href="index-4.html">Home four</a></li>
+						</ul></li>
+					<li><a href="shop.html">shop</a>
+					<div th:replace="/layout/_category.html"></div>
+						</li>
+					<li><a href="shop-list.html">sofa</a></li>
+					<li><a href="shop-right-sidebar.html">Cabinet</a></li>
+					<li><a href="#">Pages</a>
+						<ul class="sub-menu">
+							<li><a href="cart.html">cart</a></li>
+							<li><a href="checkout.html">checkout</a></li>
+							<li><a href="contact.html">contact</a></li>
+							<li><a href="login.html">login</a></li>
+							<li><a href="product-details.html">product details</a></li>
+							<li><a href="register.html">register</a></li>
+							<li><a href="shop.html">shop</a></li>
+							<li><a href="shop-list.html">shop list</a></li>
+							<li><a href="shop-list-right-sidebar.html">shop list
+									right sidebar</a></li>
+							<li><a href="shop-right-sidebar.html">shop right sidebar</a></li>
+							<li><a href="wishlist.html">wishlist</a></li>
+						</ul></li>
+					<li><a href="blog.html">Blog</a>
+						<ul class="sub-menu">
+							<li><a href="blog.html">blog</a></li>
+							<li><a href="blog-details.html">blog details</a></li>
+						</ul></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+		<!-- header-search & total-cart -->
+		<div class="col-lg-2 col-sm-8 col-6">
+			<div class="header-option-btns float-end">
+				<!-- header-search -->
+				<div class="header-search float-start">
+					<button class="search-toggle" data-bs-toggle="modal"
+						data-bs-target="#myModal">
+						<i class="pe-7s-search"></i>
+					</button>
+				</div>
+				<!-- header Account -->
+				<div class="header-account float-start">
+					<ul>
+						<li><a class="dropdown-toggle" href="#"
+							id="dropdownAccountBtn" data-bs-toggle="dropdown"
+							aria-expanded="false"><i class="pe-7s-config"></i></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownAccountBtn">
+								<li><a href="login.html">Log in</a></li>
+								<li><a href="register.html">Register</a></li>
+								<li><a href="#">My Account</a></li>
+								<li><a href="wishlist.html">Wish list</a></li>
+								<li><a href="checkout.html">Checkout</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<!-- Header Cart -->
+				<div th:replace="/layout/_cart-info.html"></div>
+			</div>
+		</div>
+	</div>
+</div>
