@@ -1,4 +1,4 @@
-package com.noithat.Controller;
+package com.noithat.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

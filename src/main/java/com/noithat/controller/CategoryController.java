@@ -1,4 +1,4 @@
-package com.noithat.Controller;
+package com.noithat.controller;
 
 public class CategoryController {
 
