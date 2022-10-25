@@ -1,5 +1,9 @@
 package com.noithat.repository;
 
-public interface AuthorityRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.noithat.entity.Authority;
+
+public interface AuthorityRepository extends JpaRepository<Authority, Integer>{
 
 }
