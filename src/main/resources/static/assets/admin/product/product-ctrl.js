@@ -6,7 +6,7 @@ app.controller("product-ctrl", function($scope, $http){
 	
 	/* Tải thông tin sản phẩm từ CSDL về */
 	$scope.initialize = function() {
-		$http.get("/rest/products").then(resp => {
+		$http.get("/api/products").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate)

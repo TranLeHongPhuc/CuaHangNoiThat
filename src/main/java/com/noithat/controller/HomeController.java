@@ -27,8 +27,5 @@ public class HomeController {
 		return "security/login";
 	}
 	
-	@RequestMapping("/admin")
-	public String admin() {
-		return "redirect:/assets/admin/index.html";
-	}
+	
 }
