@@ -84,7 +84,7 @@
                                 <div class="product-quantity">
                                     <input type="text" value="0">
                                 </div>
-                                <button class="add-to-cart">add to cart</button>
+                                <button class="add-to-cart" th:attr="ng-click=@{|cart.add(${item.id})|}">add to cart</button>
                             </div>
                             <div class="share-icons section">
                                 <a class="twitter" href="#/"><i class="fa fa-facebook"></i> facebook</a>
