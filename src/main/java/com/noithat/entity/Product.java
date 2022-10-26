@@ -21,27 +21,31 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "Products")
+@Table(name = "products")
 public class Product implements Serializable{
 
 	@Id
 	Integer id;
 	String name;
-	String image;
+	String image1;
+	String image2;
+	String image3;
+	String image4;
 	Double price;
+	String description;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "CreateDate")
+	@Column(name = "Createdate")
 	Date createDate = new Date();
 	
 	Boolean available;
 	
 	@ManyToOne
-	@JoinColumn(name = "Categoryid")
+	@JoinColumn(name = "Category_Id")
 	Category category;
 	
 	@ManyToOne
-	@JoinColumn(name = "Subcategoryid")
+	@JoinColumn(name = "SubcategoryId")
 	Subcategory subcategory;
 	
 	@JsonIgnore

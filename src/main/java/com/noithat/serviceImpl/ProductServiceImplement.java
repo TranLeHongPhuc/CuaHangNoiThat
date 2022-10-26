@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.noithat.entity.Product;
 import com.noithat.service.ProductService;
 import com.noithat.repository.ProductRepository;
+
 @Service
 public class ProductServiceImplement implements ProductService{
 	@Autowired
@@ -22,8 +23,8 @@ public class ProductServiceImplement implements ProductService{
 	}
 
 	@Override
-	public List<Product> findByCategoryId(String cid) {
-		return pdao.findByCategoryId(cid);
+	public List<Product> findByAllCategoryId(String cid) {
+		return pdao.findAllByCategoryId(cid);
 	}
 
 	@Override

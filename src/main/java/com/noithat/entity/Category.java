@@ -17,7 +17,6 @@ import lombok.Data;
 @Entity
 @Table(name = "Categories")
 public class Category implements Serializable{
-
 	@Id
 	String id;
 	String name;

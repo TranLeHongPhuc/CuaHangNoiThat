@@ -18,25 +18,25 @@
                             <div class="tab-pane active" id="product-grid">
                                 <div class="row">
                                     <!-- product-item start -->
-                                    <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
+                                    <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8" th:each=" p: ${items}">
                                         <div class="product-item text-center">
                                             <div class="product-img">
-                                                <a class="image" href="product-details.html"><img src="/client/img/product/1.jpg" alt=""/></a>
-                                                <a th:href="@{/cart}" class="add-to-cart">add to cart</a>
+                                                <a class="image" th:href="@{|/product/detail/${p.id}|}"><img src="/client/img/product/1.jpg" alt=""/></a>
+                                                <a th:href="@{/cart}" class="add-to-cart">Add to cart</a>
                                                 <div class="action-btn fix">
                                                     <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
                                                     <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
-                                                    <a  th:href="@{/product/detail}" title="Compare"><i class="pe-7s-repeat"></i></a>
+                                                    <a th:href="@{/product/detail}" title="Compare"><i class="pe-7s-repeat"></i></a>
                                                 </div>
                                             </div>
                                             <div class="product-info">
-                                                <h5 class="title"><a href="product-details.html">Le Parc Minotti Chair Chair</a></h5>
-                                                <span class="price"><span class="new">$169.00</span></span>
+                                                <h5 class="title"><a href="product-details.html" th:text="${p.name}"></a></h5>
+                                                <span class="price"><span class="new">[[*{#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]] VNĐ</span></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+<!--                                     product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -54,8 +54,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+                                    product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -73,8 +73,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+                                    product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -92,8 +92,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+                                    product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -111,8 +111,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+                                    product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -130,8 +130,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+                                    product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -149,8 +149,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+                                    product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -168,8 +168,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
+                                    product-item end
+                                    product-item start
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8">
                                         <div class="product-item text-center">
                                             <div class="product-img">
@@ -187,7 +187,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- product-item end -->
+                                    product-item end -->
                                     <div class="page-pagination text-center col-xs-12 fix mb-40">
                                         <ul>
                                             <li><a href="shop.html"><i class="fa fa-angle-left"></i></a></li>

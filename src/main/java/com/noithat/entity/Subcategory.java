@@ -29,6 +29,6 @@ public class Subcategory implements Serializable{
 	List<Product> products;
 	
 	@ManyToOne
-	@JoinColumn(name = "Categoryid")
+	@JoinColumn(name = "Category_Id")
 	Category category;
 }

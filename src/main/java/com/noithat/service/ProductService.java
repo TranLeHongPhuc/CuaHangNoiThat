@@ -9,7 +9,7 @@ import com.noithat.entity.Product;
 public interface ProductService {
 	List<Product> findAll();
 	
-	List<Product> findByCategoryId(String cid);
+	List<Product> findByAllCategoryId(String cid);
 	
 	Product findById(Integer id);
 }

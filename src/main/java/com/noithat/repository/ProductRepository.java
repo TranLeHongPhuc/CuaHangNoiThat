@@ -9,5 +9,5 @@ import com.noithat.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>{
     @Query("Select p From Product p where p.category.id=?1")
-    List<Product> findByCategoryId(String cid);
+    List<Product> findAllByCategoryId(String cid);
 }

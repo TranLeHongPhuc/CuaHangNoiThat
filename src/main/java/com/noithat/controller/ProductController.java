@@ -22,7 +22,7 @@ public class ProductController {
 	@RequestMapping("/product/home")
 	public String productHome(Model model, @RequestParam("cid") Optional<String> cid) {
 		if (cid.isPresent()) {
-			List<Product> list = productService.findByCategoryId(cid.get());
+			List<Product> list = productService.findByAllCategoryId(cid.get());
 			model.addAttribute("items", list);
 		} else {
 			List<Product> list = productService.findAll();

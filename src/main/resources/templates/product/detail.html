@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<main>
+<main th:object="${item}">
 <!-- PAGE BANNER SECTION -->
         <div class="page-banner-section section">
             <div class="container">
@@ -57,13 +57,18 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-8 mb-40">
                         <div class="product-details">
-                            <h2 class="title">Le Parc Minotti Chair</h2>
-                            <span class="price section"><span class="new">$137.00</span><span class="old">$115.00</span></span>
-                            <span class="availability section"><strong>available:</strong> <span class="in"><i class="fa fa-check"></i> In Stock</span>
+                            <h2 class="title">[[*{name}]]</h2>
+                            
+                            <span class="price section">
+                            	<span class="new">[[*{price}]]</span>
+                            	<span class="old">$115.00</span>
+                            </span>
+                            
+                            <span class="availability section"><strong>available:</strong> 
+                            	<span class="in"><i class="fa fa-check"></i> In Stock</span>
                             <!--<span class="out"><i class="fa fa-times"></i> Out of Stock</span>--></span>
                             <div class="short-desc section">
-                                <p><strong>Quick Overview:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tem portul indunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p><strong>Review nhanh :</strong> [[*{description}]]</p>
                             </div>
                             <div class="color-list section">
                                 <button class="active" style="background-color: #855439;"><i class="fa fa-check"></i></button>
