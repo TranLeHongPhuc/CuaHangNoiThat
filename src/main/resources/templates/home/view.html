@@ -75,11 +75,11 @@
                 </div>
                 <div class="row">
                     <!-- product-item start -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8" th:each=" p: ${items}">
                         <div class="product-item text-center">
                             <div class="product-img">
-                                <a class="image" href="product-details.html"><img src="/client/img/product/1.jpg" alt="Image"/></a>
-                                <a href="cart.html" class="add-to-cart">add to cart</a>
+                                <a class="image" th:href="@{|/product/detail/${p.id}|}"><img src="/client/img/product/1.jpg" alt="Image"/></a>
+                                <a class="add-to-cart" th:attr="ng-click=@{|cart.add(${p.id})|}">add to cart</a>
                                 <div class="action-btn fix">
                                     <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
                                     <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
@@ -87,13 +87,13 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <h5 class="title"><a href="product-details.html">Le Parc Minotti Chair</a></h5>
-                                <span class="price"><span class="new">$169.00</span></span>
+                                <h5 class="title"><a href="product-details.html">[[*{name}]]</a></h5>
+                                <span class="price"><span class="new">[[*{#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]] VNĐ</span></span>
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
-                    <!-- product-item start -->
+<!--                     product-item end
+                    product-item start
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
                         <div class="product-item text-center">
                             <div class="product-img">
@@ -111,8 +111,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
-                    <!-- product-item start -->
+                    product-item end
+                    product-item start
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
                         <div class="product-item text-center">
                             <div class="product-img">
@@ -130,8 +130,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
-                    <!-- product-item start -->
+                    product-item end
+                    product-item start
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
                         <div class="product-item text-center">
                             <div class="product-img">
@@ -149,8 +149,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
-                    <!-- product-item start -->
+                    product-item end
+                    product-item start
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
                         <div class="product-item text-center">
                             <div class="product-img">
@@ -168,8 +168,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
-                    <!-- product-item start -->
+                    product-item end
+                    product-item start
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
                         <div class="product-item text-center">
                             <div class="product-img">
@@ -187,8 +187,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
-                    <!-- product-item start -->
+                    product-item end
+                    product-item start
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
                         <div class="product-item text-center">
                             <div class="product-img">
@@ -206,8 +206,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
-                    <!-- product-item start -->
+                    product-item end
+                    product-item start
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8">
                         <div class="product-item text-center">
                             <div class="product-img">
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- product-item end -->
+                    product-item end -->
                 </div>
             </div>
         </div>
@@ -241,24 +241,24 @@
                             <!-- Single Testimonial -->
                             <div class="single-testimonial">
                                 <img src="/client/img/testimonial/1.png" alt="Image">
-                                <p>“ Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus
-                                    parum claram. ”</p>
+                                <p>â Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus
+                                    parum claram. â</p>
                                 <i class="pe-7s-way"></i>
                                 <h5>Grace Kelly</h5>
                             </div>
                             <!-- Single Testimonial -->
                             <div class="single-testimonial">
                                 <img src="img/testimonial/2.png" alt="Image">
-                                <p>“ Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus
-                                    parum claram. ”</p>
+                                <p>â Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus
+                                    parum claram. â</p>
                                 <i class="pe-7s-way"></i>
                                 <h5>Diane Stevens</h5>
                             </div>
                             <!-- Single Testimonial -->
                             <div class="single-testimonial">
                                 <img src="img/testimonial/3.png" alt="Image">
-                                <p>“ Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus
-                                    parum claram. ”</p>
+                                <p>â Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus
+                                    parum claram. â</p>
                                 <i class="pe-7s-way"></i>
                                 <h5>Mary Harper</h5>
                             </div>
