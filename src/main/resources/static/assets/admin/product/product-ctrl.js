@@ -2,6 +2,7 @@ app.controller("product-ctrl", function($scope, $http){
 	
 	$scope.items = []; /* Hiển thị sản phẩm trên form */
 	$scope.cates = []; /* hiển thị category trên form */ 
+	$scope.subs = []; /* hiển thị subcategory trên form */ 
 	$scope.form = {}; /* đối tượng trong scope để hiển thị lên form */
 	
 	/* Tải thông tin sản phẩm từ CSDL về */
@@ -13,7 +14,11 @@ app.controller("product-ctrl", function($scope, $http){
 			})
 		});
 		/*Đổ dữ liệu vào combobox - tải category về*/
-		$http.get("/rest/categories").then(resp => {
+		$http.get("/api/categories").then(resp => {
+			$scope.cates = resp.data;
+		});
+		/*Đổ dữ liệu vào combobox - tải subcategory về*/
+		$http.get("/api/subcategories").then(resp => {
 			$scope.cates = resp.data;
 		});
 	}
@@ -24,7 +29,7 @@ app.controller("product-ctrl", function($scope, $http){
 		/* Hiển thị lên Form */
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
-		$(".nav-tabs a:eq(0)").tab('show')
+		
 	}
 	
 		/* Làm mới Form */
@@ -39,7 +44,7 @@ app.controller("product-ctrl", function($scope, $http){
 		/* Thêm sản phẩm */
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		$http.post(`/rest/products`, item).then(resp => {
+		$http.post(`/api/products`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data); /* Thêm mới thì lưu vô danh sách */
 			$scope.reset();				/* sau khi post xóa sạch form */
@@ -53,7 +58,7 @@ app.controller("product-ctrl", function($scope, $http){
 		/* Cập nhật sản phẩm */
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/products/${item.id}`, item).then(resp => {
+		$http.put(`/api/products/${item.id}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id ==item.id);
 			$scope.items[index] = item;
 			alert("Cập nhật sản phẩm thành công");
@@ -64,7 +69,7 @@ app.controller("product-ctrl", function($scope, $http){
 	}
 		/* Xóa sản phẩm */
 	$scope.delete = function(item) {
-		$http.delete(`/rest/products/${item.id}`).then(resp => {
+		$http.delete(`/api/products/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id ==item.id);
 			// xóa phần tử trong mảng trong js dùng splice
 			$scope.items.splice(index, 1);

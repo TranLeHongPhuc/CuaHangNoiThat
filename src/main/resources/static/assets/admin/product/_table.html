@@ -9,27 +9,29 @@
 				<table id="example1" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>Mã sản phẩm</th>
+							<th style="width: 80px;">Hình ảnh</th>
 							<th>Tên sản phẩm</th>
 							<th>Giá</th>
 							<th>Số lượng</th>
-							<th style="width: 80px;">Hình ảnh</th>
 							<th>Ngày tạo</th>
 							<th>Danh mục</th>
+							<th>Thương hiệu</th>
+							<th>Available</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat = "item in items">
-							<td>{{item.id}}</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{item.image1}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.price | number: 2}}</td>
+							<td>{{item.quantity}}</td>
+							<td>{{item.createDate | date: 'dd-MM-yyyy'}}</td>
+							<td>{{item.category.name}}</td>
+							<td>{{item.subcategory.name}}</td>
+							<td>{{item.available?'Yes':'No'}}</td>
 							<td align="center">
-								<button class="btn btn-success">
+								<button class="btn btn-success" ng-click = "edit(item)">
 									<i class="fa fa-edit" aria-hidden="true"></i>
 								</button> <a class="btn btn-danger"> <i class="fa fa-trash"
 									aria-hidden="true"></i>

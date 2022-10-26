@@ -1,5 +1,22 @@
 package com.noithat.serviceImpl;
 
-public class AccountServiceImplement {
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.noithat.entity.Account;
+import com.noithat.repository.AccountRepository;
+import com.noithat.service.AccountService;
+
+@Service
+public class AccountServiceImplement implements AccountService{
+	@Autowired
+	AccountRepository accountRepo;
+	
+	@Override
+	public List<Account> findAll() {
+		return accountRepo.findAll();
+	}
 
 }

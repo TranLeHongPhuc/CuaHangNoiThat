@@ -10,18 +10,18 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>Username</th>
-							<th>Password</th>
+							<th>Tên</th>
+							<th>Mật khẩu</th>
 							<th>Email</th>
-							<th>Fullname</th>
+							<th>Họ và tên</th>
 							<th style="width: 80px;">Photo</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
+						<tr ng-repeat = "item in items">
+							<td>{{item.username}}</td>
+							<td>{{item.password}}</td>
 							<td></td>
 							<td></td>
 							<td></td>

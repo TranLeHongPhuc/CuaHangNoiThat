@@ -1,21 +1,18 @@
 app.controller("users-ctrl", function($scope, $http){
 	
 	$scope.items = []; /* Hiển thị sản phẩm trên form */
-	$scope.cates = []; /* hiển thị category trên form */ 
+	
 	$scope.form = {}; /* đối tượng trong scope để hiển thị lên form */
 	
 	/* Tải thông tin sản phẩm từ CSDL về */
 	$scope.initialize = function() {
-		$http.get("/rest/products").then(resp => {
+		$http.get("/api/accounts").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				item.createDate = new Date(item.createDate)
 			})
 		});
-		/*Đổ dữ liệu vào combobox - tải category về*/
-		$http.get("/rest/categories").then(resp => {
-			$scope.cates = resp.data;
-		});
+		
 	}
 	
 	/* Thực hiện khởi động load form */
