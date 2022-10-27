@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.noithat.entity.Category;
 import com.noithat.entity.Subcategory;
 import com.noithat.service.SubcategoryService;
 
@@ -24,5 +26,9 @@ public class SubcategoryRestController {
 		return ResponseEntity.ok(subcategoryService.findAll());
 	}
 	
+//	@GetMapping("{id}")
+//	public List<Subcategory> getListId(@PathVariable("id") String id) {
+//		return subcategoryService.findListById(id);
+//	}
 	
 }

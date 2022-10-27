@@ -19,7 +19,7 @@ app.controller("product-ctrl", function($scope, $http){
 		});
 		/*Đổ dữ liệu vào combobox - tải subcategory về*/
 		$http.get("/api/subcategories").then(resp => {
-			$scope.cates = resp.data;
+			$scope.subs = resp.data;
 		});
 	}
 	

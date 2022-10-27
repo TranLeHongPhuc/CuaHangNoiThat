@@ -44,4 +44,10 @@ public class SubcategoryServiceImplement implements SubcategoryService{
 		return subcategoryRepo.findByCategoryId(categoryId);
 	}
 
+//	@Override
+//	public List<Subcategory> findListById(String id) {
+//		//
+//		return subcategoryRepo.findByCategoryId(id);
+//	}
+
 }

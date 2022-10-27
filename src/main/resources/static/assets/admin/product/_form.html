@@ -13,39 +13,43 @@
 				<div class="row">
 					<div class="col-8">
 						<div class="form-group">
-							<label for="productName">Tên sản phẩm</label> <input ng-model = "form.name" type="text"
-								class="form-control" id="productnameId">
+							<label for="productName">Tên sản phẩm</label> <input
+								ng-model="form.name" type="text" class="form-control"
+								id="productnameId">
 						</div>
 						<div class="form-group">
-							<label for="quantity">Giá</label> <input ng-model = "form.price" type="number"
-								class="form-control" id="quanityId">
+							<label for="quantity">Giá</label> <input ng-model="form.price"
+								type="number" class="form-control" id="quanityId">
 						</div>
 						<div class="form-group">
-							<label for="price">Số lượng</label> <input ng-model = "form.quantity" type="number"
-								class="form-control" id="priceId">
+							<label for="price">Số lượng</label> <input
+								ng-model="form.quantity" type="number" class="form-control"
+								id="priceId">
 						</div>
 						<div class="form-group">
-							<label for="slug">Ngày tạo</label> <input ng-model = "form.createDate" type="text"
-								class="form-control" id="slugId">
+							<label for="slug">Ngày tạo</label> <input
+								ng-model="form.createDate" type="text" class="form-control"
+								id="slugId">
 						</div>
 						<div class="form-group">
-							<label for="description">Mô tả</label> <input ng-model = "form.description" type="text"
-								class="form-control" id="descriptionId">
+							<label for="description">Mô tả</label> <input
+								ng-model="form.description" type="text" class="form-control"
+								id="descriptionId">
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-6">
 									<label>Danh mục</label> <br> <select
-										ng-model = "form.category.id" name="productTypeid"
+										ng-model="form.category.id" name="productTypeid"
 										class="form-control" style="width: 50%;">
-										<option ng-repeat = "c in cates" ng-value = "c.id">{{c.name}}</option>
+										<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
 									</select>
 								</div>
 								<div class="col-6">
 									<label>Thương hiệu</label> <br> <select
-										 name="unitTypeid"
+										ng-model="form.subcategory.id" name="unitTypeid"
 										class="form-control" style="width: 50%;">
-										<option></option>
+										<option ng-repeat="s in subs" ng-value="s.id">{{s.name}}</option>
 									</select>
 								</div>
 							</div>

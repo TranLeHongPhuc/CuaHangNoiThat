@@ -2,6 +2,8 @@ package com.noithat.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+
 import com.noithat.entity.Subcategory;
 
 public interface SubcategoryService {
@@ -16,4 +18,7 @@ public interface SubcategoryService {
 	Subcategory update(Subcategory subcategory);
 	
 	void delete(String id);
+	
+//	@Query("SELECT s FROM Subcategory s WHERE s.category.id")
+//	List<Subcategory> findListById(String id);
 }
