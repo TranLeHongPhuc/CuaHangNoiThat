@@ -22,7 +22,7 @@
                                         <div class="product-item text-center">
                                             <div class="product-img">
                                                 <a class="image" th:href="@{|/product/detail/${p.id}|}"><img th:src="@{|/admin/img/${p.image1}|}" alt=""/></a>
-                                                <a th:attr="ng-click=@{|cart.add(${p.id})|}" class="add-to-cart">Add to cart</a>
+                                                <a href="" th:attr="ng-click=@{|cart.add(${p.id})|}" class="add-to-cart">Add to cart</a>
                                                 <div class="action-btn fix">
                                                     <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
                                                     <a th:href="@{|/product/detail/${p.id}|}" title="Quickview"><i class="pe-7s-look"></i></a>
