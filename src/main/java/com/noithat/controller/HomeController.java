@@ -19,15 +19,10 @@ import com.noithat.service.ProductService;
 public class HomeController {
 	@Autowired
 	ProductService productService;
-	
-    @GetMapping("/home")
-    public String getAllPages(Model model) {
-        return home(model, 1);
-    }
-	
-	@RequestMapping("/home/{pageNumber}")
-	public String home(Model model, @PathVariable("pageNumber") int currentPage) {
-        Page<Product> list = productService.homePage(currentPage);
+		
+	@RequestMapping("/home")
+	public String home(Model model) {
+        Page<Product> list = productService.homePage(1);
         model.addAttribute("items", list);
 		return "home/view";
 	}
