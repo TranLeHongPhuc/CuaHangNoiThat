@@ -35,6 +35,6 @@ app.config(function($routeProvider){
 		controller: "authority-ctrl"
 	})
 	.otherwise({
-		//template: "<h1 class='text center'> FPT Polytechnic Administration </h1>"
+		templateUrl: "/assets/admin/statistical/statistical.html"
 	})
 })
