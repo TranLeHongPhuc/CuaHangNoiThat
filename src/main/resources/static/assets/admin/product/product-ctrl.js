@@ -106,7 +106,9 @@ app.controller("product-ctrl", function($scope, $http){
 		get count() {
 			return Math.ceil(1.0 * $scope.items.length /this.size);
 		},
-		
+		get totalQuantity(){
+			return $scope.items.length;
+		},
 		first(){
 			this.page=0;
 		},

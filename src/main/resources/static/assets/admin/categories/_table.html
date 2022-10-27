@@ -3,19 +3,23 @@
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Danh sách loại sản phẩm</h3>
+				<br>
+				<h3 class="card-title">Tổng danh mục: {{pager.totalQuantity}}</h3>
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
 				<table id="example1" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th style="width: 80px;">ID</th>
-							<th>Name</th>
+							<th style="width: 80px;">Mã danh mục</th>
+							<th>Tên danh mục</th>
+							<th>Thương hiệu</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
+						<tr ng-repeat = "item in items">
+							<td>{{item.id}}</td>
+							<td>{{item.name}}</td>
 							<td></td>
 						</tr>
 					</tbody>

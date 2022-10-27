@@ -6,11 +6,9 @@ app.controller("subcategories-ctrl", function($scope, $http){
 	
 	/* Tải thông tin sản phẩm từ CSDL về */
 	$scope.initialize = function() {
-		$http.get("/api/accounts").then(resp => {
+		$http.get("/api/subcategories").then(resp => {
 			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-				item.createDate = new Date(item.createDate)
-			})
+			
 		});
 		
 	}
@@ -98,7 +96,9 @@ app.controller("subcategories-ctrl", function($scope, $http){
 		get count() {
 			return Math.ceil(1.0 * $scope.items.length /this.size);
 		},
-		
+		get totalQuantity(){
+			return $scope.items.length;
+		},
 		first(){
 			this.page=0;
 		},

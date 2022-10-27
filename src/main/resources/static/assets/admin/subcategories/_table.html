@@ -3,25 +3,43 @@
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Danh mục sản phẩm</h3>
+				<br>
+				<h3 class="card-title">Tổng thương hiệu: {{pager.totalQuantity}}</h3>
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
 				<table id="example1" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th style="width: 80px;">Hình ảnh</th>
-							<th>Tên sản phẩm</th>
-							<th>Giá</th>
+							<th style="width: 80px;">Mã thương hiệu</th>
+							<th>Tên thương hiệu</th>
+							<th>Danh mục</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "item in items">
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr ng-repeat = "item in pager.items">
+							<td>{{item.id}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.category.id}}</td>
 						</tr>
 					</tbody>
 				</table>
+				<div class="panel-footer text-center">
+					<button ng-click="pager.first()" class="btn btn-danger">
+						<b>First</b>
+					</button>
+					<button ng-click="pager.prev()" class="btn btn-primary">
+						<b>Previous</b>
+					</button>
+					<button class="btn btn-success">{{pager.page + 1}} of
+						{{pager.count}}</button>
+					<button ng-click="pager.next()" class="btn btn-primary">
+						<b>Next</b>
+					</button>
+					<button ng-click="pager.last()" class="btn btn-danger">
+						<b>Last</b>
+					</button>
+				</div>
 			</div>
 			<!-- /.card-body -->
 		</div>

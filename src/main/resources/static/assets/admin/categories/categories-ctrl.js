@@ -1,21 +1,14 @@
 app.controller("categories-ctrl", function($scope, $http){
 	
 	$scope.items = []; /* Hiển thị sản phẩm trên form */
-	$scope.cates = []; /* hiển thị category trên form */ 
 	$scope.subs = []; /* hiển thị subcategory trên form */ 
 	$scope.form = {}; /* đối tượng trong scope để hiển thị lên form */
 	
 	/* Tải thông tin sản phẩm từ CSDL về */
 	$scope.initialize = function() {
-		$http.get("/api/products").then(resp => {
-			$scope.items = resp.data;
-			$scope.items.forEach(item => {
-				item.createDate = new Date(item.createDate)
-			})
-		});
-		/*Đổ dữ liệu vào combobox - tải category về*/
 		$http.get("/api/categories").then(resp => {
-			$scope.cates = resp.data;
+			$scope.items = resp.data;
+			
 		});
 		/*Đổ dữ liệu vào combobox - tải subcategory về*/
 		$http.get("/api/subcategories").then(resp => {
@@ -106,7 +99,9 @@ app.controller("categories-ctrl", function($scope, $http){
 		get count() {
 			return Math.ceil(1.0 * $scope.items.length /this.size);
 		},
-		
+		get totalQuantity(){
+			return $scope.items.length;
+		},
 		first(){
 			this.page=0;
 		},
