@@ -3,7 +3,10 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Quản lý nhân viên</h1>
+					<h1>
+						<a data-toggle="tab" data-target="#edit" href=""></a>Quản lí danh
+						mục sản phẩm
+					</h1>
 				</div>
 			</div>
 		</div>
@@ -12,10 +15,10 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div id="edit">
-				<div ng-include="'/assets/admin/users/_form.html'"></div>
+				<div ng-include="'/assets/admin/subcategories/_form.html'"></div>
 			</div>
 			<div id="list">
-				<div ng-include="'/assets/admin/users/_table.html'"></div>
+				<div ng-include="'/assets/admin/subcategories/_table.html'"></div>
 			</div>
 		</div>
 	</section>

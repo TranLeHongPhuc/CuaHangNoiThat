@@ -1,0 +1,50 @@
+<div class="row">
+	<!-- left column -->
+	<div class="col-12">
+		<!-- general form elements -->
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">Subcategories</h3>
+			</div>
+			<!-- /.card-header -->
+
+			<!-- form start -->
+			<div class="card-body">
+				<div class="row">
+					<div class="col-8">
+						<div class="form-group">
+							<label for="productName">ID</label> <input
+								ng-model="form.name" type="text" class="form-control"
+								id="productnameId">
+						</div>
+						<div class="form-group">
+							<label for="quantity">Name</label> <input ng-model="form.price"
+								type="number" class="form-control" id="quanityId">
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-6">
+									<label>Category_ID</label> <br> <select
+										 name="productTypeid"
+										class="form-control" style="width: 50%;">
+										<option></option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.card-body -->
+			<div class="card-footer">
+				<button type="button" id="submitCreate" class="btn btn-primary">Create</button>
+				<button type="button" id="submitUpdate"
+					th:attr="onclick='submitFormEdit()'" class="btn btn-success">Update</button>
+				<a th:href="@{/admin/product}"><button type="button"
+						class="btn btn-warning">Cancel</button></a>
+			</div>
+		</div>
+		<!-- /.card -->
+	</div>
+</div>
+<!-- /.container-fluid -->
