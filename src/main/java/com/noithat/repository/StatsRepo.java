@@ -10,7 +10,7 @@ import com.noithat.entity.Order;
 @Repository
 public interface StatsRepo extends JpaRepository<Order, Integer> {
 	
-	@Query(value = "{CALL sp_getTotalPricePerMonth(:month, :year)}",nativeQuery=true)
+	@Query(value = "{CALL sp_getTotalPricePerMonth(:month, :year)}", nativeQuery = true)
 	String getTotalPricePerMonth(@Param("month") String month, @Param("year") String year);
 	
 }

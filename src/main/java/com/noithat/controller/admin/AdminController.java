@@ -16,7 +16,7 @@ public class AdminController {
 	
 	@GetMapping("")
 	public String doGetIndex(Model model) {
-		String chartData[][] = statsService.getToTalPriceLast6Months();
+		String chartData[][] = statsService.getTotalPriceLast6Months();
 		model.addAttribute("chartData",chartData);
 		return "admin/index";
 	}
