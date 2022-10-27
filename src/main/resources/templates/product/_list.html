@@ -25,8 +25,8 @@
                                                 <a th:attr="ng-click=@{|cart.add(${p.id})|}" class="add-to-cart">Add to cart</a>
                                                 <div class="action-btn fix">
                                                     <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                    <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
-                                                    <a th:href="@{/product/detail}" title="Compare"><i class="pe-7s-repeat"></i></a>
+                                                    <a th:href="@{|/product/detail/${p.id}|}" title="Quickview"><i class="pe-7s-look"></i></a>
+                                                    <a th:href="@{|/product/detail/${p.id}|}" title="Compare"><i class="pe-7s-repeat"></i></a>
                                                 </div>
                                             </div>
                                             <div class="product-info">
