@@ -21,10 +21,25 @@ public class ProductServiceImplement implements ProductService{
 	public List<Product> findAll() {
 		return pdao.findAll();
 	}
+	
 
 	@Override
-	public List<Product> findByAllCategoryId(String cid) {
-		return pdao.findAllByCategoryId(cid);
+	public Page<Product> homePage(int pageNumber) {
+		Pageable pageable = PageRequest.of(pageNumber -1,12);
+		return pdao.findAll(pageable);
+	}
+
+	
+	@Override
+	public Page<Product> findAll(int pageNumber) {
+		Pageable pageable = PageRequest.of(pageNumber -1,9);
+		return pdao.findAll(pageable);
+	}
+
+	@Override
+	public Page<Product> findAllByCategoryId(String cid, int pageNumber) {
+		Pageable pageable = PageRequest.of(pageNumber -1,9);
+		return pdao.findAllByCategoryIdLike(cid, pageable);
 	}
 
 	@Override

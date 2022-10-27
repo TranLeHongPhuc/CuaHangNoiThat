@@ -8,12 +8,9 @@
                         <div class="single-sidebar mb-8">
                             <h3 class="sidebar-title">Category SOS</h3>
                             <ul class="category-sidebar">
-                                <li><a href="shop.html">Chairs</a></li>
-                                <li><a href="shop.html">Tables</a></li>
-                                <li><a href="shop.html">Sofas</a></li>
-                                <li><a href="shop.html">Lights & Lamps</a></li>
-                                <li><a href="shop.html">Decorations</a></li>
-                                <li><a href="shop.html">Others</a></li>
+                                <li th:each="category:${categories}">
+                                	<a th:href="@{|/product/home?cid=${category.id}|}">[[${category.name}]]</a>
+                                </li>
                             </ul>
                         </div>
 

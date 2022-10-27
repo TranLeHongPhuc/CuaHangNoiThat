@@ -31,19 +31,16 @@
                         <!-- Tab panes -->
                         <div class="tab-content mb-10">
                             <div class="pro-large-img tab-pane active" id="pro-large-img-1">
-                                <img src="/client/img/product/1.jpg" alt="Image" />
+                                <img th:src="@{|/admin/img/${item.image1}|}" alt="Image" />
                             </div>
                             <div class="pro-large-img tab-pane" id="pro-large-img-2">
-                                <img src="img/product/2.jpg" alt="Image" />
+                                <img th:src="@{|/admin/img/${item.image2}|}" alt="Image" />
                             </div>
                             <div class="pro-large-img tab-pane" id="pro-large-img-3">
-                                <img src="img/product/3.jpg" alt="Image" />
+                                <img th:src="@{|/admin/img/${item.image3}|}" alt="Image" />
                             </div>
                             <div class="pro-large-img tab-pane" id="pro-large-img-4">
-                                <img src="img/product/4.jpg" alt="Image" />
-                            </div>
-                            <div class="pro-large-img tab-pane" id="pro-large-img-5">
-                                <img src="img/product/5.jpg" alt="Image" />
+                                <img th:src="@{|/admin/img/${item.image4}|}" alt="Image" />
                             </div>
                         </div>
                         <!-- Nav tabs -->
@@ -60,7 +57,7 @@
                             <h2 class="title">[[*{name}]]</h2>
                             
                             <span class="price section">
-                            	<span class="new">[[*{price}]]</span>
+                            	<span class="new">[[*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')}]] VNĐ</span>
                             	<span class="old">$115.00</span>
                             </span>
                             
@@ -147,10 +144,10 @@
                 <div class="row">
                     <div class="product-slider product-slider-4 slick-space">
                         <!-- product-item start -->
-                        <div class="product-item text-center">
+                        <div class="product-item text-center" th:each="p:*{subcategory.products}">
                             <div class="product-img">
-                                <a class="image" href="product-details.html"><img src="img/product/1.jpg" alt=""/></a>
-                                <a href="cart.html" class="add-to-cart">add to cart</a>
+                                <a class="image" th:href="@{|/product/detail/${p.id}|}" ><img th:src="@{|/admin/img/${p.image1}|}" alt=""/></a>
+                                <a class="add-to-cart" th:attr="ng-click=@{|cart.add(${p.id})|}">Add to cart</a>
                                 <div class="action-btn fix">
                                     <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
                                     <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
@@ -158,76 +155,8 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <h5 class="title"><a href="product-details.html">Le Parc Minotti Chair</a></h5>
-                                <span class="price"><span class="new">$169.00</span></span>
-                            </div>
-                        </div>
-                        <!-- product-item end -->
-                        <!-- product-item start -->
-                        <div class="product-item text-center">
-                            <div class="product-img">
-                                <a class="image" href="product-details.html"><img src="img/product/2.jpg" alt=""/></a>
-                                <a href="cart.html" class="add-to-cart">add to cart</a>
-                                <div class="action-btn fix">
-                                    <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
-                                    <a href="product-details.html" title="Compare"><i class="pe-7s-repeat"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <h5 class="title"><a href="product-details.html">DSR Eiffel chair</a></h5>
-                                <span class="price"><span class="new">$137.00</span><span class="old">$115.00</span></span>
-                            </div>
-                        </div>
-                        <!-- product-item end -->
-                        <!-- product-item start -->
-                        <div class="product-item text-center">
-                            <div class="product-img">
-                                <a class="image" href="product-details.html"><img src="img/product/3.jpg" alt=""/></a>
-                                <a href="cart.html" class="add-to-cart">add to cart</a>
-                                <div class="action-btn fix">
-                                    <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
-                                    <a href="product-details.html" title="Compare"><i class="pe-7s-repeat"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <h5 class="title"><a href="product-details.html">3d laser cut models</a></h5>
-                                <span class="price"><span class="new">$185.00</span><span class="old">$125..00</span></span>
-                            </div>
-                        </div>
-                        <!-- product-item end -->
-                        <!-- product-item start -->
-                        <div class="product-item text-center">
-                            <div class="product-img">
-                                <a class="image" href="product-details.html"><img src="img/product/4.jpg" alt=""/></a>
-                                <a href="cart.html" class="add-to-cart">add to cart</a>
-                                <div class="action-btn fix">
-                                    <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
-                                    <a href="product-details.html" title="Compare"><i class="pe-7s-repeat"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <h5 class="title"><a href="product-details.html">carl hansen ch25</a></h5>
-                                <span class="price"><span class="new">$245.00</span></span>
-                            </div>
-                        </div>
-                        <!-- product-item end -->
-                        <!-- product-item start -->
-                        <div class="product-item text-center">
-                            <div class="product-img">
-                                <a class="image" href="product-details.html"><img src="img/product/5.jpg" alt=""/></a>
-                                <a href="cart.html" class="add-to-cart">add to cart</a>
-                                <div class="action-btn fix">
-                                    <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="product-details.html" title="Quickview"><i class="pe-7s-look"></i></a>
-                                    <a href="product-details.html" title="Compare"><i class="pe-7s-repeat"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <h5 class="title"><a href="product-details.html">DSR Eiffel chair</a></h5>
-                                <span class="price"><span class="new">$137.00</span><span class="old">$115.00</span></span>
+                                <h5 class="title"><a th:href="@{|/product/detail/${p.id}|}" th:text="${p.name}"></a></h5>
+                                <span class="price"><span class="new">[[*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')}]] VNĐ</span></span>
                             </div>
                         </div>
                         <!-- product-item end -->

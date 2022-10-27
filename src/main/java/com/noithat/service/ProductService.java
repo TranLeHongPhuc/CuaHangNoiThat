@@ -9,7 +9,11 @@ import com.noithat.entity.Product;
 public interface ProductService {
 	List<Product> findAll();
 	
-	List<Product> findByAllCategoryId(String cid);
+	Page<Product> homePage(int pageNumber);
+	
+	Page<Product> findAll(int currentPage);
+	
+	Page<Product> findAllByCategoryId(String cid, int pageNumber);
 	
 	Product findById(Integer id);
 	

@@ -15,11 +15,11 @@ import com.noithat.service.CategoryService;
 public class GlobalInterceptor implements HandlerInterceptor{
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndview) throws Exception{
-		request.setAttribute("cates", categoryService.findAll());
+			ModelAndView modelAndview) throws Exception {
+		request.setAttribute("categories", categoryService.findAll());
 	}
 
 }
