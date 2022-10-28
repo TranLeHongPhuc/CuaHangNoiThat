@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "Authorities", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"Username", "Roleid"})
+		@UniqueConstraint(columnNames = {"Username", "Role_Id"})
 })
 public class Authority implements Serializable{
 	
@@ -30,6 +30,6 @@ public class Authority implements Serializable{
 	Account account;
 	
 	@ManyToOne
-	@JoinColumn(name = "Roleid")
+	@JoinColumn(name = "Role_Id")
 	Role role;
 }
