@@ -1,5 +1,12 @@
 package com.noithat.controller;
 
-public class AccountController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+public class AccountController {
+	@RequestMapping("/user")
+	public String profile() {
+		return "/user/profile";
+	}
 }

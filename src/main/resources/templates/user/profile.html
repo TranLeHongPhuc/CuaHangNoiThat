@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" 
+    th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<main>
+ <!-- PAGE BANNER SECTION -->
+        <div class="page-banner-section section">
+            <div class="container">
+                <div class="row">
+                    <div class="page-banner-content col-xs-12">
+                        <h2>My Profile  <b class="text-danger">[[${#request.remoteUser}]]</b></h2>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Profile</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE BANNER SECTION -->
+
+        <!-- PAGE SECTION START -->
+        <div class="page-section section pt-100 pb-60">
+            <div class="container">
+                <div class="customer-login mb-40">
+                    <!-- LOGIN START -->
+                    <h3>Returning customer? <a data-bs-toggle="collapse" href="#checkout-login">Click here to Change password</a></h3>
+                    <div id="checkout-login" class="checkout-login collapse fix">
+                        <div class="checkout-login-wrapper mt-30">
+                            <p>Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <form action="#">
+                                        <div class="fix mb-20">
+                                            <label>Password <span class="required">*</span></label>
+                                            <input type="password" />
+                                        </div>
+                                        <div class="fix mb-20">
+                                            <label>Confirm Password  <span class="required">*</span></label>
+                                            <input type="password" />
+                                        </div>
+                                        <div class="fix mb-20">
+                                            <input type="submit" value="CONFIRM" />
+                                            <label class="remember-me-box">
+                                        <input type="checkbox" />
+                                        Remember me 
+                                    </label>
+                                        </div>
+                                        <a href="#/">Lost your password?</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LOGIN END -->
+                </div>
+                <div class="checkout-form">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 mb-40">
+                            <form action="#">
+                                <h3>PROFILE</h3>
+                                <div class="row">
+                                    
+                                    <div class="col-md-6 col-12 mb-30">
+                                        <label for="b_f_name">User name<span class="required">*</span></label>
+                                        <input id="b_f_name" type="text" />
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-30">
+                                        <label for="b_l_name">Full Name <span class="required">*</span></label>
+                                        <input id="b_l_name" type="text" />
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class="col-md-6 col-12 mb-30">
+                                        <label for="b_email">Email Address <span class="required">*</span></label>
+                                        <input id="b_email" type="email" />
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-30">
+                                        <label for="b_phone">Phone  <span class="required">*</span></label>
+                                        <input id="b_phone" type="text" placeholder="Phone Number" />
+                                    </div>
+                                    
+                                </div>
+                                <h3>
+                                    <input id="ship_form" type="checkbox" data-bs-target="shipping_form" />
+                                    <label for="ship_form">send notification of successful registration to email </label>
+                                </h3>
+                                
+                                
+                            </form>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 mb-40">
+                            <div class="coupon-form mb-30">
+                                <h3>Image Profile </h3>
+                                <p>Enter your coupon code if you have one</p>
+                                <form action="#">
+                                    <input type="file" placeholder="Coupon code" />
+                                    <input type="submit" value="Apply" />
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PAGE SECTION END -->
+</main>
+</body>
+</html>

@@ -61,9 +61,22 @@
 							id="dropdownAccountBtn" data-bs-toggle="dropdown"
 							aria-expanded="false"><i class="pe-7s-config"></i></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownAccountBtn">
-								<li><a href="login.html">Log in</a></li>
-								<li><a href="register.html">Register</a></li>
-								<li><a href="#">My Account</a></li>
+								<th:block th:unless="${#request.remoteUser}">
+				              		<li><a th:href="@{/security/login}">Log in</a></li>
+									<li><a href="register.html">Register</a></li>
+								</th:block>
+								<th:block th:if="${#request.remoteUser}">
+								
+			              			<li th:if="${#request.isUserInRole('ADMIN') 	or #request.isUserInRole('STAF')}">
+			             		 		<a th:href="@{/admin}">Admin</a>
+			              			</li>
+			              			<li th:if="${#request.remoteUser}">
+						            	<a th:href="@{/user}">[[${#request.remoteUser}]]</a>
+						            	<a sec:authentication="authorities"></a>
+						            </li>
+						            <li><a th:href="@{/security/logoff}">Sign out</a></li>
+			                	</th:block>
+								
 								<li><a href="wishlist.html">Wish list</a></li>
 								<li><a href="checkout.html">Checkout</a></li>
 							</ul></li>
