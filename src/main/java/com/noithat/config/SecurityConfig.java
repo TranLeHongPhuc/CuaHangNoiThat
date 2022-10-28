@@ -25,8 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	AccountService accountService;
 
-	@Autowired
-	BCryptPasswordEncoder pe;
+//	@Autowired
+//	BCryptPasswordEncoder pe;
 
 	// Cung cấp nguồn dữ liệu đăng nhập
 	@Override
@@ -67,7 +67,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.exceptionHandling().accessDeniedPage("/security/unauthoried");
 
-		http.logout().logoutUrl("/security/logoff").logoutSuccessUrl("/security/logoff/success");
+		http.logout()
+		.logoutUrl("/security/logoff")
+		.logoutSuccessUrl("/security/logoff/success");
+		
+	
+		// Oauth2
+		http.oauth2Login()
+		    .loginPage("/security/login")
+		    .defaultSuccessUrl("/oauth2/login/success", true)
+		    .failureUrl("/security/login/error")
+		    .authorizationEndpoint()
+		    .baseUri("/oauth2/authorization");
 	}
 
 	// Cho phép truy xuất REST API từ bên ngoài (domain khác)
