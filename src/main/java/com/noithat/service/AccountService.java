@@ -6,6 +6,8 @@ import com.noithat.entity.Account;
 
 public interface AccountService {
 	List<Account> findAll();
+
+	Account findByEmail(String email);
 	
 	
 }

@@ -19,4 +19,9 @@ public class AccountServiceImplement implements AccountService{
 		return accountRepo.findAll();
 	}
 
+	@Override
+	public Account findByEmail(String email) {
+		return accountRepo.findByEmail(email);
+	}
+
 }
