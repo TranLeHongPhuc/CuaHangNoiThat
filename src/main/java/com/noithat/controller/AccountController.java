@@ -9,4 +9,8 @@ public class AccountController {
 	public String profile() {
 		return "/user/profile";
 	}
+	@RequestMapping("/register")
+	public String register() {
+		return "/security/register";
+	}
 }

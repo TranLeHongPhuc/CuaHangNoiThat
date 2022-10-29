@@ -44,11 +44,13 @@ public class AccountServiceImplement implements AccountService{
 	@Override
 	public void loginFromOAuth2(OAuth2AuthenticationToken oauth2) {
 		String email = oauth2.getPrincipal().getAttribute("email");
+		String address = oauth2.getPrincipal().getAttribute("address");
+		String phone = oauth2.getPrincipal().getAttribute("phone");
 		String password = Long.toHexString(System.currentTimeMillis());
 		Account account = accountRepo.findByEmail(email);
 		UserDetails user=null;
 		if (account == null) {
-			account = new Account(email, password, oauth2.getPrincipal().getAttribute("name"), email, null, null,null );
+			account = new Account(email, password, oauth2.getPrincipal().getAttribute("name"), email, null,phone,address, null,null );
 			accountRepo.save(account);
 			Authority authority=new Authority(null, account, roleRepo.findById("USER").get());
 			authorityRepo.save(authority);

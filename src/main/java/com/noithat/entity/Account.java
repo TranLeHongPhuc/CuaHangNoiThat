@@ -30,7 +30,8 @@ public class Account implements Serializable{
 	String fullname;
 	String email;
 	String photo;
-	
+	String phone;
+	String address;
 	@JsonIgnore
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
 	List<Order> orders;
