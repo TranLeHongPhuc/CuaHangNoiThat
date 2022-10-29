@@ -40,9 +40,9 @@
                                             <li><a href="shop.html"><i class="fa fa-angle-left"></i></a></li>
 <!--                                        <li class="active"><a href="shop.html">1</a></li> -->
                                             <li  th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                            	<a th:if="${cid} != null and ${scid} == null" class="next" th:href="@{|/product/home/page/${i}?cid=${cid}|}">[[${i}]]</a>
-					        					<a th:if="${scid} != null and ${cid} == null" class="next" th:href="@{|/product/home/page/${i}?scid=${scid}|}">[[${i}]]</a>
-					        					<a th:unless="${cid} != null or ${scid} != null" class="next" th:href="@{|/product/home/page/${i}|}">[[${i}]]</a>
+                                            	<a th:if="${cid} != null and ${scid} == null" class="next" th:href="@{|/product/list/page/${i}?cid=${cid}|}">[[${i}]]</a>
+					        					<a th:if="${scid} != null and ${cid} == null" class="next" th:href="@{|/product/list/page/${i}?scid=${scid}|}">[[${i}]]</a>
+					        					<a th:unless="${cid} != null or ${scid} != null" class="next" th:href="@{|/product/list/page/${i}|}">[[${i}]]</a>
                                             </li>
                                             <li><a href="shop.html"><i class="fa fa-angle-right"></i></a></li>
                                         </ul>
@@ -76,9 +76,9 @@
                                         <ul>
                                             <li><a href="shop.html"><i class="fa fa-angle-left"></i></a></li>
  											<li  th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                            	<a th:if="${cid} != null and ${scid} == null" class="next" th:href="@{|/product/home/page/${i}?cid=${cid}|}">[[${i}]]</a>
-					        					<a th:if="${scid} != null and ${cid} == null" class="next" th:href="@{|/product/home/page/${i}?scid=${scid}|}">[[${i}]]</a>
-					        					<a th:unless="${cid} != null or ${scid} != null" class="next" th:href="@{|/product/home/page/${i}|}">[[${i}]]</a>
+                                            	<a th:if="${cid} != null and ${scid} == null" class="next" th:href="@{|/product/list/page/${i}?cid=${cid}|}">[[${i}]]</a>
+					        					<a th:if="${scid} != null and ${cid} == null" class="next" th:href="@{|/product/list/page/${i}?scid=${scid}|}">[[${i}]]</a>
+					        					<a th:unless="${cid} != null or ${scid} != null" class="next" th:href="@{|/product/list/page/${i}|}">[[${i}]]</a>
                                             </li>
                                             <li><a href="shop.html"><i class="fa fa-angle-right"></i></a></li>
                                         </ul>

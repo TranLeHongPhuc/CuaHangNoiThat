@@ -32,7 +32,7 @@ public class ProductController {
         model.addAttribute("countries", products);
     }
     
-    @GetMapping("/product/list")
+    @GetMapping("/product/home")
     public String getAllPages(Model model, @RequestParam("cid") Optional<String> cid) {
         return list(model, cid, 1);
     }
