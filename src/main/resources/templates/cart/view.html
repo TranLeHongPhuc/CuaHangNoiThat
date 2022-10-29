@@ -42,25 +42,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="pro-thumbnail"><a href="product-details.html"><img src="img/product/1.jpg" alt="Image"/></a></td>
-                                            <td class="pro-title"><a href="product-details.html">Le Parc Minotti Chair</a></td>
-                                            <td class="pro-price"><span class="amount">$169.00</span></td>
+                                        <tr ng-repeat="item in cart.items"	>
+                                            <td class="pro-thumbnail"><a th:href="@{|/product/detail/{{item.id}}|}"><img th:src="@{|/admin/img/{{item.image1}}|}" alt="Image"/></a></td>
+                                            <td class="pro-title"><a th:href="@{|/product/detail/{{item.id}}|}">{{item.name}}</a></td>
+                                            <td class="pro-price"><span class="amount">{{cart.formatNumber(item.price)}} VNĐ</span></td>
                                             <td class="pro-quantity">
-                                                <div class="product-quantity"><input type="text" value="1" /></div>
+                                                <div class="product-quantity"><input class="qty-input" ng-change="cart.saveToSessionStorage()" ng-model="item.qty" type="number" min="1"/></div>
                                             </td>
-                                            <td class="pro-subtotal">$169.00</td>
-                                            <td class="pro-remove"><a href="#/">×</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="pro-thumbnail"><a href="product-details.html"><img src="img/product/2.jpg" alt="Image"/></a></td>
-                                            <td class="pro-title"><a href="product-details.html">DSR Eiffel chair</a></td>
-                                            <td class="pro-price"><span class="amount">$137.00</span></td>
-                                            <td class="pro-quantity">
-                                                <div class="product-quantity"><input type="text" value="1" /></div>
-                                            </td>
-                                            <td class="pro-subtotal">$137.00</td>
-                                            <td class="pro-remove"><a href="#/">×</a></td>
+                                            <td class="pro-subtotal">{{cart.formatNumber(item.price*item.qty)}} VNĐ</td>
+                                            <td class="pro-remove"><a href="javascript:void(0)" class="remove" th:attr="ng-click=@{|cart.remove(item.id)|}"><i class="pe-7s-trash"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -68,7 +58,7 @@
                         </div>
                         <div class="col-lg-8 col-md-7 col-12">
                             <div class="cart-buttons mb-30">
-                                <input type="submit" value="Update Cart" />
+                                <!-- <input type="submit" value="Update Cart" /> -->
                                 <a href="shop.html">Continue Shopping</a>
                             </div>
                             <div class="cart-coupon mb-40">
@@ -83,14 +73,14 @@
                                 <h3>Cart Totals</h3>
                                 <table>
                                     <tbody>
-                                        <tr class="cart-subtotal">
+<!--                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
                                             <td><span class="amount">$306.00</span></td>
-                                        </tr>
+                                        </tr> -->
                                         <tr class="order-total">
-                                            <th>Total</th>
+                                            <th>Tổng cộng</th>
                                             <td>
-                                                <strong><span class="amount">$306.00</span></strong>
+                                                <strong><span class="amount">{{cart.formatNumber(cart.amount)}} VNĐ</span></strong>
                                             </td>
                                         </tr>
                                     </tbody>
