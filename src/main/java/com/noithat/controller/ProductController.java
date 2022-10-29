@@ -32,12 +32,12 @@ public class ProductController {
         model.addAttribute("countries", products);
     }
     
-    @GetMapping("/product/home")
+    @GetMapping("/product/list")
     public String getAllPages(Model model, @RequestParam("cid") Optional<String> cid) {
         return list(model, cid, 1);
     }
 	
-    @RequestMapping("/product/home/page/{pageNumber}")
+    @RequestMapping("/product/list/page/{pageNumber}")
     public String list(Model model, @RequestParam("cid") Optional<String> cid, @PathVariable("pageNumber") int currentPage) {
         if (cid.isPresent()) {
             Page<Product> list = productService.findAllByCategoryId(cid.get(), currentPage);
