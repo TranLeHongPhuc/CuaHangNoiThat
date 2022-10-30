@@ -52,6 +52,9 @@
 											value="forever" id="rememberme" name="rememberme"
 											type="checkbox"> Remember me
 										</label>
+										<br>
+										<a th:href="@{/forgetpassword}"> Quên mật khẩu ?</a>
+										
 									</div>
 									<div class="col-12" th:if="${message != null}">
 										<div class="error-messge" role="alert">[[${message}]]</div>
