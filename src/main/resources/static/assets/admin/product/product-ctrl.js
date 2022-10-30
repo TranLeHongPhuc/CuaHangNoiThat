@@ -26,6 +26,34 @@ app.controller("product-ctrl", function($scope, $http){
 	/* Thực hiện khởi động load form */
 	$scope.initialize();
 	
+	$scope.displayCategory = function(category){
+		if(category.name.indexOf($scope.filter_categories_subs) !== -1){
+			for(var i = 0; i < category.subs.length; i++){
+				category.subs[i].forceDisplay = true;
+			}
+			return true;
+		}
+		var hasOneDisplaySubcategory = false;
+		for(var i = 0; i < category.subs.length; i++){
+			var subcategory = category.subs[i];
+			subcategory.forceDisplay = false;
+			if(!hasOneDisplaySubcategory && $scope.displaySubcategoy(subcategory)){
+				hasOneDisplaySubcategory = true;
+			}
+		}
+		return hasOneDisplaySubcategory;
+	};
+	$scope.displaySubcategory = function(subcategory){
+		if(subcategory.forceDisplay){
+			return true;
+		}
+		if(subcategory.name.indexOf($scope.filter_categories_subs) !== -1){
+			return true;
+		}
+		return false;
+	};
+	
+	
 		/* Hiển thị lên Form */
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);

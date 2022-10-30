@@ -32,6 +32,7 @@ public class Product implements Serializable{
 	String image3;
 	String image4;
 	Double price;
+	Integer discount;
 	Integer quantity;
 	String description;
 	

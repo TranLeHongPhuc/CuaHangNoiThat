@@ -17,10 +17,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "item in pager.items">
-							<td>{{item.id}}</td>
-							<td>{{item.name}}</td>
-							<td>{{item.category.id}}</td>
+						<tr ng-repeat = "sub in pager.subs">
+							<td>{{sub.id}}</td>
+							<td>{{sub.name}}</td>
+							<td>{{sub.category.name}}</td>
+							<td align="center">
+								<button class="btn btn-success" ng-click = "edit(sub)">
+									<i class="fa fa-edit" aria-hidden="true"></i>
+								</button> <a class="btn btn-danger" ng-click = "delete(sub)" > <i class="fa fa-trash"
+									aria-hidden="true"></i>
+							</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

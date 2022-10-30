@@ -1,42 +1,44 @@
 app.controller("subcategories-ctrl", function($scope, $http){
 	
-	$scope.items = []; /* Hiển thị sản phẩm trên form */
-	
+	$scope.subs = [];
+	$scope.cates = [];
 	$scope.form = {}; /* đối tượng trong scope để hiển thị lên form */
 	
 	/* Tải thông tin sản phẩm từ CSDL về */
 	$scope.initialize = function() {
 		$http.get("/api/subcategories").then(resp => {
-			$scope.items = resp.data;
+			$scope.subs = resp.data;
 			
 		});
-		
+		$http.get("/api/categories").then(resp => {
+			$scope.cates = resp.data;
+			
+		});
 	}
 	
 	/* Thực hiện khởi động load form */
 	$scope.initialize();
 	
 		/* Hiển thị lên Form */
-	$scope.edit = function(item) {
-		$scope.form = angular.copy(item);
-		$(".nav-tabs a:eq(0)").tab('show')
+	$scope.edit = function(sub) {
+		$scope.form = angular.copy(sub);
+		
 	}
 	
 		/* Làm mới Form */
 	$scope.reset = function() {
 		$scope.form = {
 			createDate: new Date(),
-			image:"cloud-upload.jpg",
 			available: true
 		};
 	}
 	
 		/* Thêm sản phẩm */
 	$scope.create = function() {
-		var item = angular.copy($scope.form);
-		$http.post(`/rest/products`, item).then(resp => {
+		var sub = angular.copy($scope.form);
+		$http.post(`/api/subcategories`, sub).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
-			$scope.items.push(resp.data); /* Thêm mới thì lưu vô danh sách */
+			$scope.subs.push(resp.data); /* Thêm mới thì lưu vô danh sách */
 			$scope.reset();				/* sau khi post xóa sạch form */
 			alert("Thêm sản phẩm mới thành công");
 		}).catch(error => {
@@ -47,10 +49,10 @@ app.controller("subcategories-ctrl", function($scope, $http){
 	
 		/* Cập nhật sản phẩm */
 	$scope.update = function() {
-		var item = angular.copy($scope.form);
-		$http.put(`/rest/products/${item.id}`, item).then(resp => {
-			var index = $scope.items.findIndex(p => p.id ==item.id);
-			$scope.items[index] = item;
+		var sub = angular.copy($scope.form);
+		$http.put(`/api/subcategories/${sub.id}`, sub).then(resp => {
+			var index = $scope.subs.findIndex(p => p.id ==sub.id);
+			$scope.subs[index] = sub;
 			alert("Cập nhật sản phẩm thành công");
 		}).catch(error => {
 			alert("Cập nhật sản phẩm thất bại !!");
@@ -58,11 +60,11 @@ app.controller("subcategories-ctrl", function($scope, $http){
 		});
 	}
 		/* Xóa sản phẩm */
-	$scope.delete = function(item) {
-		$http.delete(`/rest/products/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id ==item.id);
+	$scope.delete = function(sub) {
+		$http.delete(`/api/subcategories/${sub.id}`).then(resp => {
+			var index = $scope.subs.findIndex(p => p.id ==sub.id);
 			// xóa phần tử trong mảng trong js dùng splice
-			$scope.items.splice(index, 1);
+			$scope.subs.splice(index, 1);
 			$scope.reset();
 			alert("Xóa sản phẩm thành công");
 		}).catch(error => {
@@ -88,16 +90,16 @@ app.controller("subcategories-ctrl", function($scope, $http){
 	$scope.pager = {
 		page: 0,
 		size: 10,
-		get items() {
+		get subs() {
 			var start = this.page * this.size;
-			return $scope.items.slice(start, start + this.size);
+			return $scope.subs.slice(start, start + this.size);
 		},
 		
 		get count() {
-			return Math.ceil(1.0 * $scope.items.length /this.size);
+			return Math.ceil(1.0 * $scope.subs.length /this.size);
 		},
 		get totalQuantity(){
-			return $scope.items.length;
+			return $scope.subs.length;
 		},
 		first(){
 			this.page=0;

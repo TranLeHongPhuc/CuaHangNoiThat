@@ -10,24 +10,25 @@
 
 			<!-- form start -->
 			<div class="card-body">
+			
 				<div class="row">
 					<div class="col-8">
 						<div class="form-group">
 							<label for="productName">ID</label> <input
-								 type="text" class="form-control"
+								 ng-model = "form.id" type="text" class="form-control"
 								id="productnameId">
 						</div>
 						<div class="form-group">
 							<label for="quantity">Name</label> <input
-								type="number" class="form-control" id="quanityId">
+								ng-model = "form.name" type="text" class="form-control" id="quanityId">
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-6">
 									<label>Category_ID</label> <br> <select
-										 name="productTypeid"
+										ng-model = "form.category.id" name="productTypeid"
 										class="form-control" style="width: 50%;">
-										<option></option>
+										<option ng-repeat = "c in cates" ng-value = "c.id">{{c.name}}</option>
 									</select>
 								</div>
 							</div>
@@ -37,11 +38,9 @@
 			</div>
 			<!-- /.card-body -->
 			<div class="card-footer">
-				<button type="button" id="submitCreate" class="btn btn-primary">Create</button>
-				<button type="button" id="submitUpdate"
-					th:attr="onclick='submitFormEdit()'" class="btn btn-success">Update</button>
-				<a th:href="@{/admin/product}"><button type="button"
-						class="btn btn-warning">Cancel</button></a>
+				<button ng-if = "form.id == null" ng-click = "create()" class="btn btn-primary">Thêm</button>
+				<button ng-if = "form.id != null" ng-click = "update()" class="btn btn-success">Sửa</button>
+				<button ng-click = "reset()" class="btn btn-warning">Làm mới</button></a>
 			</div>
 		</div>
 		<!-- /.card -->
