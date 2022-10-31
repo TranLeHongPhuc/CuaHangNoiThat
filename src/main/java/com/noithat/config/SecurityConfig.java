@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.noithat.entity.Account;
 import com.noithat.service.AccountService;
-import com.noithat.util.PasswordUtil;
+
 
 @SuppressWarnings("deprecation")
 @Configuration
@@ -25,8 +25,7 @@ import com.noithat.util.PasswordUtil;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	AccountService accountService;
-	@Autowired
-	PasswordUtil passwordUtil;
+	
 
 //	@Autowired
 //	BCryptPasswordEncoder pe;
@@ -37,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(email -> {
 			try {
 				Account user = accountService.findByEmail(email);
-				String password = passwordUtil.getBCryptPasswordEncoder().encode(user.getPassword());
-				//String password = user.getPassword();
+				
+				String password = user.getPassword();
 //				String password = pe.encode(user.getPassword());
 				String[] roles = user.getAuthorities().stream()
 						.map(er -> er.getRole().getId())

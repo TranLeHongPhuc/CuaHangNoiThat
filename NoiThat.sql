@@ -109,12 +109,12 @@ values('ADMIN','Administrators'),
 	  ('USER','Users')
 
 insert into Accounts(username, password, email, fullname, Photo, Phone, Address)
-values('khangps15053','123456','khangtgps15054@fpt.edu.vn',N'Trần Gia Khang','avatar1.png','0912312314',N'Trà vinh'),
-	  ('anps15011','123456','anthtps15011@fpt.edu.vn',N'Trịnh Hữu Thiện Ân','avatar2.png','0912312314',N'Trà vinh'),
+values('khangps15053','$2a$12$GhM3.0eKiqjO2hK/3jJFZezsHdn6t.Xu1xTwehKxXHqI2qKl3FdqK','khangtgps15054@fpt.edu.vn',N'Trần Gia Khang','avatar1.png','0912312314',N'Trà vinh'), /* mk 123456*/
+	  ('anps15011','$2a$12$E8YhPTebpzjlGu9lxNXfT.WEclyviMbXqkEcfWEpaxLGSBrLpjdvu','anthtps15011@fpt.edu.vn',N'Trịnh Hữu Thiện Ân','avatar2.png','0912312314',N'Trà vinh'),/* mk 12345*/
 	  ('dangps14887','123456','danglbps14887@fpt.edu.vn',N'Lê Bảo Đăng','avatar3.png','0912312314',N'Trà vinh'),
 	  ('thinhps14930','123456','thinhnmps14930@fpt.edu.vn',N'Nguyễn Minh Thịnh','avatar4.png','0912312314',N'Trà vinh'),
 	  ('vups14942','123456','vuvnps14942@fpt.edu.vn',N'Võ Nguyên Vũ','avatar5.png','0912312314',N'Trà vinh'),
-	  ('phucps15061','123456','phuctlhps15061@fpt.edu.vn',N'Trần Lê Hồng Phúc','avatar6.png','0912312314',N'Trà vinh'),
+	  ('phucps15061','$2a$12$Ms.4chL5gIX2yAzAP7VYqOxKS5hQ6OYdhMhIehSttWpaFgfigkg56','phuctlhps15061@fpt.edu.vn',N'Trần Lê Hồng Phúc','avatar6.png','0912312314',N'Trà vinh'),/* mk 123*/
 	  ('nhips15064','123456','nhinhps15064@fpt.edu.vn',N'Nguyễn Hoàng Nhi','avatar7.png','0912312314',N'Trà vinh')	
 
 insert into Authorities(username, Role_Id)
