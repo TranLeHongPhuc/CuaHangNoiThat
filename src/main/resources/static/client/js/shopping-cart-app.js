@@ -91,4 +91,52 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
 		
 	};
 	*/
+	
+	/*dang ky user*/////////////////////////////////////////////
+	$scope.checkcode=null;
+	$scope.checkUser;
+	$scope.authority;
+	$scope.user ={
+		add(item){
+			if(item.password == item.confirmpassword){
+				$http.post(`/api/accounts/register/${item.email}`,item).then(resp => {
+					alert("dang ky thanh cong!")
+					$scope.checkcode="yes"
+					$scope.checkUser=resp.data;
+					$scope.authority={
+						id:null,
+						account:$scope.checkUser,
+						role:{id:'USER',name:'Users'}
+					}
+					$http.post(`/api/authority`,$scope.authority).then(resp => {
+						alert("thêm authority thành công!")
+					}).catch(error => {
+						alert("Thêm authority lỗi")
+						console.log(error)
+					})
+				}).catch(error => {
+					alert("dang ky lỗi!")
+					console.log(error)
+				})
+			}else{
+				alert("Xác nhận mật khẩu không đúng!")
+			}
+		},
+		confirm(item){
+			if(item!=null){
+				if(item==$scope.checkUser.verificationCode){
+					$http.put(`/api/accounts/${$scope.checkUser.email}`, $scope.checkUser).then(resp => {
+				            
+				            alert('Email kích hoạt thành công!');
+				           
+				        }).catch(error => {
+				            alert('Email kích hoạt thất bại!')
+				            console.log("Error", error)
+				        })
+				}
+			}else{
+				alert("Vui lòng nhập mã verification!")
+			}
+		}
+	}
 })

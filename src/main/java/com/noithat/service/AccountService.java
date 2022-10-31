@@ -13,7 +13,9 @@ public interface AccountService {
 
 	void loginFromOAuth2(OAuth2AuthenticationToken oauth2);
 
-	
+	Account create(Account account) ;
+		
+	Account update(Account account) ;
 	
 	
 }

@@ -21,21 +21,32 @@ import com.noithat.repository.RoleRepository;
 import com.noithat.service.AccountService;
 
 @Service
-public class AccountServiceImplement implements AccountService{
+public class AccountServiceImplement implements AccountService {
 	@Autowired
 	AccountRepository accountRepo;
-	
+
 	@Autowired
 	RoleRepository roleRepo;
-	
+
 	@Autowired
 	AuthorityRepository authorityRepo;
-	
+
 	@Override
 	public List<Account> findAll() {
 		return accountRepo.findAll();
 	}
 
+	@Override
+	public Account create(Account account) {
+		return accountRepo.save(account);
+	}
+	
+	@Override
+	public Account update(Account account) {
+		return accountRepo.save(account);
+	}
+
+	
 	@Override
 	public Account findByEmail(String email) {
 		return accountRepo.findByEmail(email);
@@ -48,28 +59,24 @@ public class AccountServiceImplement implements AccountService{
 		String phone = oauth2.getPrincipal().getAttribute("phone");
 		String password = Long.toHexString(System.currentTimeMillis());
 		Account account = accountRepo.findByEmail(email);
-		UserDetails user=null;
+		UserDetails user = null;
 		if (account == null) {
-			account = new Account(email, password, oauth2.getPrincipal().getAttribute("name"), email, null,phone,address, null,null );
+			account = new Account(email, password, oauth2.getPrincipal().getAttribute("name"), email, null, phone,
+					address, false, null, null, null);
 			accountRepo.save(account);
-			Authority authority=new Authority(null, account, roleRepo.findById("USER").get());
+			Authority authority = new Authority(null, account, roleRepo.findById("USER").get());
 			authorityRepo.save(authority);
 			user = User.withUsername(account.getEmail()).password(account.getPassword()).roles("USER").build();
-			
-		}else {
-			String[] roles = account.getAuthorities().stream()
-					.map(er -> er.getRole().getId())
-					.collect(Collectors.toList())
-					.toArray(new String[0]);
+
+		} else {
+			String[] roles = account.getAuthorities().stream().map(er -> er.getRole().getId())
+					.collect(Collectors.toList()).toArray(new String[0]);
 			user = User.withUsername(account.getEmail()).password(account.getPassword()).roles(roles).build();
 		}
-		
 
 		Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(auth);
 
 	}
-
-	
 
 }

@@ -32,6 +32,8 @@ public class Account implements Serializable{
 	String photo;
 	String phone;
 	String address;
+	Boolean checked;
+	String verificationCode;
 	@JsonIgnore
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
 	List<Order> orders;

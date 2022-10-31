@@ -1,5 +1,7 @@
 package com.noithat.service;
 
-public interface AuthorityService {
+import com.noithat.entity.Authority;
 
+public interface AuthorityService {
+	Authority create(Authority authority);
 }

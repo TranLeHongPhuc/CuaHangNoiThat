@@ -27,6 +27,8 @@ create table Accounts(
 	Photo varchar(50),
 	Phone varchar(50),
 	Address varchar(150),
+	checked bit,
+	verification_code varchar(20),
 	primary key (Username)
 )
 
