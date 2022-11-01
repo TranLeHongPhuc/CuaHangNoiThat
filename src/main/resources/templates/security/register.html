@@ -33,14 +33,14 @@
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12 mb-20">
                                         <label for="r_f_name">First Name <span class="required">*</span></label>
-                                        <input id="r_f_name" type="text" ng-model="user.fullname" />
+                                        <input id="r_f_name" type="text" ng-model="user.firstname" />
                                     </div>
                                     <div class="col-md-6 col-xs-12 mb-20">
                                         <label for="r_l_name">Last Name <span class="required">*</span></label>
                                         <input id="r_l_name" type="text" ng-model="user.lastname"/>
                                     </div>
                                     <div class="col-xs-12 mb-20">
-                                        <label for="r_c_name">Company Name</label>
+                                        <label for="r_c_name">User Name</label>
                                         <input id="r_c_name" type="text" ng-model="user.username"/>
                                     </div>
                                     <div class="col-md-6 col-xs-12 mb-20">
@@ -51,21 +51,7 @@
                                         <label for="r_phone">Phone  <span class="required">*</span></label>
                                         <input id="r_phone" type="number" ng-model="user.phone" />
                                     </div>
-                                    <div class="col-xs-12 mb-20">
-                                        <label for="r_country">Country <span class="required">*</span></label>
-                                       
-		                                <select name="ls_province" ng-model="user.ls_province"></select>
-										
-                                    </div>
-                                    <div class="col-xs-12 mb-20">
-                                        <label for="r_country">District <span class="required">*</span></label>
-                                       	<select name="ls_district" ng-model="user.ls_district"></select>
-										
-                                    </div>
-                                    <div class="col-xs-12 mb-20">
-                                        <label for="r_country">Ward <span class="required">*</span></label>
-                                        <select name="ls_ward" ng-model="user.ls_ward"></select>
-                                    </div>
+                                    
                                     <div class="col-xs-12 mb-20">
                                         <label>Address <span class="required">*</span></label>
                                         <input type="text" placeholder="Street address" ng-model="user.address" />
@@ -113,12 +99,4 @@
 		
 	</main>
 </body>
-<script>
-		var localpicker = new LocalPicker({
-			province: "ls_province",
-			district: "ls_district",
-			ward: "ls_ward"
-	    	});
-	    	console.log(localpicker)
-	</script>
 </html>
