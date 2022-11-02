@@ -3,6 +3,7 @@ package com.noithat.controller;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,13 @@ import com.noithat.entity.Email;
 import com.noithat.service.AccountService;
 import com.noithat.service.MailerService;
 
+import net.bytebuddy.utility.RandomString;
+
 @Controller
 public class AccountController {
+	
+	@Autowired
+	PasswordEncoder pe;
 	
 	@Autowired
 	MailerService mailer;
@@ -44,8 +50,11 @@ public class AccountController {
 		if (ObjectUtils.isNotEmpty(userRequest)) {
 			for(Account ac : accountService.findAll()) {
 				if (userRequest.getUsername().equalsIgnoreCase(ac.getUsername())) {
-					mailer.queue(ac.getEmail(), "Lấy lại mật khẩu", ac.getPassword());
-					String tb = "Mật khẩu đã được gửi qua email: " + ac.getEmail() + " của bạn";
+					String password=RandomString.make(8);
+					mailer.queue(ac.getEmail(), "Lấy lại mật khẩu", password);
+					String tb = "Mật khẩu mới đã được gửi qua email: " + ac.getEmail() + " của bạn";
+					ac.setPassword(pe.encode(password));
+					accountService.update(ac);
 					model.addAttribute("message",tb);
 					return"/security/forgetPassword";
 				}
