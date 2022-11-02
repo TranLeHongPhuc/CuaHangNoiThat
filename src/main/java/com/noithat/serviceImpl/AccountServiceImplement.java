@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.noithat.entity.Account;
 import com.noithat.entity.Authority;
-import com.noithat.entity.Role;
 import com.noithat.repository.AccountRepository;
 import com.noithat.repository.AuthorityRepository;
 import com.noithat.repository.RoleRepository;
