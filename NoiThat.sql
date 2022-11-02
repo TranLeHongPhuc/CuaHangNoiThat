@@ -216,6 +216,23 @@ values	(N'PICO TABLE', 'picotable1.png', 'picotable2.png', 'picotable3.png', 'pi
 		(N'NỆM GRAFFITI', 'nemgraffiti1.png', 'nemgraffiti2.png.png', 'nemgraffiti3.png', 'nemgraffiti4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MATTRESS', 'MATTRESS2'),
 		(N'NỆM GRAFFITI', 'nemgraffiti1.png', 'nemgraffiti2.png.png', 'nemgraffiti3.png', 'nemgraffiti4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MATTRESS', 'MATTRESS3')
 
-
+CREATE PROC sp_getTotalPricePerMonth
+(
+	@month varchar(2),
+	@year  varchar(4)
+)
+AS BEGIN
+	DECLARE @result varchar(20)
+	SET @result = (SELECT 
+						SUM(Orders_Detail.Price * Orders_Detail.Quantity)
+					FROM
+						orders INNER JOIN Orders_Detail
+							ON Orders.id = Orders_Detail.Order_Id
+					WHERE 
+						MONTH(Orders.Create_Date) = @month
+						AND YEAR(Orders.Create_Date) = @year)
+	IF @result IS NULL BEGIN SET @result = '0' END
+	SELECT @result
+END	
 		
 		
