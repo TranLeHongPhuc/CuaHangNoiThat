@@ -21,10 +21,6 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	@GetMapping("/admin/users")
-	public String getUsers() {
-		return "admin/users";
-	}
 	
 	@RequestMapping("/admin")
 	public String getAdmin() {

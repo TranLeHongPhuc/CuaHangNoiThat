@@ -35,7 +35,11 @@
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
-
+<style type="text/css">
+ img {
+ 	width: 30px;
+ }
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -79,28 +83,35 @@
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th></th>
-												<th>Username</th>
-												<th>Password</th>
-												<th>Email</th>
+												<th>STT</th>
+												<th>Username</th>											
 												<th>Fullname </th>
-												<th>Photo</th>
+												<th>Email</th>
 												<th>Phone</th>
+												<th>Photo</th>
 												<th>Address</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+											<tr th:each="account, index : ${account}">
+												<td th:text="${index.index + 1}" ></td>
+												<td th:text="${account.username}" ></td>
+												<td th:text="${account.fullname}"></td>
+												<td th:text="${account.email}"></td>
+												<td th:text="${account.phone}"></td>
+												<td> <img th:src="@{'/admin/img/users/' + ${account.photo}}"/> </td>
+												<td th:text="${account.address}"></td>
+												<td align="center">
+													<button class="btn btn-success"
+														>
+														<i class="fa fa-edit" aria-hidden="true"></i>
+													</button>
+													<a class="btn btn-danger"
+														>
+														<i class="fa fa-trash" aria-hidden="true"></i>
+													</a>
+												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -119,7 +130,7 @@
 							<!-- general form elements -->
 							<div class="card card-primary">
 								<div class="card-header">
-									<h3 class="card-title">User Details</h3>
+									<h3 class="card-title">Users</h3>
 								</div>
 								<!-- /.card-header -->
 								<!-- form start -->
@@ -212,7 +223,6 @@
 												class="btn btn-warning">Cancel</button></a>
 									</div>
 								</form>
-
 							</div>
 							<!-- /.card -->
 						</div>
