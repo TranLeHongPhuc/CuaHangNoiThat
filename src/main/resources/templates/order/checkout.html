@@ -207,36 +207,28 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-total">Total</th>
+                                                <th class="product-name">Sản phẩm</th>
+                                                <th class="product-total">Tổng cộng</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in cart.items">
                                                 <td class="product-name">
-                                                    Vestibulum suscipit <strong class="product-qty"> × 1</strong>
+                                                    {{item.name}} <strong class="product-qty"> X {{item.qty}}</strong>
                                                 </td>
                                                 <td class="product-total">
-                                                    <span class="amount">$165.00</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-name">
-                                                    Vestibulum dictum magna <strong class="product-qty"> × 1</strong>
-                                                </td>
-                                                <td class="product-total">
-                                                    <span class="amount">$50.00</span>
+                                                    <span class="amount">{{cart.formatNumber(item.price*item.qty)}} VNĐ</span>
                                                 </td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Cart Subtotal</th>
-                                                <td>$215.00</td>
+                                                <th>Tổng của giỏ hàng</th>
+                                                <td>{{cart.formatNumber(cart.amount)}} VNĐ</td>
                                             </tr>
                                             <tr>
-                                                <th>Order Total</th>
-                                                <td><strong>$215.00</strong>
+                                                <th>Đơn hàng</th>
+                                                <td><strong>{{cart.formatNumber(cart.amount)}} VNĐ</strong>
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -254,7 +246,7 @@
                                             </div>
                                             <div id="collapseOne" class="panel-collapse collapse in">
                                                 <div class="panel-body p-3">
-                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wonât be shipped until the funds have cleared in our account.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -282,7 +274,7 @@
                                             </div>
                                             <div id="collapseThree" class="panel-collapse collapse">
                                                 <div class="panel-body p-3">
-                                                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                                    <p>Pay via PayPal; you can pay with your credit card if you donât have a PayPal account.</p>
                                                 </div>
                                             </div>
                                         </div>

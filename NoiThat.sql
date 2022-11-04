@@ -216,6 +216,8 @@ values	(N'PICO TABLE', 'picotable1.png', 'picotable2.png', 'picotable3.png', 'pi
 		(N'NỆM GRAFFITI', 'nemgraffiti1.png', 'nemgraffiti2.png.png', 'nemgraffiti3.png', 'nemgraffiti4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MATTRESS', 'MATTRESS2'),
 		(N'NỆM GRAFFITI', 'nemgraffiti1.png', 'nemgraffiti2.png.png', 'nemgraffiti3.png', 'nemgraffiti4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MATTRESS', 'MATTRESS3')
 
+go
+
 CREATE PROC sp_getTotalPricePerMonth
 (
 	@month varchar(2),
