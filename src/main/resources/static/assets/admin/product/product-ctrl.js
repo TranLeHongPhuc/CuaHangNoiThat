@@ -1,5 +1,6 @@
+const app = angular.module("product-app", []);
 app.controller("product-ctrl", function($scope, $http){
-	
+	alert("asdsd")
 	$scope.items = []; /* Hiển thị sản phẩm trên form */
 	$scope.cates = []; /* hiển thị category trên form */ 
 	$scope.subs = []; /* hiển thị subcategory trên form */ 

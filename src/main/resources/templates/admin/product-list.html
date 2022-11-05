@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+<!-- User-Ctrl JS -->
+	<script th:src="@{/js/product/product-ctrl.js}"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+<!-- iCheck -->
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+<!-- JQVMap -->
+<link rel="stylesheet" th:href="@{/admin/plugins/jqvmap/jqvmap.min.css}">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+<!-- Daterange picker -->
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/daterangepicker/daterangepicker.css}">
+<!-- summernote -->
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
+
+
+<style type="text/css">
+ img {
+ 	width: 30px;
+ }
+</style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed" ng-app = "product-app" ng-controller = "product-ctrl" >
+
+	<div class="wrapper">
+
+		<!-- Preloader -->
+		<div
+			class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" src="dist/img/AdminLTELogo.png"
+				alt="AdminLTELogo" height="60" width="60">
+		</div>
+
+		<th:block th:include="/admin/fragments/header"></th:block>
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Quản lý sản phẩm</h1>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Danh sách sản phẩm</h3><br>
+									<h3 class="card-title">Tổng sản phẩm : {{pager.totalQuantity}}</h3>
+									<a style="float: right" th:href = "@{/product/add}"
+										class="btn btn-success">Thêm mới</a>
+								</div>
+								<!-- /.card-header -->
+								<div class="card-body">
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Hình Ảnh</th>
+												<th>Tên sản phẩm</th>											
+												<th>Giá (VNĐ)</th>
+												<th>Khuyến mãi</th>
+												<th>Giá khuyến mãi (VNĐ)</th>
+												<th>Số lượng</th>
+												<th>Danh mục</th>
+												<th>Thương hiệu</th>
+												<th>Ngày tạo</th>
+												<th>Available</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat = "item in pager.items">
+												<td><img src="/admin/img/{{item.image1}}" style = "width: 100px"></td>
+												<td>{{item.name}}</td>
+												<td>{{item.price | number}}</td>
+												<td>{{item.discount}}</td>
+												<td>{{item.price * (100-item.discount)/100 | number}}</td>
+												<td>{{item.quantity}}</td>
+												<td>{{item.category.name}}</td>
+												<td>{{item.subcategory.name}}</td>
+												<td>{{item.createDate | date: 'dd-MM-yyyy'}}</td>
+												<td>{{item.available | uppercase}}</td>
+												<td>
+													<div class="btn-group mb-1">
+														<a  type="button" class="btn btn-outline-success">Info</a>
+														<button type="button"
+															class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+															data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false" data-display="static">
+															<span class="sr-only">Info</span>
+														</button>
+
+														<div class="dropdown-menu">
+															<a class="dropdown-item" th:href = "@{|/product/{{item.id}}|}">Sửa</a> 
+															<a class="dropdown-item" >Xóa</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="panel-footer text-center">
+										<button ng-click="pager.first()" class="btn btn-danger">
+											<b>First</b>
+										</button>
+										<button ng-click="pager.prev()" class="btn btn-primary">
+											<b>Previous</b>
+										</button>
+										<button class="btn btn-success">{{pager.page + 1}} of
+											{{pager.count}}</button>
+										<button ng-click="pager.next()" class="btn btn-primary">
+											<b>Next</b>
+										</button>
+										<button ng-click="pager.last()" class="btn btn-danger">
+											<b>Last</b>
+										</button>
+									</div>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- /.card -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+					<!-- /.container-fluid -->
+				</div>
+			</section>
+			<!-- /.content -->
+		</div>
+
+		<th:block th:include="/admin/fragments/footer"></th:block>
+	</div>
+
+	<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script th:src="@{/admin/plugins/jquery-ui/jquery-ui.min.js}"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+		$.widget.bridge('uibutton', $.ui.button)
+	</script>
+	<!-- Bootstrap 4 -->
+	<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- ChartJS -->
+	<script th:src="@{/admin/plugins/chart.js/Chart.min.js}"></script>
+	<!-- Sparkline -->
+	<script th:src="@{/admin/plugins/sparklines/sparkline.js}"></script>
+	<!-- JQVMap -->
+	<script th:src="@{/admin/plugins/jqvmap/jquery.vmap.min.js}"></script>
+	<script th:src="@{/admin/plugins/jqvmap/maps/jquery.vmap.usa.js}"></script>
+	<!-- jQuery Knob Chart -->
+	<script th:src="@{/admin/plugins/jquery-knob/jquery.knob.min.js}"></script>
+	<!-- daterangepicker -->
+	<script th:src="@{/admin/plugins/moment/moment.min.js}"></script>
+	<script th:src="@{/admin/plugins/daterangepicker/daterangepicker.js}"></script>
+	<!-- Tempusdominus Bootstrap 4 -->
+	<script
+		th:src="@{/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+	<!-- Summernote -->
+	<script th:src="@{/admin/plugins/summernote/summernote-bs4.min.js}"></script>
+	<!-- overlayScrollbars -->
+	<script
+		th:src="@{/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{/admin/dist/js/adminlte.js}"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script th:src="@{/admin/dist/js/demo.js}"></script>
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
+	
+	
+	<script>
+		$(document).ready(function() {
+		    $("#example1").DataTable({
+		    	"pageLength": 5,
+		      	"responsive": true, 
+		      	"lengthChange": false, 
+		      	"autoWidth": false,
+		      	"buttons": ["csv", "excel", "pdf", "print"]
+		    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+		 });
+		
+		$(document).ready(function(){
+			var errorMessage = $('#errorMessage').text();
+			var succeedMessage = $('#succeedMessage').text();
+			
+			if (errorMessage.length > 0) {
+				$('#thongBao').addClass('alert alert-danger');
+				$('#thongBao').css('display', 'block');
+			}
+			
+			if (succeedMessage.length > 0) {
+				$('#thongBao').addClass('alert alert-success');
+				$('#thongBao').css('display', 'block');
+			}
+		});
+		
+		$('#createBtn').click(function(){
+			$('html, body').animate({
+				scrollTop: $('#form').offset().top
+			}, 1000);
+			$('#form :input').prop('readonly', false);
+			$('#submitCreate').prop('disabled', false);
+			$('#form').prop('action', '/admin/user/create');
+		});
+		
+		$('#submitCreate').click(function(){
+			$('#form').submit();
+		});
+		
+		function editUser(username) {
+			var url = '/admin/user/edit?username=' + username;
+			$.get(url).done(function(data){
+				$('#form').replaceWith(data);
+				$('html, body').animate({
+					scrollTop: $('#form').offset().top
+				}, 1000);
+				$('#form :input').prop('readonly', false);
+				$('input#username').prop('readonly', true);
+				$('#submitUpdate').prop('disabled', false);
+				$('#form').prop('action', '/admin/user/edit');
+			});
+		}
+		
+		function submitFormEdit() {
+			$('#form').submit();
+		}
+	</script>
+	
+</body>
+</html>

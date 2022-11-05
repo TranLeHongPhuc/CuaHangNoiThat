@@ -19,6 +19,4 @@ public interface SubcategoryService {
 	
 	void delete(String id);
 	
-//	@Query("SELECT s FROM Subcategory s WHERE s.category.id")
-//	List<Subcategory> findListById(String id);
 }

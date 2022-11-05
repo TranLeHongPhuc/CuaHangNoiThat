@@ -33,6 +33,11 @@ public class SubcategoryRestController {
 		return ResponseEntity.ok(subcategoryService.findAll());
 	}
 	
+	@GetMapping("/{id}")
+	public Subcategory getOne(@PathVariable("id") String id) {
+		return subcategoryService.findById(id);
+	}
+	
 	@PostMapping
 	public Subcategory create(@RequestBody Subcategory subcategory) {
 		return subcategoryService.create(subcategory);
