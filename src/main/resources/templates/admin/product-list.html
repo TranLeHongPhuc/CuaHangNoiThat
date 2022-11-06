@@ -83,7 +83,7 @@
 								<div class="card-header">
 									<h3 class="card-title">Danh sách sản phẩm</h3><br>
 									<h3 class="card-title">Tổng sản phẩm : {{pager.totalQuantity}}</h3>
-									<a style="float: right" th:href = "@{/product/add}"
+									<a style="float: right" th:href = "@{/admin/product/add}"
 										class="btn btn-success">Thêm mới</a>
 								</div>
 								<!-- /.card-header -->
@@ -106,7 +106,7 @@
 										</thead>
 										<tbody>
 											<tr ng-repeat = "item in pager.items">
-												<td><img src="/admin/img/{{item.image1}}" style = "width: 100px"></td>
+												<td><img src="/images/products/{{item.image1}}" style = "width: 100px"></td>
 												<td>{{item.name}}</td>
 												<td>{{item.price | number}}</td>
 												<td>{{item.discount}}</td>
@@ -127,7 +127,7 @@
 														</button>
 
 														<div class="dropdown-menu">
-															<a class="dropdown-item" th:href = "@{|/product/{{item.id}}|}">Sửa</a> 
+															<a class="dropdown-item" th:href = "@{|/admin/product/{{item.id}}|}">Sửa</a> 
 															<a class="dropdown-item" >Xóa</a>
 														</div>
 													</div>

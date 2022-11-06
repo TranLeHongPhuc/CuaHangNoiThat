@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CategoryManagementController {
-	@RequestMapping("/category")
+	@RequestMapping("/admin/category")
 		public String getCategory() {
-			return "assets/admin/categories/index.html";
+			return "admin/category.html";
 		}
 	}
 

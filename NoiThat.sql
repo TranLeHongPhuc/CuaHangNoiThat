@@ -49,12 +49,14 @@ create table Authorities(
 create table Categories(
 	Id varchar(10) not null,
 	Name nvarchar(40) not null,
+	Icon varchar(40),
 	primary key (Id)
 )
 
 create table Subcategories(
 	Id varchar(10) not null,
 	Name nvarchar(40) not null,
+	Icon varchar(40),
 	Category_Id varchar(10) not null,
 	constraint FK_Subcategories_Categories
 	foreign key (Category_Id) references Categories (Id),
@@ -111,7 +113,7 @@ values('ADMIN','Administrators'),
 	  ('USER','Users')
 
 insert into Accounts(username, password, email, fullname, Photo, Phone, Address)
-values('khangps15054','$2a$12$GhM3.0eKiqjO2hK/3jJFZezsHdn6t.Xu1xTwehKxXHqI2qKl3FdqK','khangtgps15054@fpt.edu.vn',N'Trần Gia Khang','avatar1.png','0912312314',N'Trà vinh'), /* mk 123456*/
+values('khangps15054','$2a$12$GhM3.0eKiqjO2hK/3jJFZezsHdn6t.Xu1xTwehKxXHqI2qKl3FdqK','khangtgps15054@fpt.edu.vn',N'Trần Gia Khang','avatar1.png','0337429181',N'Bình thuận'), /* mk 123456*/
 	  ('anps15011','$2a$12$E8YhPTebpzjlGu9lxNXfT.WEclyviMbXqkEcfWEpaxLGSBrLpjdvu','anthtps15011@fpt.edu.vn',N'Trịnh Hữu Thiện Ân','avatar2.png','0912312314',N'Trà vinh'),/* mk 12345*/
 	  ('dangps14887','123456','danglbps14887@fpt.edu.vn',N'Lê Bảo Đăng','avatar3.png','0912312314',N'Trà vinh'),
 	  ('thinhps14930','123456','thinhnmps14930@fpt.edu.vn',N'Nguyễn Minh Thịnh','avatar4.png','0912312314',N'Trà vinh'),
@@ -128,14 +130,14 @@ values('khangps15054','ADMIN'),
 	  ('phucps15061','ADMIN'),
 	  ('nhips15064','ADMIN')
 
-insert into Categories(id, name)
+insert into Categories(id, name, icon)
 values
-		('TABLE',N'Bàn'),
-		('CHAIR',N'Ghế'),
-		('CHEST',N'Tủ'),
-		('MIRROR', N'Gương'),
-		('BED', N'Giường'),
-		('MATTRESS', N'Nệm')
+		('TABLE',N'Bàn','table.png'),
+		('CHAIR',N'Ghế','chair.png'),
+		('CABINET',N'Tủ','cabinet.png'),
+		('MIRROR', N'Gương','mirror.png'),
+		('BED', N'Giường','bed.png'),
+		('MATTRESS', N'Nệm','mattress.png')
 
 insert into Subcategories(id, name, Category_Id)
 values
@@ -146,9 +148,9 @@ values
 		('CHAIR1', N'Ghế ăn', 'CHAIR'),
 		('CHAIR2', N'Ghế làm việc', 'CHAIR'),
 		('CHAIR3', N'Ghế trang điểm', 'CHAIR'),
-		('CHEST1', N'Tủ kính', 'CHEST'),
-		('CHEST2', N'Tủ quần áo', 'CHEST'),
-		('CHEST3', N'Tủ bát đĩa', 'CHEST'),
+		('CABINET1', N'Tủ kính', 'CABINET'),
+		('CABINET2', N'Tủ quần áo', 'CABINET'),
+		('CABINET3', N'Tủ bát đĩa', 'CABINET'),
 		('MIRROR1', N'Gương đứng', 'MIRROR'),
 		('MIRROR2', N'Gương treo tường', 'MIRROR'),
 		('MIRROR3', N'Gương dựa tường', 'MIRROR'),
@@ -185,13 +187,13 @@ values	(N'PICO TABLE', 'picotable1.png', 'picotable2.png', 'picotable3.png', 'pi
 		(N'BE.HE CHAIR BLACK', 'behechairblack1.png', 'behechairblack2.png', 'behechairblack3.png', 'behechairblack4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHAIR', 'CHAIR2'),
 		(N'GHẾ LÀM VIỆC PIN STOOL WHITE', 'ghelamviecpinstoolwhite1.png', 'ghelamviecpinstoolwhite2.png', 'ghelamviecpinstoolwhite3.png', 'ghelamviecpinstoolwhite4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHAIR', 'CHAIR2'),
 		(N'GHẾ GỖ PODA DRESSING CHAIR', 'ghegopadasressingchair1.png', 'ghegopadasressingchair2.png', 'ghegopadasressingchair3.png', 'ghegopadasressingchair4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHAIR', 'CHAIR3'),
-		(N'TỦ KÍNH MOZART', 'tukinhmozart1.png', 'tukinhmozart2.png', 'tukinhmozart3.png', 'tukinhmozart4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHEST', 'CHEST1'),
-		(N'TỦ KÍNH BILBAO', 'tukinhbilbao1.png', 'tukinhbilbao2.png', 'tukinhbilbao3.png', 'tukinhbilbao4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHEST', 'CHEST1'),
-		(N'TỦ KÍNH CONNEMARA', 'tukinhconnemara1.png', 'tukinhconnemara2.png', 'tukinhconnemara3.png', 'tukinhconnemara4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHEST', 'CHEST1'),
-		(N'TỦ QUẦN ÁO ICONICO', 'tuquanaoiconico1.png', 'tuquanaoiconico2.png', 'tuquanaoiconico3.png', 'tuquanaoiconico4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHEST', 'CHEST2'),
-		(N'TỦ QUẦN ÁO SUND', 'tuquanaosund1.png', 'tuquanaosund2.png', 'tuquanaosund3.png', 'tuquanaosund4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHEST', 'CHEST2'),
-		(N'TỦ QUẦN ÁO CHESTER', 'tuquanaochester1.png', 'tuquanaochester2.png', 'tuquanaochester3.png', 'tuquanaochester4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHEST', 'CHEST2'),
-		(N'TỦ BÁT ĐĨA PATERSON', 'tubatdiapaterson1.png', 'tubatdiapaterson2.png', 'tubatdiapaterson3.png', 'tubatdiapaterson4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CHEST', 'CHEST3'),
+		(N'TỦ KÍNH MOZART', 'tukinhmozart1.png', 'tukinhmozart2.png', 'tukinhmozart3.png', 'tukinhmozart4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CABINET', 'CABINET1'),
+		(N'TỦ KÍNH BILBAO', 'tukinhbilbao1.png', 'tukinhbilbao2.png', 'tukinhbilbao3.png', 'tukinhbilbao4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CABINET', 'CABINET1'),
+		(N'TỦ KÍNH CONNEMARA', 'tukinhconnemara1.png', 'tukinhconnemara2.png', 'tukinhconnemara3.png', 'tukinhconnemara4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CABINET', 'CABINET1'),
+		(N'TỦ QUẦN ÁO ICONICO', 'tuquanaoiconico1.png', 'tuquanaoiconico2.png', 'tuquanaoiconico3.png', 'tuquanaoiconico4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CABINET', 'CABINET2'),
+		(N'TỦ QUẦN ÁO SUND', 'tuquanaosund1.png', 'tuquanaosund2.png', 'tuquanaosund3.png', 'tuquanaosund4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CABINET', 'CABINET2'),
+		(N'TỦ QUẦN ÁO CHESTER', 'tuquanaochester1.png', 'tuquanaochester2.png', 'tuquanaochester3.png', 'tuquanaochester4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CABINET', 'CABINET2'),
+		(N'TỦ BÁT ĐĨA PATERSON', 'tubatdiapaterson1.png', 'tubatdiapaterson2.png', 'tubatdiapaterson3.png', 'tubatdiapaterson4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'CABINET', 'CABINET3'),
 		(N'GƯƠNG ĐỨNG MIRAMAR', 'guongdungmiramar1.png', 'guongdungmiramar2.png', 'guongdungmiramar3.png', 'guongdungmiramar4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MIRROR', 'MIRROR1'),
 		(N'GƯƠNG TREO TƯỜNG MIRAMAR', 'guongtreotuongmiramar1.png', 'guongtreotuongmiramar2.png', 'guongtreotuongmiramar3.png', 'guongtreotuongmiramar4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MIRROR', 'MIRROR2'),
 		(N'MIA CIRCLE MIRROR GREY', 'miacirclemirrorgrey1.png', 'miacirclemirrorgrey2.png', 'miacirclemirrorgrey3.png', 'miacirclemirrorgrey4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MIRROR', 'MIRROR2'),

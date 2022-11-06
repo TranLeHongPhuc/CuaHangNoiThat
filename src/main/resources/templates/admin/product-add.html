@@ -77,7 +77,7 @@
 							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">Danh sách sản phẩm</h3>
-									<a th:href = "@{/product/list}" style="float: right" 
+									<a th:href = "@{/admin/product/list}" style="float: right" 
 										class="btn btn-success">Danh sách</a>
 								</div>
 								<!-- /.card-header -->
@@ -154,34 +154,39 @@
 														<div class="container">
 														    <div class="picture-container">
 														        <div class="picture">
-														            <img th:src="@{|/admin/img/*{image1}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type="file" id="wizard-picture" class="" >
+														            <img th:src="@{|/images/products/*{image1}|}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "img1" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
 														        </div>
 														         <h6 class="">Choose Picture</h6>
 														
 														    </div>
 														    <div class="picture-container">
 														        <div class="picture">
-														            <img th:src="@{|/admin/img/*{image2}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type="file" id="wizard-picture" class="" >
+														            <img th:src="@{|/images/products/*{image2}|}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "img2" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
 														        </div>
 														         <h6 class="">Choose Picture</h6>
 														    </div>
 														    <div class="picture-container">
 														        <div class="picture">
-														            <img th:src="@{|/admin/img/*{image3}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type="file" id="wizard-picture" class="" >
+														            <img th:src="@{|/images/products/*{image3}|}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "img3" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
 														        </div>
 														         <h6 class="">Choose Picture</h6>
 														    </div>
 														    <div class="picture-container">
 														        <div class="picture">
-														            <img th:src="@{|/admin/img/*{image3}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type="file" id="wizard-picture" class="" >
+														            <img th:src="@{|/images/products/*{image4}|}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "img4" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
 														        </div>
 														         <h6 class="">Choose Picture</h6>
 														    </div>
 														</div>
+														
 													</div>
 													<!-- /.card-body -->
 												</div>
@@ -191,12 +196,15 @@
 									</div>
 									<!-- /.card-body -->
 									<div class="card-footer">
-										<button th:if = "*{id} == -999" type="button" id="submitCreate" 
+										<button th:if = "*{id} == -999" th:formaction = "@{/admin/product/submit}"
 											class="btn btn-primary">Thêm</button>
-										<button th:if = "*{id} != -999" type="button" id="submitUpdate"
+										<button th:if = "*{id} != -999" th:formaction = "@{|/admin/product/update/*{id}|}"
 											class="btn btn-success">Cập nhật</button>
 										<button type="button" id = "submitCancel"
 											class="btn btn-warning">Làm mới</button></a>
+									</div>
+									<div>
+										<h5>[[${message}]]</h5>
 									</div>
 								</form>
 							</div>

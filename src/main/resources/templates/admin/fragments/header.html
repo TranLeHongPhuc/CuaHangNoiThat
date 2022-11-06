@@ -62,15 +62,25 @@
 						</p>
 				</a>
 					<ul class="nav nav-treeview">
-						<li class="nav-item"><a th:href="@{/product/list}"
+						<li class="nav-item"><a th:href="@{/admin/product/list}"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Product-List</p>
 						</a></li>
-						<li class="nav-item"><a th:href="@{/product/add}"
+						<li class="nav-item"><a th:href="@{/admin/product/add}"
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>Product-Add</p>
 						</a></li>
 					</ul></li>
+				<li class="nav-item"><a th:href="@{/admin/category}"
+					class="nav-link"> <i class="fa fa-creative-commons"
+						aria-hidden="true"></i>
+						<p>Categories</p>
+				</a></li>
+				<li class="nav-item"><a th:href="@{/admin/subcategory}"
+					class="nav-link"> <i class="fa fa-scribd "
+						aria-hidden="true"></i>
+						<p>Subcategories</p>
+				</a></li>
 				<li class="nav-item"><a th:href="@{/admin/order}"
 					class="nav-link"> <i class="fa fa-first-order"
 						aria-hidden="true"></i>

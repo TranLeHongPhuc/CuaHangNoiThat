@@ -23,6 +23,16 @@ app.controller("product-ctrl", function($scope, $http){
 	}
 	$scope.initialize();
 	
+	$scope.imageChanged = function(files){
+		let data = new FormData();
+		data.append('file', files[0]);
+		$http.post('/api/image/products', data, {
+			transformRequest: angular.identity,
+			headers: {'Content-type': undefined},
+			enctype:'multipart/form-data'
+		})
+	}
+	
 	$scope.pager = {
 		page: 0,
 		size: 10,
