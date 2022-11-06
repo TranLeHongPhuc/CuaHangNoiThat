@@ -6,6 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 
+<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+<!-- User-Ctrl JS -->
+	<script th:src="@{/js/product/category-ctrl.js}"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -35,13 +40,15 @@
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
+<link rel="stylesheet"
+	th:href="@{/admin/dist/css/css.css}">
 <style type="text/css">
  img {
  	width: 30px;
  }
 </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" th:object = ${categoryForm}>
 
 	<div class="wrapper">
 
@@ -92,19 +99,27 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr >
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+											<tr th:each = "category,index : ${categories}">
+												<td>[[${index.index +1}]]</td>
+												<td><img th:src = @{|/images/categories/${category.icon}|}></td>
+												<td>[[${category.id}]]</td>
+												<td>[[${category.name}]]</td>
+												<th:block>
+													<td th:if="${#lists.size(category.subcategories)} > 0">
+														<span 
+														class="badge badge-primary badge-pill" title ="Total Sub Categories" th:text ="${#lists.size(category.subcategories)}"></span>
+														<span class="list-group-item-success" th:each = "subcategory : ${category.subcategories}">[[${subcategory.name}]], </span>
+													</td>
+													<td th:if="${#lists.size(category.subcategories)} == 0">
+														<span class="badge badge-primary badge-pill"><span
+															class="list-group-item-success" title = "Total Sub Categories">
+														</span>0</span>
+													</td>	
 												<td align="center">
-													<button class="btn btn-success"
-														>
+													<a th:href = @{|/category/${category.id}|} class="btn btn-success">
 														<i class="fa fa-edit" aria-hidden="true"></i>
-													</button>
-													<a class="btn btn-danger"
-														>
+													</a>
+													<a th:href = @{|/category/delete/${category.id}|} class="btn btn-danger">
 														<i class="fa fa-trash" aria-hidden="true"></i>
 													</a>
 												</td>
@@ -130,20 +145,22 @@
 								</div>
 								<!-- /.card-header -->
 								<!-- form start -->
-								<form id="form" method="POST" 
-									enctype="multipart/form-data">
+								<h6>[[${message}]]</h6>
+								<div th:field = "${errorMessage}"></div>
+								<form th:action = "@{/category}" enctype ="multipart/form-data"  method="POST" >
 									<div class="card-body">
 										<div class="row">
 											<div class="col-8">
 												<div class="form-group">
-													<label for="categoryId">Mã danh mục</label> <input type="text"
-														class="form-control" id="username" readonly="true"
-														>
+													<label for="categoryId">Mã danh mục</label> <input th:field ="*{id}" type="text"
+														class="form-control" id="id">
+														<h6 th:errors = "*{id}"></h6>
 												</div>
 												<div class="form-group">
-													<label for="name">Tên danh mục</label> <input
-														type="text" class="form-control" id="password"
-														readonly="true">
+													<label for="name">Tên danh mục</label> <input th:field = "*{name}"
+														type="text" class="form-control" id="name"
+														>
+														<h6 th:errors = "*{name}"></h6>
 												</div>
 											</div>
 											<div class="col-4">
@@ -154,19 +171,15 @@
 															
 														</div>
 														<br />
-														<div class="form-group">
-															<label for="inputFile">Avatar</label>
-															<div class="input-group">
-																<div class="custom-file">
-																	<input type="file" class="custom-file-input"
-																		id="inputFile" name="image"> <label
-																		class="custom-file-label" for="inputFile">Choose
-																		file</label>
-																</div>
-																<div class="input-group-append">
-																	<span class="input-group-text">Upload</span>
-																</div>
-															</div>
+														<div class="container">
+															<div class="picture-container">
+														        <div class="picture">
+														            <img th:src="@{|/images/categories/*{icon}|}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "imageIcon" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
+														        </div>
+														         <h6 class="">Choose Picture</h6>
+														    </div>
 														</div>
 													</div>
 													<!-- /.card-body -->
@@ -177,13 +190,12 @@
 									</div>
 									<!-- /.card-body -->
 									<div class="card-footer">
-										<button type="button" id="submitCreate" disabled
+										<button th:if = "${categoryForm.id} == null" th:formaction = "@{/category/submit}"
 											class="btn btn-primary">Create</button>
-										<button type="button" id="submitUpdate"
-											th:attr="onclick='submitFormEdit()'" disabled
+										<button th:if = "${categoryForm.id} != null" th:formaction = "@{|/category/update/${categoryForm.id}|}"
 											class="btn btn-success">Update</button>
-										<a th:href="@{/admin/user}"><button type="button"
-												class="btn btn-warning">Cancel</button></a>
+										<button th:formaction="@{/category}"
+												class="btn btn-warning">Cancel</button>
 									</div>
 								</form>
 							</div>
@@ -234,6 +246,7 @@
 	<script th:src="@{/admin/dist/js/demo.js}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
+	<script th:src="@{/admin/plugins/avatar/js/js.js}"></script>
 	<script>
 		$(document).ready(function() {
 		    $("#example1").DataTable({

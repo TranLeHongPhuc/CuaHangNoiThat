@@ -23,6 +23,7 @@ public class Subcategory implements Serializable{
 	@Id
 	String id;
 	String name;
+	String icon;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "subcategory")
