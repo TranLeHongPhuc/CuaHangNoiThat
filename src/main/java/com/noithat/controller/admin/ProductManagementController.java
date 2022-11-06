@@ -48,7 +48,7 @@ public class ProductManagementController {
 		return "admin/product-add";
 	}
 	
-	@RequestMapping("/admin/product/add")
+	@RequestMapping("/product/add")
 	public String addProduct(Model model, @ModelAttribute("item") Product product) {
 		product = new Product();
 		product.setId(-999);
