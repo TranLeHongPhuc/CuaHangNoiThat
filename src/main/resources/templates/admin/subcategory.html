@@ -6,6 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 
+<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+<!-- User-Ctrl JS -->
+	<script th:src="@{/js/subcategory/subcategory-ctrl.js}"></script>
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -35,13 +41,15 @@
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
+<link rel="stylesheet"
+	th:href="@{/admin/dist/css/css.css}">
 <style type="text/css">
  img {
  	width: 30px;
  }
 </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" ng-app = "subcategory-app" ng-controller = "subcategory-ctrl">
 
 	<div class="wrapper">
 
@@ -92,25 +100,39 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr >
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+											<tr ng-repeat = "sub in pager.subs">
+												<td>{{$index + 1}}</td>
+												<td><img th:src="@{|/images/subcategories/{{sub.icon}}|}"></td>
+												<td>{{sub.id}}</td>
+												<td>{{sub.name}}</td>
+												<td>{{sub.category.name}}</td>
 												<td align="center">
-													<button class="btn btn-success"
-														>
+													<button ng-click = "edit(sub)" class="btn btn-success">
 														<i class="fa fa-edit" aria-hidden="true"></i>
 													</button>
-													<a class="btn btn-danger"
-														>
+													<button ng-click = "delete(sub)" class="btn btn-danger">
 														<i class="fa fa-trash" aria-hidden="true"></i>
-													</a>
+													</button>
 												</td>
 											</tr>
 										</tbody>
 									</table>
+									<div class="panel-footer text-center">
+										<button ng-click="pager.first()" class="btn btn-danger">
+											<b>First</b>
+										</button>
+										<button ng-click="pager.prev()" class="btn btn-primary">
+											<b>Previous</b>
+										</button>
+										<button class="btn btn-success">{{pager.page + 1}} of
+											{{pager.count}}</button>
+										<button ng-click="pager.next()" class="btn btn-primary">
+											<b>Next</b>
+										</button>
+										<button ng-click="pager.last()" class="btn btn-danger">
+											<b>Last</b>
+										</button>
+									</div>
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -130,26 +152,31 @@
 								</div>
 								<!-- /.card-header -->
 								<!-- form start -->
-								<form id="form" method="POST" 
+								<form name = "frmSubcategory" id="form" method="POST" novalidate
 									enctype="multipart/form-data">
 									<div class="card-body">
 										<div class="row">
 											<div class="col-8">
 												<div class="form-group">
-													<label for="categoryId">Mã danh mục</label> <input type="text"
-														class="form-control" id="username" readonly="true"
-														>
+													<label for="subcategoryId">Mã thương hiệu</label> 
+														<input ng-model = "form.id" type="text"
+														class="form-control" id="text" name = "id" ng-maxlength="10" ng-required=true >
+														
+													<span ng-show="frmSubcategory.id.$error.required">Vui lòng nhập mã thương hiệu</span>
+													<span ng-show="frmSubcategory.id.$error.maxlength">Vui lòng nhập ít hơn 10 kí tự</span>
 												</div>
 												<div class="form-group">
-													<label for="name">Tên danh mục</label> <input
-														type="text" class="form-control" id="password"
-														readonly="true">
+													<label for="name">Tên thương hiệu</label> <input name = "name" ng-model = "form.name"  
+														type="text" class="form-control" ng-maxlength = "40" ng-required= true>
+														<span ng-show="frmSubcategory.name.$error.required">Vui lòng nhập tên thương hiệu</span>
+														<span ng-show="frmSubcategory.name.$error.maxlength">Vui lòng nhập ít hơn 40 kí tự</span>
 												</div>
 												<div class="form-group">
 												<label>Danh mục</label>
-													<select class="form-control">
-														<option></option>
+													<select class="form-control" ng-model = "form.category.id" name = category ng-required= true>
+														<option ng-repeat = "category in cates" ng-value = "category.id">{{category.name}}</option>
 													</select>
+													<span ng-show="frmSubcategory.category.$error.required">Vui lòng chọn danh mục</span>
 												</div>
 											</div>
 											<div class="col-4">
@@ -160,19 +187,15 @@
 															
 														</div>
 														<br />
-														<div class="form-group">
-															<label for="inputFile">Avatar</label>
-															<div class="input-group">
-																<div class="custom-file">
-																	<input type="file" class="custom-file-input"
-																		id="inputFile" name="image"> <label
-																		class="custom-file-label" for="inputFile">Choose
-																		file</label>
-																</div>
-																<div class="input-group-append">
-																	<span class="input-group-text">Upload</span>
-																</div>
-															</div>
+														<div class="container">
+															<div class="picture-container">
+														        <div class="picture">
+														            <img ng-src="{{'/images/subcategories/' + form.icon}}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "imageIcon" accept=".png, .jpg, .jpeg" id="wizard-picture" class=""  
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
+														        </div>
+														         <h6 class="">Choose Picture</h6>
+														    </div>
 														</div>
 													</div>
 													<!-- /.card-body -->
@@ -183,13 +206,12 @@
 									</div>
 									<!-- /.card-body -->
 									<div class="card-footer">
-										<button type="button" id="submitCreate" disabled
+										<button ng-if = "form.id == null" ng-click = "create()" 
 											class="btn btn-primary">Create</button>
-										<button type="button" id="submitUpdate"
-											th:attr="onclick='submitFormEdit()'" disabled
+										<button ng-if = "form.id != null" ng-click = "update()"
 											class="btn btn-success">Update</button>
-										<a th:href="@{/admin/user}"><button type="button"
-												class="btn btn-warning">Cancel</button></a>
+										<button ng-click = "reset()"
+												class="btn btn-warning">Cancel</button>
 									</div>
 								</form>
 							</div>
@@ -240,6 +262,7 @@
 	<script th:src="@{/admin/dist/js/demo.js}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
+	<script th:src="@{/admin/plugins/avatar/js/js.js}"></script>
 	<script>
 		$(document).ready(function() {
 		    $("#example1").DataTable({
