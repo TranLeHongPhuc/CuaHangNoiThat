@@ -26,7 +26,7 @@ create table Accounts(
 	Fullname nvarchar(50) not null,
 	Photo varchar(50),
 	Phone varchar(50),
-	Address varchar(150),
+	Address nvarchar(150),
 	checked bit,
 	verification_code varchar(20),
 	primary key (Username)
@@ -139,7 +139,7 @@ values
 		('BED', N'Giường','bed.png'),
 		('MATTRESS', N'Nệm','mattress.png')
 
-insert into Subcategories(id, name, Category_Id)
+insert into Subcategories(id, name, Category_Id, Icon)
 values
 		('TABLE1', N'Bàn làm việc', 'TABLE'),
 		('TABLE2', N'Bàn ăn', 'TABLE'),
