@@ -108,7 +108,7 @@
 													<td th:if="${#lists.size(category.subcategories)} > 0">
 														<span 
 														class="badge badge-primary badge-pill" title ="Total Sub Categories" th:text ="${#lists.size(category.subcategories)}"></span>
-														<span class="list-group-item-success" th:each = "subcategory : ${category.subcategories}">[[${subcategory.name}]], </span>
+														<span class="list-group-item-success" th:each = "subcategory : ${category.subcategories}">[[${subcategory.name}]]	 </span>
 													</td>
 													<td th:if="${#lists.size(category.subcategories)} == 0">
 														<span class="badge badge-primary badge-pill"><span
@@ -116,10 +116,10 @@
 														</span>0</span>
 													</td>	
 												<td align="center">
-													<a th:href = @{|/category/${category.id}|} class="btn btn-success">
+													<a th:href = "@{|/category/${category.id}/#bruh|}" class="btn btn-success">
 														<i class="fa fa-edit" aria-hidden="true"></i>
 													</a>
-													<a th:href = @{|/category/delete/${category.id}|} class="btn btn-danger">
+													<a th:href = "@{|/category/delete/${category.id}|}" class="btn btn-danger">
 														<i class="fa fa-trash" aria-hidden="true"></i>
 													</a>
 												</td>
@@ -141,7 +141,7 @@
 							<!-- general form elements -->
 							<div class="card card-primary">
 								<div class="card-header">
-									<h3 class="card-title">Users</h3>
+									<h3 id = "bruh" class="card-title">Users</h3>
 								</div>
 								<!-- /.card-header -->
 								<!-- form start -->

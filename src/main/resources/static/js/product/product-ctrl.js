@@ -66,4 +66,5 @@ app.controller("product-ctrl", function($scope, $http){
 			this.page = this.count - 1;
 		}
 	}
+	
 })

@@ -153,25 +153,25 @@ values
 
 insert into Subcategories(id, name, Category_Id)
 values
-		('TABLE1', N'Bàn làm việc', 'TABLE'),
-		('TABLE2', N'Bàn ăn', 'TABLE'),
-		('TABLE3', N'Bàn trà/sofa', 'TABLE'),
-		('TABLE4', N'Bàn trang điểm', 'TABLE'),
-		('CHAIR1', N'Ghế ăn', 'CHAIR'),
-		('CHAIR2', N'Ghế làm việc', 'CHAIR'),
-		('CHAIR3', N'Ghế trang điểm', 'CHAIR'),
-		('CABINET1', N'Tủ kính', 'CABINET'),
-		('CABINET2', N'Tủ quần áo', 'CABINET'),
-		('CABINET3', N'Tủ bát đĩa', 'CABINET'),
-		('MIRROR1', N'Gương đứng', 'MIRROR'),
-		('MIRROR2', N'Gương treo tường', 'MIRROR'),
-		('MIRROR3', N'Gương dựa tường', 'MIRROR'),
-		('BED1', N'Giường 1,2m', 'BED'),
-		('BED2', N'Giường 1,6m', 'BED'),
-		('BED3', N'Giường 1,8m', 'BED'),
-		('MATTRESS1', N'Nệm 1,2m', 'MATTRESS'),
-		('MATTRESS2', N'Nệm 1,6m', 'MATTRESS'),
-		('MATTRESS3', N'Nệm 1,8m', 'MATTRESS')
+		('TABLE1', N'Bàn làm việc', 'TABLE','icon1.png'),
+		('TABLE2', N'Bàn ăn', 'TABLE','icon1.png'),
+		('TABLE3', N'Bàn trà/sofa', 'TABLE','icon1.png'),
+		('TABLE4', N'Bàn trang điểm', 'TABLE','icon1.png'),
+		('CHAIR1', N'Ghế ăn', 'CHAIR','icon1.png'),
+		('CHAIR2', N'Ghế làm việc', 'CHAIR','icon1.png'),
+		('CHAIR3', N'Ghế trang điểm', 'CHAIR','icon1.png'),
+		('CABINET1', N'Tủ kính', 'CABINET','icon1.png'),
+		('CABINET2', N'Tủ quần áo', 'CABINET','icon1.png'),
+		('CABINET3', N'Tủ bát đĩa', 'CABINET','icon1.png'),
+		('MIRROR1', N'Gương đứng', 'MIRROR','icon1.png'),
+		('MIRROR2', N'Gương treo tường', 'MIRROR','icon1.png'),
+		('MIRROR3', N'Gương dựa tường', 'MIRROR','icon1.png'),
+		('BED1', N'Giường 1,2m', 'BED','icon1.png'),
+		('BED2', N'Giường 1,6m', 'BED','icon1.png'),
+		('BED3', N'Giường 1,8m', 'BED','icon1.png'),
+		('MATTRESS1', N'Nệm 1,2m', 'MATTRESS','icon1.png'),
+		('MATTRESS2', N'Nệm 1,6m', 'MATTRESS','icon1.png'),
+		('MATTRESS3', N'Nệm 1,8m', 'MATTRESS','icon1.png')
 
 
 

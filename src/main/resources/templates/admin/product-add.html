@@ -143,54 +143,80 @@
 												</div>
 					
 											</div>
-											<div class="col-4">
-												<!-- Profile Image -->
-												<div class="card card-primary card-outline">
-													<div class="card-body box-profile">
-														<div class="text-center">
-															
-														</div>
 														<br />
-														<div class="container">
-														    <div class="picture-container">
-														        <div class="picture">
-														            <img th:src="@{|/images/products/*{image1}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type='file' name = "img1" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
-														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
-														        </div>
-														         <h6 class="">Choose Picture</h6>
-														    </div>
-														    <div class="picture-container">
-														        <div class="picture">
-														            <img th:src="@{|/images/products/*{image2}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type='file' name = "img2" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
-														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
-														        </div>
-														         <h6 class="">Choose Picture</h6>
-														    </div>
-														    <div class="picture-container">
-														        <div class="picture">
-														            <img th:src="@{|/images/products/*{image3}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type='file' name = "img3" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
-														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
-														        </div>
-														         <h6 class="">Choose Picture</h6>
-														    </div>
-														    <div class="picture-container">
-														        <div class="picture">
-														            <img th:src="@{|/images/products/*{image4}|}" class="picture-src" id="wizardPicturePreview" title="">
-														            <input type='file' name = "img4" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
-														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
-														        </div>
-														         <h6 class="">Choose Picture</h6>
-														    </div>
+											<div class="col-lg-4">
+												<div class="ec-vendor-img-upload">
+													<div class="ec-vendor-main-img">
+														<div class="avatar-upload">
+															<div class="avatar-edit">
+																<input type='file' name="img1" id="imageUpload" class="ec-image-upload"
+																	accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
+																<label for="imageUpload"><img th:src="@{/images/icons/edit.svg}"
+																		class="svg_img header_svg" alt="edit" /></label>
+															</div>
+															<div class="avatar-preview ec-preview">
+																<div class="imagePreview ec-div-preview">
+																	<img class="ec-image-preview"
+																		th:src="@{|/images/products/*{image1}|}"
+																		alt="edit" />
+																</div>
+															</div>
 														</div>
-														
+														<div class="thumb-upload-set colo-md-12">
+															<div class="thumb-upload">
+																<div class="thumb-edit">
+																	<input type='file' name="img2" id="thumbUpload04"
+																		class="ec-image-upload" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
+																	<label for="imageUpload"><img
+																			th:src="@{/images/icons/edit.svg}"
+																			class="svg_img header_svg" alt="edit" /></label>
+																</div>
+																<div class="thumb-preview ec-preview">
+																	<div class="image-thumb-preview">
+																		<img class="image-thumb-preview ec-image-preview"
+																			th:src="@{|/images/products/*{image2}|}"
+																			alt="edit" />
+																	</div>
+																</div>
+															</div>
+															<div class="thumb-upload">
+																<div class="thumb-edit">
+																	<input type='file' name="img3" id="thumbUpload05"
+																		class="ec-image-upload" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
+																	<label for="imageUpload"><img
+																			th:src="@{/images/icons/edit.svg}"
+																			class="svg_img header_svg" alt="edit" /></label>
+																</div>
+																<div class="thumb-preview ec-preview">
+																	<div class="image-thumb-preview">
+																		<img class="image-thumb-preview ec-image-preview"
+																			th:src="@{|/images/products/*{image3}|}"
+																			alt="edit" />
+																	</div>
+																</div>
+															</div>
+															<div class="thumb-upload">
+																<div class="thumb-edit">
+																	<input type='file' name="img4" id="thumbUpload06"
+																		class="ec-image-upload" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
+																	<label for="imageUpload"><img
+																			th:src="@{/images/icons/edit.svg}"
+																			class="svg_img header_svg" alt="edit" /></label>
+																</div>
+																<div class="thumb-preview ec-preview">
+																	<div class="image-thumb-preview">
+																		<img class="image-thumb-preview ec-image-preview"
+																			th:src="@{|/images/products/*{image4}|}"
+																			alt="edit" />
+																	</div>
+																</div>
+															</div>
+														</div>
 													</div>
-													<!-- /.card-body -->
 												</div>
-												<!-- /.card -->
 											</div>
+														
+													
 										</div>
 									</div>
 									<!-- /.card-body -->
@@ -255,7 +281,8 @@
 	<script th:src="@{/admin/dist/js/demo.js}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
-	<script th:src="@{/admin/plugins/avatar/js/js.js}"></script>
+	<script th:src="@{/js/noithat/tco.js}"></script>
+	<script th:src="@{/js/data-tables/jquery.datatables.min.js}"></script>
 	<script>
 		$(document).ready(function() {
 		    $("#example1").DataTable({
