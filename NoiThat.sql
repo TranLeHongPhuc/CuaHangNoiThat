@@ -45,6 +45,7 @@ create table Authorities(
 	primary key (Id)
 )
 
+go
 
 create table Categories(
 	Id varchar(10) not null,
@@ -52,6 +53,8 @@ create table Categories(
 	Icon varchar(40),
 	primary key (Id)
 )
+
+go
 
 create table Subcategories(
 	Id varchar(10) not null,
@@ -62,6 +65,8 @@ create table Subcategories(
 	foreign key (Category_Id) references Categories (Id),
 	primary key (Id)
 )
+
+go
 
 create table Products(
 	Id int identity(1,1),
@@ -85,6 +90,8 @@ create table Products(
 	primary key (Id)
 )
 
+go
+
 create table Orders(
 	Id int identity(1,1),
 	Username varchar(50) not null,
@@ -94,6 +101,8 @@ create table Orders(
 	Address nvarchar(100),
 	primary key (Id)
 )
+
+go
 
 create table Orders_Detail(
 	Id int identity(1,1),
@@ -108,9 +117,12 @@ create table Orders_Detail(
 	primary key (Id)
 )
 
+
 insert into Roles(id, name)
 values('ADMIN','Administrators'),
 	  ('USER','Users')
+
+
 
 insert into Accounts(username, password, email, fullname, Photo, Phone, Address)
 values('khangps15054','$2a$12$GhM3.0eKiqjO2hK/3jJFZezsHdn6t.Xu1xTwehKxXHqI2qKl3FdqK','khangtgps15054@fpt.edu.vn',N'Trần Gia Khang','avatar1.png','0337429181',N'Bình thuận'), /* mk 123456*/
@@ -139,7 +151,7 @@ values
 		('BED', N'Giường','bed.png'),
 		('MATTRESS', N'Nệm','mattress.png')
 
-insert into Subcategories(id, name, Category_Id, Icon)
+insert into Subcategories(id, name, Category_Id)
 values
 		('TABLE1', N'Bàn làm việc', 'TABLE'),
 		('TABLE2', N'Bàn ăn', 'TABLE'),
