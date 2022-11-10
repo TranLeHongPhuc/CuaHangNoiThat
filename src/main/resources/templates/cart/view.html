@@ -14,7 +14,7 @@
                     <div class="page-banner-content col-xs-12">
                         <h2>Cart</h2>
                         <ul class="breadcrumb">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a th:href="@{|/home|}">Home</a></li>
                             <li class="active">Cart</li>
                         </ul>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="col-lg-8 col-md-7 col-12">
                             <div class="cart-buttons mb-30">
                                 <!-- <input type="submit" value="Update Cart" /> -->
-                                <a href="shop.html">Continue Shopping</a>
+                                <a th:href="@{|/product/home|}">Continue Shopping</a>
                             </div>
                             <div class="cart-coupon mb-40">
                                 <h4>Coupon</h4>
@@ -86,7 +86,7 @@
                                     </tbody>
                                 </table>
                                 <div class="proceed-to-checkout section mt-30">
-                                    <a href="#/">Proceed to Checkout</a>
+                                    <a th:href="@{|/checkout|}">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>

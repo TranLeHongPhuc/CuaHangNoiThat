@@ -63,34 +63,41 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 	}
 
 	$scope.cart.loadFromSessionStorage();
-/*	$scope.order = {
-		createDate : new Date(),
-		address : "",
-		account:{username: $("#username").text()},
-		get orderDetails(){
+	$scope.order = {
+		createDate: new Date(),
+		address: "",
+		account: { username: $("#username").text() },
+		description: "",
+		phone: "",
+		
+		get orderDetails() {
 			return $scope.cart.items.map(item => {
-				return{
-					product:{id : item.id},
+				return {
+					product: { id: item.id },
 					price: item.price,
-					quantity : item.qty
+					quantity: item.qty
 				}
 			});
 		},
-		purchase(){
-			var order = angular.copy(this);
-			$http.post("/rest/orders",order).then(resp => {
-				alert("Đặt hàng thành công");
-				$scope.cart.clear();
-				location.href="/order/detail/" + resp.data.id;
-			}).catch(error => {
-				alert("Đặt hàng lỗi!")
-				console.log(error)
-				
-			})
+		purchase() {
+			if ($scope.cart.count > 0) {
+				var order = angular.copy(this);
+				$http.post("/api/orders", order).then(resp => {
+					alert("Đặt hàng thành công");
+					$scope.cart.clear();
+					location.href = "/order/detail/" + resp.data.id;
+				}).catch(error => {
+					alert("Đặt hàng lỗi!")
+					console.log(error)
+
+				})
+			}else{
+				alert("Bạn chưa có sản phẩm trong giỏ hàng")
+			}
 		}
 		
 	};
-	*/
+	
 	
 	/*dang ky user*/////////////////////////////////////////////
 	$scope.checkcode=null;

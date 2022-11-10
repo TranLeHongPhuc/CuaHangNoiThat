@@ -14,7 +14,8 @@
                     <div class="page-banner-content col-xs-12">
                         <h2>Checkout</h2>
                         <ul class="breadcrumb">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a th:href="@{|/home|}">Home</a></li>
+                            <li><a th:href="@{|/cart|}">Cart</a></li>
                             <li class="active">Checkout</li>
                         </ul>
                     </div>
@@ -24,171 +25,42 @@
         <!-- END PAGE BANNER SECTION -->
 
         <!-- PAGE SECTION START -->
-        <div class="page-section section pt-100 pb-60">
+        <div class="page-section section pt-0 pb-60">
             <div class="container">
-                <div class="customer-login mb-40">
-                    <!-- LOGIN START -->
-                    <h3>Returning customer? <a data-bs-toggle="collapse" href="#checkout-login">Click here to login</a></h3>
-                    <div id="checkout-login" class="checkout-login collapse fix">
-                        <div class="checkout-login-wrapper mt-30">
-                            <p>Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <form action="#">
-                                        <div class="fix mb-20">
-                                            <label>Username or email <span class="required">*</span></label>
-                                            <input type="text" />
-                                        </div>
-                                        <div class="fix mb-20">
-                                            <label>Password  <span class="required">*</span></label>
-                                            <input type="text" />
-                                        </div>
-                                        <div class="fix mb-20">
-                                            <input type="submit" value="Login" />
-                                            <label class="remember-me-box">
-                                        <input type="checkbox" />
-                                        Remember me 
-                                    </label>
-                                        </div>
-                                        <a href="#/">Lost your password?</a>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- LOGIN END -->
-                </div>
                 <div class="checkout-form">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 mb-40">
                             <form action="#">
-                                <h3>Billing Details</h3>
+                                <h3>CHECK OUT</h3>
                                 <div class="row">
-                                    <div class="col-12 mb-30">
-                                        <label for="b_country">Country <span class="required">*</span></label>
-                                        <select id="b_country">
-                                  <option value="1">Select a country</option>
-                                  <option value="2">bangladesh</option>
-                                  <option value="3">Algeria</option>
-                                  <option value="4">Afghanistan</option>
-                                  <option value="5">Ghana</option>
-                                  <option value="6">Albania</option>
-                                  <option value="7">Bahrain</option>
-                                  <option value="8">Colombia</option>
-                                  <option value="9">Dominican Republic</option>
-                                </select>
-                                    </div>
                                     <div class="col-md-6 col-12 mb-30">
-                                        <label for="b_f_name">First Name <span class="required">*</span></label>
-                                        <input id="b_f_name" type="text" />
+                                        <label for="b_f_name">Tài khoản <span class="required">*</span></label>
+                                        <div class="form-control" id="username"></div>
                                     </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label for="b_l_name">Last Name <span class="required">*</span></label>
-                                        <input id="b_l_name" type="text" />
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <label for="b_c_name">Company Name</label>
-                                        <input id="b_c_name" type="text" />
+                                     <div class="col-md-6 col-12 mb-30">
+                                        <label for="b_f_name">Họ tên <span class="required">*</span></label>
+                                        <input id="b_f_name" type="text"/>
                                     </div>
                                     <div class="col-12 mb-30">
-                                        <label>Address <span class="required">*</span></label>
-                                        <input type="text" placeholder="Street address" />
+                                        <label>Địa chỉ <span class="required">*</span></label>
+                                        <input type="text" placeholder="Street address" ng-model="order.address"/>
                                     </div>
                                     <div class="col-12 mb-30">
-                                        <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <label for="b_city">Town / City <span class="required">*</span></label>
-                                        <input id="b_city" type="text" placeholder="Town / City" />
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-30">
                                         <label>State / County <span class="required">*</span></label>
                                         <input type="text" />
                                     </div>
                                     <div class="col-md-6 col-12 mb-30">
-                                        <label for="b_zip">Postcode / Zip <span class="required">*</span></label>
-                                        <input id="b_zip" type="text" placeholder="Postcode / Zip" />
+                                        <label for="b_phone">Phone  <span class="required">*</span></label>
+                                        <input id="b_phone" type="text" placeholder="Phone Number" ng-model="order.phone"/>
                                     </div>
                                     <div class="col-md-6 col-12 mb-30">
                                         <label for="b_email">Email Address <span class="required">*</span></label>
                                         <input id="b_email" type="email" />
                                     </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label for="b_phone">Phone  <span class="required">*</span></label>
-                                        <input id="b_phone" type="text" placeholder="Phone Number" />
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <input id="b_c_account" type="checkbox" data-bs-target="createp_account" />
-                                        <label for="b_c_account">Create an account?</label>
-                                        <div class="collapse mt-20" data-collapse="createp_account">
-                                            <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                                            <label for="b_a_password">Account password  <span class="required">*</span></label>
-                                            <input id="b_a_password" type="password" placeholder="Password" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3>
-                                    <input id="ship_form" type="checkbox" data-bs-target="shipping_form" />
-                                    <label for="ship_form">Ship to a different address?</label>
-                                </h3>
-                                <div class="collapse row" data-collapse="shipping_form">
-                                    <div class="col-12 mb-30">
-                                        <label for="s_country">Country <span class="required">*</span></label>
-                                        <select id="s_country">
-                                  <option value="1">Select a country</option>
-                                  <option value="2">bangladesh</option>
-                                  <option value="3">Algeria</option>
-                                  <option value="4">Afghanistan</option>
-                                  <option value="5">Ghana</option>
-                                  <option value="6">Albania</option>
-                                  <option value="7">Bahrain</option>
-                                  <option value="8">Colombia</option>
-                                  <option value="9">Dominican Republic</option>
-                                </select>
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label for="s_f_name">First Name <span class="required">*</span></label>
-                                        <input id="s_f_name" type="text" />
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label for="s_l_name">Last Name <span class="required">*</span></label>
-                                        <input id="s_l_name" type="text" />
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <label for="s_c_name">Company Name</label>
-                                        <input id="s_c_name" type="text" />
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <label>Address <span class="required">*</span></label>
-                                        <input type="text" placeholder="Street address" />
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <label for="s_city">Town / City <span class="required">*</span></label>
-                                        <input id="s_city" type="text" placeholder="Town / City" />
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label class="s_county">State / County <span class="required">*</span></label>
-                                        <input id="s_county" type="text" />
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label for="s_zip">Postcode / Zip <span class="required">*</span></label>
-                                        <input id="s_zip" type="text" placeholder="Postcode / Zip" />
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label for="s_email">Email Address <span class="required">*</span></label>
-                                        <input id="s_email" type="email" />
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-30">
-                                        <label for="s_phone">Phone  <span class="required">*</span></label>
-                                        <input id="s_phone" type="text" placeholder="Phone Number" />
-                                    </div>
                                 </div>
                                 <div class="order-notes">
-                                    <label for="order_note">Order Notes</label>
-                                    <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    <label for="order_note">Ghi chú</label>
+                                    <textarea id="order_note" placeholder="Ghi chú" ng-model="order.description"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -280,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="order-button mt-6">
-                                        <input type="submit" value="Place order" />
+                                        <input type="submit" value="Đặt hàng" ng-click="order.purchase()"/>
                                     </div>
                                 </div>
                             </div>

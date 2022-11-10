@@ -33,7 +33,10 @@ public class Order implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CreateDate")
 	Date createDate = new Date();
+	
 	String address;
+	String description;
+	String phone;
 	
 	@ManyToOne
 	@JoinColumn( name = "Username")

@@ -99,6 +99,8 @@ create table Orders(
 	foreign key (Username) references Accounts (Username),
 	Create_Date date,
 	Address nvarchar(100),
+	description nvarchar(300),
+	phone varchar(50),
 	primary key (Id)
 )
 
@@ -151,7 +153,7 @@ values
 		('BED', N'Giường','bed.png'),
 		('MATTRESS', N'Nệm','mattress.png')
 
-insert into Subcategories(id, name, Category_Id)
+insert into Subcategories(id, name, Category_Id, Icon)
 values
 		('TABLE1', N'Bàn làm việc', 'TABLE','icon1.png'),
 		('TABLE2', N'Bàn ăn', 'TABLE','icon1.png'),

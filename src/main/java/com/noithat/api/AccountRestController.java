@@ -5,6 +5,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,6 +44,7 @@ public class AccountRestController {
 
 	@Autowired
 	PasswordEncoder pe;
+		 
 
 	@GetMapping
 	public List<Account> getAll() {
