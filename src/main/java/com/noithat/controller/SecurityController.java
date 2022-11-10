@@ -1,5 +1,7 @@
 package com.noithat.controller;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -44,7 +46,7 @@ public class SecurityController {
 	}
 	
 	@RequestMapping("/oauth2/login/success")
-	public String success(OAuth2AuthenticationToken oauth2) {
+	public String success(OAuth2AuthenticationToken oauth2) throws MessagingException {
 	    accountService.loginFromOAuth2(oauth2);
 	    return "forward:/security/login/success";
 	}
