@@ -66,7 +66,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 	$scope.order = {
 		createDate: new Date(),
 		address: "",
-		account: { username: $("#username").text() },
+		account: { username: $("#username").val() },
 		description: "",
 		phone: "",
 		
@@ -85,8 +85,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 				$http.post("/api/orders", order).then(resp => {
 					alert("Đặt hàng thành công");
 					$scope.cart.clear();
-					location.href = "/order/detail/" + resp.data.id;
 				}).catch(error => {
+					console.log({ username: $("#username").val() })
 					alert("Đặt hàng lỗi!")
 					console.log(error)
 

@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12 mb-30">
                                         <label for="b_f_name">Tài khoản <span class="required">*</span></label>
-                                        <div class="form-control" id="username"></div>
+                                        <input id="username" type="text" th:value="${#request.remoteUser}"/>
                                     </div>
                                      <div class="col-md-6 col-12 mb-30">
                                         <label for="b_f_name">Họ tên <span class="required">*</span></label>

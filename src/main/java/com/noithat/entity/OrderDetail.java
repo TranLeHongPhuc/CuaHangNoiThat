@@ -15,7 +15,7 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "orderDetails")
+@Table(name = "Orders_Detail")
 public class OrderDetail implements Serializable{
 	
 	@Id
@@ -26,11 +26,11 @@ public class OrderDetail implements Serializable{
 	Double price;
 	
 	@ManyToOne
-	@JoinColumn(name = "Orderid")
+	@JoinColumn(name = "Order_Id")
 	Order order;
 	
 	@ManyToOne
-	@JoinColumn(name = "Productid")
+	@JoinColumn(name = "Product_Id")
 	Product product;
 	
 }
