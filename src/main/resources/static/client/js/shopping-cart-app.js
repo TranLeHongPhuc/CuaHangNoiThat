@@ -103,53 +103,92 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 	$scope.checkcode=null;
 	$scope.checkUser;
 	$scope.authority;
+	$scope.accounts=[];
+	$scope.error=null;
+	$scope.initialize=function(){
+		$http.get(`/api/accounts`).then(resp=>{
+				$scope.accounts=resp.data;
+				console.log($scope.accounts);
+			}).catch(error=>{
+				alert('khong tim dc accounts');
+			})
+		
+	}
 	$scope.user ={
 		add(item){
-			if(item.password == item.confirmpassword){
-				item.fullname = item.firstname +" "+ item.lastname
-				$http.post(`/api/accounts/register/${item.email}`,item).then(resp => {
-					alert("Đăng ký tài khoản thành công ! Vui lòng kiểm tra mã code tại email "+item.email+"!")
-					$scope.checkcode="yes"
-					$scope.checkUser=resp.data;
-					$scope.authority={
-						id:null,
-						account:$scope.checkUser,
-						role:{id:'USER',name:'Users'}
+			$http.get(`/api/accounts`).then(resp=>{
+				$scope.accounts=resp.data;
+				console.log($scope.accounts);
+				for(let i=0;i<$scope.accounts.length;i++){
+					if(item.username==$scope.accounts[i].username){
+						$scope.error='User đã tồn tại';
+						break;
+					}else if(item.email==$scope.accounts[i].email){
+						$scope.error='Email đã tồn tại';
+						break;
+					}else{
+						$scope.error=null;
 					}
-					$http.post(`/api/authority`,$scope.authority).then(resp => {
-						
-					}).catch(error => {
-						alert("Thêm authority lỗi")
-						console.log(error)
-					})
-				}).catch(error => {
-					alert("dang ky lỗi!")
-					console.log(error)
-				})
-			}else{
-				alert("Xác nhận mật khẩu không đúng!")
-			}
-		},
-		confirm(item){
-			if(item!=null){
-				if(item==$scope.checkUser.verificationCode){
-					$http.put(`/api/accounts/${$scope.checkUser.email}`, $scope.checkUser).then(resp => {
-				            
-				            alert('Email kích hoạt thành công!');
-				            var url = "http://" + $window.location.host + "/security/login";
-					        $log.log(url);
-					        $window.location.href = url;
-									          
-				        }).catch(error => {
-				            alert('Email kích hoạt thất bại!')
-				            console.log("Error", error)
-				        })
-				}else{
-					alert("Mã verification Code không chính xác!")
 				}
-			}else{
-				alert("Vui lòng nhập mã verification Code!")
+				console.log('error '+$scope.error)
+				if($scope.error==null){
+					if(item.password == item.confirmpassword){
+						$scope.error="Vui lòng đợi !";
+						item.fullname = item.firstname +" "+ item.lastname
+						$http.post(`/api/accounts/register/${item.email}`,item).then(resp => {
+							$scope.error="Đăng ký tài khoản thành công ! Vui lòng kiểm tra mã code tại email "+item.email+"!";
+										$scope.checkcode="yes"
+										$scope.checkUser=resp.data;
+										$scope.authority={
+											id:null,
+											account:$scope.checkUser,
+											role:{id:'USER',name:'Users'}
+										}
+										$http.post(`/api/authority`,$scope.authority).then(resp => {
+											
+										}).catch(error => {
+											alert("Thêm authority lỗi")
+											console.log(error)
+										})
+									}).catch(error => {
+										alert("dang ky lỗi!")
+										$scope.error=null;
+										console.log(error)
+									})										
+					 }else{
+						$scope.error="Xác nhận mật khẩu không đúng!";
+					 }				
+				}	
+			
+			}).catch(error=>{
+				alert('khong tim dc accounts');
+			})
+			
+			
+			
+				
+				
+			},
+			confirm(item){
+				if(item!=null){
+					if(item==$scope.checkUser.verificationCode){
+						$http.put(`/api/accounts/${$scope.checkUser.email}`, $scope.checkUser).then(resp => {
+					            
+					           $scope.error='Email kích hoạt thành công!';
+					            var url = "http://" + $window.location.host + "/security/login";
+						        $log.log(url);
+						        $window.location.href = url;
+										          
+					        }).catch(error => {
+					            $scope.error='Email kích hoạt thất bại!';
+					            console.log("Error", error)
+					        })
+					}else{
+						$scope.error="Mã verification Code không chính xác!";
+					}
+				}else{
+					$scope.error="Vui lòng nhập mã verification Code!";
+				}
 			}
 		}
-	}
 })

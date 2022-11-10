@@ -45,9 +45,9 @@
                                     </div>
                                     <div class="col-xs-12 mb-20">
                                         <label for="r_c_name">User Name</label>
-                                        <input id="r_c_name" type="text" name="username" ng-model="user.username"required ng-minlength="3" ng-maxlength="20"/>
+                                        <input id="r_c_name" type="text" name="username" ng-model="user.username"required ng-minlength="3" ng-maxlength="50"/>
                                         <i class="fa fa-check text-success" ng-show="form.username.$dirty && form.username.$valid"></i>
-                                         <p class="text-danger" ng-show="form.username.$invalid">Nhập Username  từ 3 đến 20 ký tự</p>
+                                         <p class="text-danger" ng-show="form.username.$invalid">Nhập Username  từ 3 đến 50 ký tự</p>
                                     </div>
                                     <div class="col-md-6 col-xs-12 mb-20">
                                         <label for="r_email">Email Address <span class="required">*</span></label>
@@ -90,6 +90,9 @@
                                          <input class="btn " value="register" type="submit" ng-click="user.add(user)" ng-disabled="form.$pristine || form.$invalid">
                                          
                                     </div>
+                                    <div class="row  "  ng-if="error"> 
+	                                   <p class="text-danger text-center"><b><br />{{error}}</b></p>
+	                                </div>
                                 </div>
                             </form>
                           		<br />
