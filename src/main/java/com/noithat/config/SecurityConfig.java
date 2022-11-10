@@ -33,9 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Cung cấp nguồn dữ liệu đăng nhập
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(email -> {
+		auth.userDetailsService(username -> {
 			try {
-				Account user = accountService.findByEmail(email);
+				Account user = accountService.findByUsername(username);
 				
 				String password = user.getPassword();
 //				String password = pe.encode(user.getPassword());
@@ -43,9 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.map(er -> er.getRole().getId())
 						.collect(Collectors.toList())
 						.toArray(new String[0]);
-				return User.withUsername(email).password(password).roles(roles).build();
+				return User.withUsername(username).password(password).roles(roles).build();
 			} catch (NoSuchElementException e) {
-				throw new UsernameNotFoundException(email + "not found");
+				throw new UsernameNotFoundException(username + "not found");
 			}
 		});
 	}
