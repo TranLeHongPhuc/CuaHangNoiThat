@@ -50,13 +50,18 @@ public class AccountRestController {
 	public List<Account> getAll() {
 		return accountService.findAll();
 	}
+	
+	@GetMapping("{username}")
+	public Account getByUsername(@PathVariable("username") String username) {
+		return accountService.findByUsername(username);
+	}	
 
 	// register account
 	String checkCode = "";
 	String random = "";
-
-	@PutMapping("{email}")
-	public Account update(@PathVariable("email") String email, @RequestBody Account account) {
+	
+	@PutMapping("{username}")
+	public Account update(@PathVariable("username") String username, @RequestBody Account account) {
 //		Account accountnew = accountService.getOne(id);
 		account.setChecked(true);
 		return accountService.update(account);

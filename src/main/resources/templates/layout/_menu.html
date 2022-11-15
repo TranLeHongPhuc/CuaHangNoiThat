@@ -68,7 +68,7 @@
 			             		 		<a th:href="@{/admin}">Admin</a>
 			              			</li>
 			              			<li th:if="${#request.remoteUser}">
-						            	<a th:href="@{/user}">[[${#request.remoteUser}]]</a>
+						            	<a th:href="@{/user}" id="username">[[${#request.remoteUser}]]</a>
 						            	<a sec:authentication="authorities"></a>
 						            </li>
 						            <li><a th:href="@{/security/logoff}">Sign out</a></li>

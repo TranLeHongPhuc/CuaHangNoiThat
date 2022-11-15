@@ -133,7 +133,8 @@ values('khangps15054','$2a$12$GhM3.0eKiqjO2hK/3jJFZezsHdn6t.Xu1xTwehKxXHqI2qKl3F
 	  ('thinhps14930','123456','thinhnmps14930@fpt.edu.vn',N'Nguyễn Minh Thịnh','avatar4.png','0912312314',N'Trà vinh'),
 	  ('vups14942','123456','vuvnps14942@fpt.edu.vn',N'Võ Nguyên Vũ','avatar5.png','0912312314',N'Trà vinh'),
 	  ('phucps15061','$2a$12$Ms.4chL5gIX2yAzAP7VYqOxKS5hQ6OYdhMhIehSttWpaFgfigkg56','phuctlhps15061@fpt.edu.vn',N'Trần Lê Hồng Phúc','avatar6.png','0912312314',N'Trà vinh'),/* mk 123*/
-	  ('nhips15064','123456','nhinhps15064@fpt.edu.vn',N'Nguyễn Hoàng Nhi','avatar7.png','0912312314',N'Trà vinh')	
+	  ('nhips15064','123456','nhinhps15064@fpt.edu.vn',N'Nguyễn Hoàng Nhi','avatar7.png','0912312314',N'Trà vinh'),
+	    ('nhi','123','nhinhps15064@fpt.edu.vn',N'Nguyễn Hoàng Nhi','avatar7.png','0912312314',N'Trà vinh')		
 
 insert into Authorities(username, Role_Id)
 values('khangps15054','ADMIN'),
