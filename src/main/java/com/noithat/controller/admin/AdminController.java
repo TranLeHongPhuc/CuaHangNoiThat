@@ -14,7 +14,7 @@ public class AdminController {
 	@Autowired
 	private StatsService statsService;
 	
-	@GetMapping("/admin2")
+	@GetMapping("/admin")
 	public String doGetIndex(Model model) {
 		String chartData[][] = statsService.getTotalPriceLast6Months();
 		model.addAttribute("chartData",chartData);
@@ -22,9 +22,6 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping("/admin")
-	public String getAdmin() {
-		return "redirect:/assets/admin/index.html";
-	}
+	
 	
 }
