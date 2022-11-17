@@ -55,7 +55,38 @@ public class AccountRestController {
 	public Account getByUsername(@PathVariable("username") String username) {
 		return accountService.findByUsername(username);
 	}	
+	
+	@GetMapping("/email/{email}")
+	public Account getByEmail(@PathVariable("email") String email) {
+		return accountService.findByEmail(email);
+	}	
+	
+	@PutMapping("/change")
+	public Account changePassword( @RequestBody Account account) {
+		account.setPassword(pe.encode(account.getPassword()));
+		return accountService.update(account);
+	}
+	
+	//forget password
+	@PutMapping("/forget/{username}")
+	public Account updateverification(@PathVariable("username") String username, @RequestBody Account account) throws MessagingException {
+		String randomCode = RandomString.make(8);
+		String subject = "Please check YOUR Vevification Code for ForgetPassword";
+		String to = account.getEmail();
 
+		String body = "<p>Dear " + account.getFullname() + ",</p>";
+
+		body += "<p> Please get this code log back type Confirm Code </p>";
+
+		body += "<p> Your code <h2>" + randomCode + "</h2> </p>";
+
+		body += "<p>Thank you <br> Team</p>";
+
+		mailer.send(to, subject, body);
+		account.setVerificationCode(randomCode);
+		return accountService.update(account);
+	}
+	
 	// register account
 	String checkCode = "";
 	String random = "";
