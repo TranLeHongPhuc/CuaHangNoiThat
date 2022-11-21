@@ -110,7 +110,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 	$scope.order = {
 		createDate: new Date(),
 		address: "",
-		account: { username: $("#username").val() },
+		account: { username: $("#username").text() },
 		description: "",
 		phone: "",
 
