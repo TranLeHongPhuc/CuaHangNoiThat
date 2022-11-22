@@ -34,28 +34,35 @@
                         <div class="checkout-login-wrapper mt-30">
                             <p>Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est sit amet ipsum luctus.</p>
                             <div class="row">
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <form action="#">
-                                       <div class="fix mb-20">
-                                            <label>Old Password <span class="required">*</span></label>
-                                            <input type="password" />
+                                <div class="col-12 col-sm-6 col-xs-12">
+                                    <form name="change_form" ng-submit="change_form()" novalidate>
+                                     <div class="fix mb-20">
+                                     		<div id="nameForget" style="color:white">[[${#request.remoteUser}]]</div>
+                                            <label>Username <span class="required">*</span></label>
+                                            <input   type="text"  th:value="${#request.remoteUser}" readonly="true"  /> 
                                         </div>
-                                        <div class="fix mb-20">
+                                       <div class="fix mb-20">
                                             <label>Password <span class="required">*</span></label>
-                                            <input type="password" />
+                                            <input type="password"  name="password" ng-model="pwd.new"  required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/"/>
+                                             <i class="fa fa-check text-success" ng-show="change_form.password.$dirty && change_form.password.$valid"></i>
+		                                     <p class="text-danger" ng-show="change_form.password.$invalid">Nhập đúng định dạng password (chữ cái, ký tự và số)</p>
                                         </div>
                                         <div class="fix mb-20">
                                             <label>Confirm Password  <span class="required">*</span></label>
-                                            <input type="password" />
+                                            <input type="password" name="confirm" ng-model="pwd.confirm" required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/"/>
+                                             <i class="fa fa-check text-success" ng-show="change_form.confirm.$dirty && change_form.confirm.$valid"></i>
+		                                     <p class="text-danger" ng-show="change_form.confirm.$invalid">Nhập đúng định dạng password (chữ cái, ký tự và số)</p>
                                         </div>
-                                        <div class="fix mb-20">
-                                            <input type="submit" value="CONFIRM" />
+                                        <div class="fix mb-20">					  
+                                            <input type="submit" class="btn" value="CONFIRM"  ng-click="pw.change(pwd)" ng-disabled="change_form.$pristine || change_form.$invalid"/>
                                             <label class="remember-me-box">
                                         <input type="checkbox" />
                                         Remember me 
                                     </label>
                                         </div>
-                                        <a href="#/">Lost your password?</a>
+                                        <div class="row  "  ng-if="change_error"> 
+	                                   <p class="text-danger text-center"><b><br />{{change_error}}</b></p>
+	                             		</div>
                                     </form>
                                 </div>
                             </div>

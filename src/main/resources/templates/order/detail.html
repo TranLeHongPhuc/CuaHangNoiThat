@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" 
+    th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<main>
+ <!-- PAGE BANNER SECTION -->
+        <div class="page-banner-section section">
+            <div class="container">
+                <div class="row">
+                    <div class="page-banner-content col-xs-12">
+                        <h2>Checkout</h2>
+                        <ul class="breadcrumb">
+                            <li><a th:href="@{|/home|}">Home</a></li>
+                            <li><a th:href="@{|/order/view|}">Order</a></li>
+                            <li class="active"  ><a th:href="@{|/order/detail|}">Order Detail </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE BANNER SECTION -->
+
+        <!-- PAGE SECTION START -->
+        <div class="page-section section pt-100 pb-60">
+            <div class="container">
+                <form action="#">
+                    <div class="row">
+				       	<div class="col-xs-12">
+				                       <div class="cart-table table-responsive mb-40">
+										  	<table>
+			                                    <thead>
+			                                        <tr>
+			                                        	<th class="pro-thumbnail">Image</th>
+			                                            <th class="pro-id">Mã đơn hàng</th>
+			                                            <th class="pro-title">Tên sản phẩm</th>
+			                                            <th class="pro-quantity">Số lượng</th>
+			                                            <th class="pro-price"> Gía sản phẩm</th>
+			                                           
+			                                           
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                        <tr th:each="item : ${items}">
+			                                        	<td class="pro-thumbnail"><a ><img th:src="@{|/admin/img/${item.product.image1}|}" alt="Image"/></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.order.id}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.product.name}"></a></td>
+			                                            <td class="pro-quantity"><a  th:text="${item.quantity}"></a></td>
+			                                            <td class="pro-price"><span class="amount" th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}+ VND"></span></td>
+			                                           
+			                                        </tr>
+			                                    </tbody>
+			                                </table>
+			                           </div>
+			                      </div>
+			                       </div>
+                </form>
+            </div>
+        </div>
+        <!-- PAGE SECTION END -->
+</main>
+</body>
+</html>

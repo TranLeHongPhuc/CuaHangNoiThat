@@ -308,4 +308,29 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 		}
 	}
 	
+	
+	/*doi mk user*/////////////////////////////////////////////
+	var username = $("#nameForget").text();
+	$scope.account_change;
+	$scope.change_error=null;
+	$scope.pw={
+		change(item){
+			console.log(item)
+			$http.get(`/api/accounts/${username}`).then(resp => {
+				$scope.account_change=resp.data;
+				if(item.new==item.confirm){
+					$scope.account_change.password=item.confirm;
+					$http.put(`/api/accounts/change`, $scope.account_change).then(resp=>{
+						$scope.change_error="Đổi mật khẩu thành công";
+					})
+					
+				}else{
+					$scope.change_error="Xác nhận mật khẩu không đúng";
+				}
+				
+			})	
+		}
+	}
+	
+	
 })

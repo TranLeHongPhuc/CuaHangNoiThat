@@ -92,11 +92,21 @@ create table Products(
 
 go
 
+create table Orders_Status(
+	Id varchar(5),
+	Names nvarchar(50),
+	primary Key(Id),
+)
+
+go
 create table Orders(
 	Id int identity(1,1),
 	Username varchar(50) not null,
 	constraint FK_Orders_Users
 	foreign key (Username) references Accounts (Username),
+	order_status_id varchar(5)
+	constraint FK_Orders_OrderStatus
+	foreign key (order_status_id) references Orders_Status (Id),
 	Create_Date date,
 	Address nvarchar(100),
 	description nvarchar(300),
@@ -234,7 +244,14 @@ values	(N'PICO TABLE', 'picotable1.png', 'picotable2.png', 'picotable3.png', 'pi
 		(N'NỆM GRAFFITI', 'nemgraffiti1.png', 'nemgraffiti2.png.png', 'nemgraffiti3.png', 'nemgraffiti4.png', 1290000,10,10, N'Vip', '2022/10/26', 0, 'MATTRESS', 'MATTRESS3')
 
 go
+ INSERT INTO Orders_Status
+     VALUES
+           ('CXN','Cho xac nhan'),
+		   ('CLH','Cho lay hang'),
+		   ('DG','Dang giao '),
+		   ('DGH','Da giao hang')
 
+go
 CREATE PROC sp_getTotalPricePerMonth
 (
 	@month varchar(2),

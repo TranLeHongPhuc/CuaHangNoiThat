@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" 
+    th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+<main>
+ <!-- PAGE BANNER SECTION -->
+        <div class="page-banner-section section">
+            <div class="container">
+                <div class="row">
+                    <div class="page-banner-content col-xs-12">
+                        <h2>Your Order [[${#request.remoteUser}]]</h2>
+                        <ul class="breadcrumb">
+                            <li><a th:href="@{|/home|}">Home</a></li>
+                            <li><a th:href="@{|/view/order|}" class="active">Order</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE BANNER SECTION -->
+
+        <!-- PAGE SECTION START -->
+        
+        <div class="page-section section pt-100 pb-60">
+            <div class="container">
+          <ul class="nav nav-pills col-12" id="pills-tab" role="tablist">
+			  <li class="nav-item col-3 " role="presentation">
+			    <button class="nav-link col-12 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Chờ xác nhận</button>
+			  </li>
+			  <li class="nav-item col-3" role="presentation">
+			    <button class="nav-link col-12 "  id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Chờ lấy hàng</button>
+			  </li>
+			  <li class="nav-item col-3" role="presentation">
+			    <button class="nav-link col-12 " id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Đang giao hàng</button>
+			  </li>
+			  <li class="nav-item col-3" role="presentation">
+			    <button class="nav-link col-12 " id="pills-done-tab" data-bs-toggle="pill" data-bs-target="#pills-done" type="button" role="tab" aria-controls="pills-done" aria-selected="false">Đã giao hàng</button>
+			  </li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+			  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+			  	<div class="col-xs-12">
+                       <div class="cart-table table-responsive mb-40">
+						  	<table>
+			                                    <thead>
+			                                        <tr>
+			                                            <th class="pro-id">Mã đơn hàng</th>
+			                                            <th class="pro-title">Ngày đặt hàng</th>
+			                                            <th class="pro-price">Địa chỉ</th>
+			                                            <th class="pro-price">Số điện thoại</th>
+			                                            <th class="pro-quantity">Tổng tiền</th>
+			                                            <th class="pro-subtotal">Số lượng sản phẩm</th>
+			                                            <th class="pro-remove">Chi tiết</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                        <tr th:each="item : ${itemCXN}">
+			                                             <td class="pro-title"><a  th:text="${item.id}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.createDate}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.address}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.phone}"></a></td>
+			                                            <td class="pro-price"><span class="amount" th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![price*quantity]), 0, 'COMMA', 0, 'POINT')}+ VND"></span></td>
+			                                            <td class="pro-quantity" th:text="${#aggregates.sum(item.orderDetails.![quantity])}"></td>
+			                                           
+			                                            <td class="pro-remove"><a href="javascript:void(0)" class="remove" th:href="@{|/order/detail/${item.id}|}"><i class="pe-7s-trash"></i></a></td>
+			                                        </tr>
+			                                    </tbody>
+			                                </table>
+			                           </div>
+			                      </div>
+			  </div>
+			  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+			  		<div class="col-xs-12">
+                       <div class="cart-table table-responsive mb-40">
+						  	<table>
+			                                    <thead>
+			                                        <tr>
+			                                            <th class="pro-id">Mã đơn hàng</th>
+			                                            <th class="pro-title">Ngày đặt hàng</th>
+			                                            <th class="pro-price">Địa chỉ</th>
+			                                            <th class="pro-price">Số điện thoại</th>
+			                                            <th class="pro-quantity">Tổng tiền</th>
+			                                            <th class="pro-subtotal">Số lượng sản phẩm</th>
+			                                            <th class="pro-remove">Chi tiết</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                         <tr th:each="item : ${itemCLH}">
+			                                             <td class="pro-title"><a  th:text="${item.id}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.createDate}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.address}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.phone}"></a></td>
+			                                            <td class="pro-price"><span class="amount" th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![price*quantity]), 0, 'COMMA', 0, 'POINT')}+ VND"></span></td>
+			                                            <td class="pro-quantity" th:text="${#aggregates.sum(item.orderDetails.![quantity])}"></td>
+			                                           
+			                                            <td class="pro-remove"><a href="javascript:void(0)" class="remove" th:href="@{|/order/detail/${item.id}|}"><i class="pe-7s-trash"></i></a></td>
+			                                        </tr>
+			                                    </tbody>
+			                                </table>
+			                           </div>
+			                      </div>
+			  </div>
+			  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+			  	<div class="col-xs-12">
+                       <div class="cart-table table-responsive mb-40">
+						  	<table>
+			                                    <thead>
+			                                        <tr>
+			                                            <th class="pro-id">Mã đơn hàng</th>
+			                                            <th class="pro-title">Ngày đặt hàng</th>
+			                                            <th class="pro-price">Địa chỉ</th>
+			                                            <th class="pro-price">Số điện thoại</th>
+			                                            <th class="pro-quantity">Tổng tiền</th>
+			                                            <th class="pro-subtotal">Số lượng sản phẩm</th>
+			                                            <th class="pro-remove">Chi tiết</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                         <tr th:each="item : ${itemDG}">
+			                                             <td class="pro-title"><a  th:text="${item.id}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.createDate}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.address}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.phone}"></a></td>
+			                                            <td class="pro-price"><span class="amount" th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![price*quantity]), 0, 'COMMA', 0, 'POINT')}+ VND"></span></td>
+			                                            <td class="pro-quantity" th:text="${#aggregates.sum(item.orderDetails.![quantity])}"></td>
+			                                           
+			                                            <td class="pro-remove"><a href="javascript:void(0)" class="remove" th:href="@{|/order/detail/${item.id}|}"><i class="pe-7s-trash"></i></a></td>
+			                                        </tr>
+			                                    </tbody>
+			                                </table>
+			                           </div>
+			                      </div>
+			  </div>
+			  <div class="tab-pane fade" id="pills-done" role="tabpanel" aria-labelledby="pills-done-tab">
+			 		<div class="col-xs-12">
+                       <div class="cart-table table-responsive mb-40">
+						  	<table>
+			                                    <thead>
+			                                        <tr>
+			                                            <th class="pro-id">Mã đơn hàng</th>
+			                                            <th class="pro-title">Ngày đặt hàng</th>
+			                                            <th class="pro-price">Địa chỉ</th>
+			                                            <th class="pro-price">Số điện thoại</th>
+			                                            <th class="pro-quantity">Tổng tiền</th>
+			                                            <th class="pro-subtotal">Số lượng sản phẩm</th>
+			                                            <th class="pro-remove">Chi tiết</th>
+			                                        </tr>
+			                                    </thead>
+			                                    <tbody>
+			                                         <tr th:each="item : ${itemDGH}">
+			                                             <td class="pro-title"><a  th:text="${item.id}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.createDate}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.address}"></a></td>
+			                                            <td class="pro-title"><a  th:text="${item.phone}"></a></td>
+			                                            <td class="pro-price"><span class="amount" th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![price*quantity]), 0, 'COMMA', 0, 'POINT')}+ VND"></span></td>
+			                                            <td class="pro-quantity" th:text="${#aggregates.sum(item.orderDetails.![quantity])}"></td>
+			                                           
+			                                            <td class="pro-remove"><a href="javascript:void(0)" class="remove" th:href="@{|/order/detail/${item.id}|}"><i class="pe-7s-trash"></i></a></td>
+			                                        </tr>
+			                                    </tbody>
+			                                </table>
+			                           </div>
+			                      </div>
+			  </div>
+			</div>
+               
+            </div>
+        </div>
+        <!-- PAGE SECTION END -->
+</main>
+
+</body>
+</html>

@@ -34,11 +34,8 @@
 							<li><a href="shop-right-sidebar.html">shop right sidebar</a></li>
 							<li><a href="wishlist.html">wishlist</a></li>
 						</ul></li>
-					<li><a href="blog.html">Blog</a>
-						<ul class="sub-menu">
-							<li><a href="blog.html">blog</a></li>
-							<li><a href="blog-details.html">blog details</a></li>
-						</ul></li>
+					<li  th:if="${#request.remoteUser}"><a  th:href="@{/order/view}">Your Order</a>
+						
 					<li><a href="contact.html">Contact</a></li>
 				</ul>
 			</nav>
