@@ -162,25 +162,25 @@ values
 
 insert into Subcategories(id, name, Category_Id, Icon)
 values
-		('TABLE1', N'Bàn làm việc', 'TABLE','icon1.png'),
-		('TABLE2', N'Bàn ăn', 'TABLE','icon1.png'),
-		('TABLE3', N'Bàn trà/sofa', 'TABLE','icon1.png'),
-		('TABLE4', N'Bàn trang điểm', 'TABLE','icon1.png'),
-		('CHAIR1', N'Ghế ăn', 'CHAIR','icon1.png'),
-		('CHAIR2', N'Ghế làm việc', 'CHAIR','icon1.png'),
-		('CHAIR3', N'Ghế trang điểm', 'CHAIR','icon1.png'),
-		('CABINET1', N'Tủ kính', 'CABINET','icon1.png'),
-		('CABINET2', N'Tủ quần áo', 'CABINET','icon1.png'),
-		('CABINET3', N'Tủ bát đĩa', 'CABINET','icon1.png'),
-		('MIRROR1', N'Gương đứng', 'MIRROR','icon1.png'),
-		('MIRROR2', N'Gương treo tường', 'MIRROR','icon1.png'),
-		('MIRROR3', N'Gương dựa tường', 'MIRROR','icon1.png'),
-		('BED1', N'Giường 1,2m', 'BED','icon1.png'),
-		('BED2', N'Giường 1,6m', 'BED','icon1.png'),
-		('BED3', N'Giường 1,8m', 'BED','icon1.png'),
-		('MATTRESS1', N'Nệm 1,2m', 'MATTRESS','icon1.png'),
-		('MATTRESS2', N'Nệm 1,6m', 'MATTRESS','icon1.png'),
-		('MATTRESS3', N'Nệm 1,8m', 'MATTRESS','icon1.png')
+		('TABLE1', N'Bàn làm việc', 'TABLE','desk.png'),
+		('TABLE2', N'Bàn ăn', 'TABLE','table.png'),
+		('TABLE3', N'Bàn trà/sofa', 'TABLE','coffee-table.png'),
+		('TABLE4', N'Bàn trang điểm', 'TABLE','dressing-table.png'),
+		('CHAIR1', N'Ghế ăn', 'CHAIR','dining-chair.png'),
+		('CHAIR2', N'Ghế làm việc', 'CHAIR','office-chair.png'),
+		('CHAIR3', N'Ghế trang điểm', 'CHAIR','chair.png'),
+		('CABINET1', N'Tủ kính', 'CABINET','cabinet.png'),
+		('CABINET2', N'Tủ quần áo', 'CABINET','cabinetClothes.png'),
+		('CABINET3', N'Tủ bát đĩa', 'CABINET','cabinetKitchen.png'),
+		('MIRROR1', N'Gương đứng', 'MIRROR','mirror-standing.png'),
+		('MIRROR2', N'Gương treo tường', 'MIRROR','mirror-onwall.png'),
+		('MIRROR3', N'Gương dựa tường', 'MIRROR','mirror-wall.png'),
+		('BED1', N'Giường 1,2m', 'BED','bed1m2.png'),
+		('BED2', N'Giường 1,6m', 'BED','beb1m8.png'),
+		('BED3', N'Giường 1,8m', 'BED','bed1m6.png'),
+		('MATTRESS1', N'Nệm 1,2m', 'MATTRESS','air-mattress1.2.png'),
+		('MATTRESS2', N'Nệm 1,6m', 'MATTRESS','air-mattress1.6.png'),
+		('MATTRESS3', N'Nệm 1,8m', 'MATTRESS','air-mattress1.8.png')
 
 
 
