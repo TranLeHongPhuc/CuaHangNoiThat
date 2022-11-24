@@ -99,8 +99,10 @@
 								</div>
 								<!-- /.card-header -->
 								<!-- form start -->
-								<form  th:action = "@{|/category/subcategory/*{id}|}" enctype = "multipart/form-data" method="POST" 
-									>
+								<form  th:action = "@{|/category/subcategory/*{id}|}" enctype = "multipart/form-data" method="POST" >
+									<div>
+										<h5>[[${message}]]</h5>
+									</div>
 									<div class="card-body">
 										<div class="row">
 											<div class="col-8">
@@ -112,7 +114,7 @@
 												<div class="form-group">
 													<label class="form-label">Chọn danh mục</label>
 													<select th:onChange = "this.form.submit()" th:field = "*{category.id}" name = "categories" id ="Categories" class="form-select">
-														<option th:each = "category: ${categories}" th:value ="${category.id}">[[${category.name}]]</option>
+														<option th:each = "category: ${categories}" th:value = "${category.id}">[[${category.name}]]</option>
 													</select>
 												</div>
 												<div class="form-group">
@@ -136,83 +138,46 @@
 														th:field="*{discount}" type="number" class="form-control" id="discount"
 														>
 												</div>
-						
+												
+												<div class="form-group col-sm-6">
+													<div>Available</div>
+													<div class="form-control">
+														<label class="radio-inline">
+															<input th:field="*{available}" value="true" name="available" id="available" type="radio"> Yes
+														</label>
+														<label class="radio-inline">
+															<input th:field="*{available}" value="false" name="available" id="available" type="radio"> No
+														</label>
+													</div>
+													
+													
+												</div>
 												<div class="form-group">
 													<label for="fullname">Mô tả</label>
 													<textarea th:field="*{description}" rows="4" class="form-control"></textarea>
 												</div>
 					
 											</div>
-														<br />
+											<br />
 											<div class="col-lg-4">
-												<div class="ec-vendor-img-upload">
-													<div class="ec-vendor-main-img">
-														<div class="avatar-upload">
-															<div class="avatar-edit">
-																<input type='file' name="img1" id="imageUpload" class="ec-image-upload"
-																	accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
-																<label for="imageUpload"><img th:src="@{/images/icons/edit.svg}"
-																		class="svg_img header_svg" alt="edit" /></label>
-															</div>
-															<div class="avatar-preview ec-preview">
-																<div class="imagePreview ec-div-preview">
-																	<img class="ec-image-preview"
-																		th:src="@{|/images/products/*{image1}|}"
-																		alt="edit" />
-																</div>
-															</div>
+												<div class="card card-primary card-outline">
+													<div class="card-body box-profile">
+														<div class="text-center">
+															
 														</div>
-														<div class="thumb-upload-set colo-md-12">
-															<div class="thumb-upload">
-																<div class="thumb-edit">
-																	<input type='file' name="img2" id="thumbUpload04"
-																		class="ec-image-upload" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
-																	<label for="imageUpload"><img
-																			th:src="@{/images/icons/edit.svg}"
-																			class="svg_img header_svg" alt="edit" /></label>
-																</div>
-																<div class="thumb-preview ec-preview">
-																	<div class="image-thumb-preview">
-																		<img class="image-thumb-preview ec-image-preview"
-																			th:src="@{|/images/products/*{image2}|}"
-																			alt="edit" />
-																	</div>
-																</div>
-															</div>
-															<div class="thumb-upload">
-																<div class="thumb-edit">
-																	<input type='file' name="img3" id="thumbUpload05"
-																		class="ec-image-upload" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
-																	<label for="imageUpload"><img
-																			th:src="@{/images/icons/edit.svg}"
-																			class="svg_img header_svg" alt="edit" /></label>
-																</div>
-																<div class="thumb-preview ec-preview">
-																	<div class="image-thumb-preview">
-																		<img class="image-thumb-preview ec-image-preview"
-																			th:src="@{|/images/products/*{image3}|}"
-																			alt="edit" />
-																	</div>
-																</div>
-															</div>
-															<div class="thumb-upload">
-																<div class="thumb-edit">
-																	<input type='file' name="img4" id="thumbUpload06"
-																		class="ec-image-upload" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().imageChanged(this.files)"/>
-																	<label for="imageUpload"><img
-																			th:src="@{/images/icons/edit.svg}"
-																			class="svg_img header_svg" alt="edit" /></label>
-																</div>
-																<div class="thumb-preview ec-preview">
-																	<div class="image-thumb-preview">
-																		<img class="image-thumb-preview ec-image-preview"
-																			th:src="@{|/images/products/*{image4}|}"
-																			alt="edit" />
-																	</div>
-																</div>
-															</div>
+														<br />
+														<div class="container">
+															<div class="picture-container">
+														        <div class="picture">
+														            <img th:src="@{|/images/products/*{image1}|}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "img1" accept=".png, .jpg, .jpeg" id="wizard-picture" class="" 
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
+														        </div>
+														         <h6 class="">Choose Picture</h6>
+														    </div>
 														</div>
 													</div>
+													<!-- /.card-body -->
 												</div>
 											</div>
 														
@@ -225,12 +190,10 @@
 											class="btn btn-primary">Thêm</button>
 										<button th:if = "*{id} != -999" th:formaction = "@{|/admin/product/update/*{id}|}"
 											class="btn btn-success">Cập nhật</button>
-										<button type="button" id = "submitCancel"
+										<button th:formaction = "@{/product/add}"
 											class="btn btn-warning">Làm mới</button></a>
 									</div>
-									<div>
-										<h5>[[${message}]]</h5>
-									</div>
+									
 								</form>
 							</div>
 							<!-- /.card -->
@@ -283,6 +246,7 @@
 	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
 	<script th:src="@{/js/noithat/tco.js}"></script>
 	<script th:src="@{/js/data-tables/jquery.datatables.min.js}"></script>
+	<script th:src="@{/admin/plugins/avatar/js/js.js}"></script>
 	<script>
 		$(document).ready(function() {
 		    $("#example1").DataTable({

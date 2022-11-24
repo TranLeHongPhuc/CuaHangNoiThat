@@ -1,5 +1,6 @@
 package com.noithat.controller;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -28,18 +29,13 @@ public class SubcategoryController {
 		List<Subcategory> subcategories = subcategoryService.findByCategoryId(product.getCategory().getId());
 		if(productId.get().equals(-999)) {
 			product.setImage1("default-product.png");
-			product.setImage2("default-product.png");
-			product.setImage3("default-product.png");
-			product.setImage4("default-product.png");
 			model.addAttribute("sub",subcategories);
 			model.addAttribute("item",product);
 			return "admin/product-add";
 		}else {
 			Product productImages = productService.findById(productId.get());
 			product.setImage1(productImages.getImage1());
-			product.setImage2(productImages.getImage2());
-			product.setImage3(productImages.getImage3());
-			product.setImage4(productImages.getImage4());
+			
 			model.addAttribute("sub",subcategories);
 			model.addAttribute("item", product);
 			return "admin/product-add";

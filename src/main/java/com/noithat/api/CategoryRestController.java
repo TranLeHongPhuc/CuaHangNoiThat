@@ -24,9 +24,14 @@ public class CategoryRestController {
 	@Autowired
 	CategoryService categoryService;
 	
-	@GetMapping
+	@GetMapping("/api/category")
 	public ResponseEntity<List<Category>> getCategory(){
 		return ResponseEntity.ok(categoryService.findAll());
+	}
+	
+	@GetMapping
+	public List<Category> getAll(){
+		return categoryService.findAll();
 	}
 
 	@GetMapping("/{id}")

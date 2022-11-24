@@ -6,11 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 
-<!-- AngularJS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
-<!-- User-Ctrl JS -->
-	<script th:src="@{/js/product/product-ctrl.js}"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -37,18 +32,18 @@
 <!-- Daterange picker -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/daterangepicker/daterangepicker.css}">
+<link rel="stylesheet"
+	th:href="@{/admin/dist/css/css.css}">
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
-
-
 <style type="text/css">
  img {
  	width: 30px;
  }
 </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed" ng-app = "product-app" ng-controller = "product-ctrl" >
+<body class="hold-transition sidebar-mini layout-fixed" >
 
 	<div class="wrapper">
 
@@ -69,100 +64,13 @@
 						<div class="col-sm-6">
 							<h1>Quản lý sản phẩm</h1>
 						</div>
-						
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</section>
 
 			<!-- Main content -->
-			<section class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Danh sách sản phẩm</h3><br>
-									<h3 class="card-title">Tổng sản phẩm : {{pager.totalQuantity}}</h3><br>
-									<h3>[[${message}]]</h3>
-									
-									<a style="float: right" th:href = "@{/product/add}"
-										class="btn btn-success">Thêm mới</a>
-								</div>
-								<!-- /.card-header -->
-								<div class="card-body">
-									<table id="example1" class="table table-bordered table-striped">
-										<thead>
-											<tr>
-												<th>Hình Ảnh</th>
-												<th>Tên sản phẩm</th>											
-												<th>Giá (VNĐ)</th>
-												<th>Khuyến mãi</th>
-												<th>Giá khuyến mãi (VNĐ)</th>
-												<th>Số lượng</th>
-												<th>Danh mục</th>
-												<th>Thương hiệu</th>
-												<th>Available</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr ng-repeat = "item in pager.items">
-												<td><img src="/images/products/{{item.image1}}" style = "width: 100px"></td>
-												<td>{{item.name}}</td>
-												<td>{{item.price | number}}</td>
-												<td>{{item.discount}}</td>
-												<td>{{item.price * (100-item.discount)/100 | number}}</td>
-												<td>{{item.quantity}}</td>
-												<td>{{item.category.name}}</td>
-												<td>{{item.subcategory.name}}</td>
-												<td>{{item.available | uppercase}}</td>
-												<td>
-													<div class="btn-group mb-1">
-														<a th:href = "@{|/admin/product/detail/{{item.id}}|}"  type="button" class="btn btn-outline-success">Info</a>
-														<button type="button"
-															class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-															data-toggle="dropdown" aria-haspopup="true"
-															aria-expanded="false" data-display="static" >
-															<span class="sr-only">Info</span>
-														</button>
-
-														<div class="dropdown-menu">
-															<a class="dropdown-item" th:href = "@{|/admin/product/{{item.id}}|}">Sửa</a> 
-															<a class="dropdown-item" th:href = "@{|/admin/product/delete/{{item.id}}|}">Xóa</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="panel-footer text-center">
-										<button ng-click="pager.first()" class="btn btn-danger">
-											<b>First</b>
-										</button>
-										<button ng-click="pager.prev()" class="btn btn-primary">
-											<b>Previous</b>
-										</button>
-										<button class="btn btn-success">{{pager.page + 1}} of
-											{{pager.count}}</button>
-										<button ng-click="pager.next()" class="btn btn-primary">
-											<b>Next</b>
-										</button>
-										<button ng-click="pager.last()" class="btn btn-danger">
-											<b>Last</b>
-										</button>
-									</div>
-								</div>
-								<!-- /.card-body -->
-							</div>
-							<!-- /.card -->
-						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
-					<!-- /.container-fluid -->
-				</div>
-			</section>
+			
 			<!-- /.content -->
 		</div>
 
@@ -204,8 +112,9 @@
 	<script th:src="@{/admin/dist/js/demo.js}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
-	
-	
+	<script th:src="@{/js/noithat/tco.js}"></script>
+	<script th:src="@{/js/data-tables/jquery.datatables.min.js}"></script>
+	<script th:src="@{/admin/plugins/avatar/js/js.js}"></script>
 	<script>
 		$(document).ready(function() {
 		    $("#example1").DataTable({
@@ -263,6 +172,5 @@
 			$('#form').submit();
 		}
 	</script>
-	
 </body>
 </html>

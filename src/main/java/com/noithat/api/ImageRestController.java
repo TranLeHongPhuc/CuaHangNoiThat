@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.noithat.service.ImageService;
 
-@CrossOrigin("*")
 @RestController
+@CrossOrigin("*")
 public class ImageRestController {
 	@Autowired
 	ImageService imageService;
@@ -25,6 +25,7 @@ public class ImageRestController {
 	public JsonNode display(@RequestParam("file") MultipartFile multipartFile,
 			@PathVariable("folder") String folder) {
 		File saveFile = imageService.display(multipartFile, folder);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode node = mapper.createObjectNode();
 		node.put("name", saveFile.getName());

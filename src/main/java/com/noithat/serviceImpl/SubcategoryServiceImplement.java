@@ -18,6 +18,11 @@ public class SubcategoryServiceImplement implements SubcategoryService{
 	public List<Subcategory> findAll() {
 		return subcategoryRepo.findAll();
 	}
+	
+	@Override
+	public List<Subcategory> findByCategoryId(String categoryId) {
+		return subcategoryRepo.findByCategoryId(categoryId);
+	}
 
 	@Override
 	public Subcategory findById(String subcategoryId) {
@@ -39,10 +44,7 @@ public class SubcategoryServiceImplement implements SubcategoryService{
 		subcategoryRepo.deleteById(id);
 	}
 
-	@Override
-	public List<Subcategory> findByCategoryId(String categoryId) {
-		return subcategoryRepo.findByCategoryId(categoryId);
-	}
+	
 
 
 }
