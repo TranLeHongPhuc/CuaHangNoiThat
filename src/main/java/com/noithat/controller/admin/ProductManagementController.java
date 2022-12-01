@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,9 +17,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.noithat.entity.Account;
 import com.noithat.entity.Category;
 import com.noithat.entity.Product;
 import com.noithat.entity.Subcategory;
+import com.noithat.service.AccountService;
 import com.noithat.service.CategoryService;
 import com.noithat.service.ProductService;
 import com.noithat.service.SubcategoryService;
@@ -31,21 +34,27 @@ public class ProductManagementController {
 	SubcategoryService subcategoryService;
 	@Autowired
 	CategoryService categoryService;
-	
+	@Autowired
+	AccountService accountService;
 	RestTemplate restTemplate = new RestTemplate();
-
+	
 	@RequestMapping("/admin/product/list")
-	public String getAll() {
+	public String getAll(Model model,Authentication auth) {
+		
+		Account account=accountService.findByUsername(auth.getName());
+		model.addAttribute("user",account);
 		return "admin/product-list.html";
+		
 	}
 	
 	@RequestMapping("/admin/product/{id}")
-	public String getEdit(Model model, @PathVariable("id") Integer id) {
+	public String getEdit(Model model, @PathVariable("id") Integer id,Authentication auth) {
 		Product product = productService.findById(id);
 		List<Subcategory> subcategories = subcategoryService.findByCategoryId(product.getCategory().getId());
 		List<Category> categories = categoryService.findAll();
 		product.setImage1(product.getImage1());
-		
+		Account account=accountService.findByUsername(auth.getName());
+		model.addAttribute("user",account);
 		model.addAttribute("categories",categories);
 		model.addAttribute("item",product);
 		model.addAttribute("sub",subcategories);
@@ -53,16 +62,20 @@ public class ProductManagementController {
 	}
 	
 	@RequestMapping("/admin/product/detail/{id}")
-	public String detailProduct(Model model, @PathVariable("id") Integer id) {
+	public String detailProduct(Model model, @PathVariable("id") Integer id,Authentication auth) {
 		Product product = productService.findById(id);
+		Account account=accountService.findByUsername(auth.getName());
+		model.addAttribute("user",account);
 		model.addAttribute("item",product);
 		return "product/detail";
 	}
 	
 	@RequestMapping("/product/add")
-	public String addProduct(Model model, @ModelAttribute("item") Product product) {
+	public String addProduct(Model model, @ModelAttribute("item") Product product,Authentication auth) {
 		product = new Product();
 		product.setId(-999);
+		Account account=accountService.findByUsername(auth.getName());
+		model.addAttribute("user",account);
 		model.addAttribute("item", product);
 		return "admin/product-add.html";
 	}
@@ -90,6 +103,7 @@ public class ProductManagementController {
 		product = productEntity.getBody();
 		redirectAttributes.addFlashAttribute("message", "Thêm sản phẩm thành công!");
 		redirectAttributes.addFlashAttribute("item", product);
+		
 		return "redirect:/admin/product/" + product.getId();
 	}
 	

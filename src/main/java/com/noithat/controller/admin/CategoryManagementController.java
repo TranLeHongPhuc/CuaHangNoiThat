@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -18,39 +19,48 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.noithat.entity.Account;
 import com.noithat.entity.Category;
+import com.noithat.service.AccountService;
 import com.noithat.service.CategoryService;
 
 @Controller
 public class CategoryManagementController {
 	@Autowired
 	CategoryService categoryService;
-	
+	@Autowired
+	AccountService accountService;
 	RestTemplate restTemplate = new RestTemplate();
 	
 	@RequestMapping("/category")
-		public String getCategory(Model model, @ModelAttribute("categoryForm") Category category) {
+		public String getCategory(Model model, @ModelAttribute("categoryForm") Category category,Authentication auth) {
 			category = new Category();
 			category.setId(null);
 			category.setIcon("default-category.png");
 			model.addAttribute("categoryForm",category);
+			Account account=accountService.findByUsername(auth.getName());
+			model.addAttribute("user",account);
 			return "admin/category.html";
 		}
 	
 	@RequestMapping("/category/{id}")
-	public String editCategory(Model model, @PathVariable("id") String id) {
+	public String editCategory(Model model, @PathVariable("id") String id,Authentication auth) {
 		Category category = categoryService.findById(id);
 		model.addAttribute("categoryForm",category);
+		Account account=accountService.findByUsername(auth.getName());
+		model.addAttribute("user",account);
 		return "admin/category.html";
 	}
 	
 	@RequestMapping("/category/submit")
 	public String submitCategory(RedirectAttributes redirectAttributes, Model model,
 			@Validated @ModelAttribute("categoryForm") Category category,Errors errors,
-			@RequestParam("imageIcon") Optional<MultipartFile> imageIcon) {
+			@RequestParam("imageIcon") Optional<MultipartFile> imageIcon,Authentication auth) {
 		if(errors.hasErrors()) {
 			category.setIcon(null);
 			model.addAttribute("errorMessage","Thêm danh mục thất bại!");
+			Account account=accountService.findByUsername(auth.getName());
+			model.addAttribute("user",account);
 			return "admin/category";
 		}
 		
@@ -80,9 +90,11 @@ public class CategoryManagementController {
 	@RequestMapping("/category/update/{id}")
 	public String updateCategory(RedirectAttributes redirectAttributes, Model model,
 			@Validated @ModelAttribute("categoryForm") Category category, Errors errors,
-			@RequestParam("imageIcon") Optional<MultipartFile> imageIcon) {
+			@RequestParam("imageIcon") Optional<MultipartFile> imageIcon,Authentication auth) {
 		if (errors.hasErrors()) {
 			model.addAttribute("message", "Cập nhật danh mục thất bại!");
+			Account account=accountService.findByUsername(auth.getName());
+			model.addAttribute("user",account);
 			return "admin/category";
 		}
 		setImageIcon(category, 1, imageIcon);
