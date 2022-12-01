@@ -33,4 +33,9 @@ public class OrderRestController {
 		return orderService.findByUsername(username);
 	}
 	
+	@GetMapping()
+	public List<Order> getAll(){
+		return orderService.findAll();
+	}
+	
 }

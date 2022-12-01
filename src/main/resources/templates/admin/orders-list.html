@@ -12,7 +12,7 @@
 <!-- User-Ctrl JS -->
 
 
-	<script th:src="@{/js/product/order-ctrl.js}"></script>
+	<script th:src="@{/js/order/order-ctrl.js}"></script>
 	
 	
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -70,7 +70,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Quản lý sản phẩm</h1>
+							<h1>Quản lý hóa đơn</h1>
 						</div>
 						
 					</div>
@@ -85,41 +85,32 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Danh sách sản phẩm</h3><br>
+									<h3 class="card-title">Danh sách hóa đơn</h3><br>
 									<h3 class="card-title">Tổng sản phẩm : {{pager.totalQuantity}}</h3><br>
 									<h3>[[${message}]]</h3>
-									
-									<a style="float: right" th:href = "@{/product/add}"
-										class="btn btn-success">Thêm mới</a>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>Hình Ảnh</th>
-												<th>Tên sản phẩm</th>											
-												<th>Giá (VNĐ)</th>
-												<th>Khuyến mãi</th>
-												<th>Giá khuyến mãi (VNĐ)</th>
-												<th>Số lượng</th>
-												<th>Danh mục</th>
-												<th>Thương hiệu</th>
-												<th>Available</th>
-												<th>Action</th>
+												<th>Mã hóa đơn</th>											
+												<th>Tài khoản</th>
+												<th>Ngày đặt</th>
+												<th>SĐT</th>
+												<th>Địa chỉ</th>
+												<th>Ghi chú</th>
+												<th>Cập nhật trạng thái</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat = "item in pager.items">
-												<td><img src="/images/products/{{item.image1}}" style = "width: 100px"></td>
-												<td>{{item.name}}</td>
-												<td>{{item.price | number}}</td>
-												<td>{{item.discount}}</td>
-												<td>{{item.price * (100-item.discount)/100 | number}}</td>
-												<td>{{item.quantity}}</td>
-												<td>{{item.category.name}}</td>
-												<td>{{item.subcategory.name}}</td>
-												<td>{{item.available | uppercase}}</td>
+											<tr ng-repeat = "item in pager.items">												
+												<td style="text-align: center;">{{item.id}}</td>
+												<td>{{item.account.username}}</td>
+												<td>{{item.createDate | date:'dd/MM/yyyy'}}</td>
+												<td>{{item.phone}}</td>
+												<td>{{item.address}}</td>
+												<td>{{item.description}}</td>
 												<td>
 													<div class="btn-group mb-1">
 														<a th:href = "@{|/admin/product/detail/{{item.id}}|}"  type="button" class="btn btn-outline-success">Info</a>
