@@ -20,8 +20,4 @@ public class AdminController {
 		model.addAttribute("chartData",chartData);
 		return "admin/index";
 	}
-	
-	
-	
-	
 }

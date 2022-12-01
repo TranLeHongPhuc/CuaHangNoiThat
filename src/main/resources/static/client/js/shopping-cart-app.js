@@ -1,7 +1,9 @@
 const app = angular.module("shopping-cart-app", []);
 
 app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
+	
 	$scope.items = [];
+	$scope.formUser = {};
 
 	var name = $("#username").text();
 
@@ -9,6 +11,9 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 
 	$scope.initialize = function() {
 		$http.get(`api/accounts/${name}`).then(resp => {
+			$scope.items = resp.data;
+		});
+		$http.get("/api/accounts").then(resp => {
 			$scope.items = resp.data;
 		});
 	}
@@ -33,6 +38,12 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 				headers: { 'Content-type': undefined },
 				enctype: 'multipart/form-data'
 			})
+	}
+	
+	$scope.edit = function(item){
+		$scope.formUser = angular.copy(item);
+		document.getElementById('username').readOnly = true;
+		document.getElementById('email').readOnly = true;
 	}
 
 	$scope.update = function() {

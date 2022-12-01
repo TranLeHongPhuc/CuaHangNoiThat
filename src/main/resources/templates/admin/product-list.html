@@ -40,7 +40,26 @@
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
+<!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/client/img/favicon.png">
+    <link rel="stylesheet" href="/client/css/pe-icon-7-stroke/dist/pe-icon-7-stroke.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- All CSS Files -->
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="/client/css/bootstrap.min.css">
+    <!-- Icon Font -->
+    <link rel="stylesheet" href="/client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/client/css/pe-icon-7-stroke.css">
+    <!-- Plugins css file -->
+    <link rel="stylesheet" href="/client/css/plugins.css">
+    <!-- Theme main style -->
+    <link rel="stylesheet" href="/client/css/style.css">
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="/client/css/responsive.css">
 
+    <!-- Modernizr JS -->
+    <script src="/client/js/vendor/modernizr-3.11.2.min.js"></script>
 
 <style type="text/css">
  img {
@@ -67,10 +86,13 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Quản lý sản phẩm</h1>
+							<h3 style="color: gray;">Danh sách Sản phẩm</h3>
 						</div>
-						
+						<div class="col-sm-6">
+							<a th:href = "@{/product/add}" class="btn btn-primary" style="float: right;">Thêm sản phẩm</a>
+						</div>
 					</div>
+							
 				</div>
 				<!-- /.container-fluid -->
 			</section>
@@ -80,14 +102,50 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Danh sách sản phẩm</h3><br>
-									<h3 class="card-title">Tổng sản phẩm : {{pager.totalQuantity}}</h3><br>
-									<h3>[[${message}]]</h3>
+							<div class="card card-default">
+								<div class="card-header card-header-border-bottom d-flex justify-content-between">
+									<div class="col-sm-3 col-md-2">
+										<label for="pagerSize">Hiển thị: </label>
+										<select class="form-control" ng-change="pagination()" ng-model="pageSize">
+											<option value="10">10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+										</select>
+									</div>
 									
-									<a style="float: right" th:href = "@{/product/add}"
-										class="btn btn-success">Thêm mới</a>
+									<div class="col-sm-9 col-md-6">
+											<label >Tìm kiếm</label>
+											<input class="form-control" type="text" ng-model="productSearch"
+												placeholder="Tìm kiếm">
+									</div>
+									<div class="col-sm-9 col-md-8">
+										<div class="col-sm-4 col-md-6">
+											<label for="sortProduct">Bộ lọc</label>
+											<select class="form-control" ng-change="sort()"
+												ng-model="productProperty">
+												<option value="id">Mã sản phẩm ↑</option>
+												<option value="-id">Mã sản phẩm ↓</option>
+												<option value="name">Tên sản phẩm ↑</option>
+												<option value="-name">Tên sản phẩm ↓</option>
+												<option value="price">Giá sản phẩm ↑</option>
+												<option value="-price">Giá sản phẩm ↓</option>
+												<option value="discount">Khuyến mãi(%) ↑</option>
+												<option value="-discount">Khuyến mãi(%) ↓</option>
+												<option value="stock">Số lượng ↑</option>
+												<option value="-stock">Số lượng ↓</option>
+												<option value="category">Danh mục ↑</option>
+												<option value="-category">Danh mục ↓</option>
+												<option value="subcategory">Thương hiệu ↑</option>
+												<option value="-subcategory">Thương hiệu ↓</option>
+							
+											</select>
+										</div>
+										
+									</div>
+									
+								</div>
+								<div>
+									<h6 style="font-style: italic;">Tổng sản phẩm: {{totalQuantity()}}</h6>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
@@ -102,12 +160,12 @@
 												<th>Số lượng</th>
 												<th>Danh mục</th>
 												<th>Thương hiệu</th>
-												<th>Available</th>
-												<th>Action</th>
+												<th>Trạng thái</th>
+												<th>Hành động</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat = "item in pager.items">
+											<tr ng-repeat = "item in items | filter: productSearch | orderBy: productProperty | startFrom: currentPage*pageSize | limitTo: pageSize">
 												<td><img src="/images/products/{{item.image1}}" style = "width: 100px"></td>
 												<td>{{item.name}}</td>
 												<td>{{item.price | number}}</td>
@@ -137,19 +195,18 @@
 										</tbody>
 									</table>
 									<div class="panel-footer text-center">
-										<button ng-click="pager.first()" class="btn btn-danger">
-											<b>First</b>
+										<button ng-click="pagination()" class="btn btn-danger">
+											<b>Trang đầu</b>
 										</button>
-										<button ng-click="pager.prev()" class="btn btn-primary">
-											<b>Previous</b>
+										<button ng-disabled = "currentPage == 0" ng-click="currentPage=currentPage - 1" class="btn btn-primary">
+											<b>Lùi</b>
 										</button>
-										<button class="btn btn-success">{{pager.page + 1}} of
-											{{pager.count}}</button>
-										<button ng-click="pager.next()" class="btn btn-primary">
-											<b>Next</b>
+										<button class="btn btn-success">{{currentPage + 1}} / {{numberOfPages()}}</button>
+										<button ng-disabled = "currentPage >= items.length/pageSize-1" ng-click="currentPage=currentPage + 1" class="btn btn-primary">
+											<b>Tới</b>
 										</button>
-										<button ng-click="pager.last()" class="btn btn-danger">
-											<b>Last</b>
+										<button ng-click="currentPage = numberOfPages() - 1" class="btn btn-danger">
+											<b>Trang cuối</b>
 										</button>
 									</div>
 								</div>
@@ -204,7 +261,17 @@
 	<script th:src="@{/admin/dist/js/demo.js}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
-	
+	 <!-- jQuery latest version -->
+    <script src="/client/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/client/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/client/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugins js -->
+    <script src="/client/js/plugins.js"></script>
+    <!-- Ajax Mail js -->
+    <script src="/client/js/ajax-mail.js"></script>
+    <!-- Main js -->
+    <script src="/client/js/main.js"></script>
 	
 	<script>
 		$(document).ready(function() {

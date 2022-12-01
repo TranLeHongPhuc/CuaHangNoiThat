@@ -56,7 +56,7 @@ public class ProductManagementController {
 	public String detailProduct(Model model, @PathVariable("id") Integer id) {
 		Product product = productService.findById(id);
 		model.addAttribute("item",product);
-		return "admin/product-detail.html";
+		return "product/detail";
 	}
 	
 	@RequestMapping("/product/add")

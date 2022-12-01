@@ -1,5 +1,6 @@
 const app = angular.module("subcategory-app",[])
 app.controller("subcategory-ctrl", function($scope, $http){
+	
 	$scope.subs =[];
 	$scope.form = {};
 	$scope.cates = [];
@@ -100,38 +101,34 @@ app.controller("subcategory-ctrl", function($scope, $http){
 		});
 	}
 	
-	$scope.pager = {
-		page: 0,
-		size: 5,
-		get subs() {
-			var start = this.page * this.size;
-			return $scope.subs.slice(start, start + this.size);
-		},
+	$scope.sortProperty = 'id';
+	
+	$scope.sort = function(){
 		
-		get count() {
-			return Math.ceil(1.0 * $scope.subs.length /this.size);
-		},
-		get totalQuantity(){
-			return $scope.subs.length;
-		},
-		first(){
-			this.page=0;
-		},
-		prev(){
-			this.page --;
-			if(this.page<0){
-				this.last();
-			}
-		},
-		next() {
-			this.page ++;
-			if(this.page >= this.count) {
-				this.first();
-			}
-		},
-		last() {
-			this.page = this.count - 1;
-		}
+	}
+	
+	$scope.currentPage = 0;
+	$scope.pageSize = "5";
+	
+	$scope.totalQuantity = function(){
+		return $scope.subs.length;
+	}
+	
+	$scope.numberOfPages = function(){
+		return Math.ceil($scope.subs.length / $scope.pageSize);
+	}
+	for(let i = 0; i < 45; i++){
+		$scope.subs.push("Item " + i);
+	}
+	
+	$scope.pagination = function(){
+		$scope.currentPage = 0;
 	}
 	
 })
+app.filter('startFrom', function(){
+		return function(input, start){
+			start = +start;
+			return input.slice(start);
+		}
+});

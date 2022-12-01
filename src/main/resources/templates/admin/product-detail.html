@@ -34,16 +34,19 @@
 	th:href="@{/admin/plugins/daterangepicker/daterangepicker.css}">
 <link rel="stylesheet"
 	th:href="@{/admin/dist/css/css.css}">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
+
 <style type="text/css">
+
  img {
  	width: 30px;
  }
 </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed" >
+<body class="hold-transition sidebar-mini layout-fixed" th:object = "${item}">
 
 	<div class="wrapper">
 
@@ -65,6 +68,60 @@
 							<h1>Quản lý sản phẩm</h1>
 						</div>
 					</div>
+					<a id="view-code" href="https://codepen.io/virgilpana/pen/RNYQwB" target="_blank">VIEW CODE</a>
+					<div id="make-3D-space">
+    <div id="product-card">
+        <div id="product-front">
+        	<div class="shadow"></div>
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt.png" alt="" />
+            <div class="image_overlay"></div>
+            <div id="view_details">View details</div>
+            <div class="stats">        	
+                <div class="stats-container">
+                    <span class="product_price">$39</span>
+                    <span class="product_name">Adidas Originals</span>    
+                    <p>Men's running shirt</p>                                            
+                    
+                    <div class="product-options">
+                    <strong>SIZES</strong>
+                    <span>XS, S, M, L, XL, XXL</span>
+                    <strong>COLORS</strong>
+                    <div class="colors">
+                        <div class="c-blue"><span></span></div>
+                        <div class="c-red"><span></span></div>
+                        <div class="c-white"><span></span></div>
+                        <div class="c-green"><span></span></div>
+                    </div>
+                </div>                       
+                </div>                         
+            </div>
+        </div>
+        <div id="product-back">
+	        <div class="shadow"></div>
+            <div id="carousel">
+                <ul>
+                    <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large.png" alt="" /></li>
+                    <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large2.png" alt="" /></li>
+                    <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large3.png" alt="" /></li>
+                </ul>
+                <div class="arrows-perspective">
+                    <div class="carouselPrev">
+                        <div class="y"></div>
+	                    <div class="x"></div>
+                    </div>
+                    <div class="carouselNext">
+                        <div class="y"></div>
+	                    <div class="x"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="flip-back">
+            	<div id="cy"></div>
+                <div id="cx"></div>
+            </div>
+        </div>	  
+    </div>	
+</div>
 				</div>
 				<!-- /.container-fluid -->
 			</section>
@@ -115,6 +172,8 @@
 	<script th:src="@{/js/noithat/tco.js}"></script>
 	<script th:src="@{/js/data-tables/jquery.datatables.min.js}"></script>
 	<script th:src="@{/admin/plugins/avatar/js/js.js}"></script>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
 		    $("#example1").DataTable({

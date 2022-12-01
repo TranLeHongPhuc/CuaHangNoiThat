@@ -9,7 +9,7 @@
 <!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
-<!-- User-Ctrl JS -->
+<!-- Subcategory-Ctrl JS -->
 	<script th:src="@{/js/subcategory/subcategory-ctrl.js}"></script>
 
 <link rel="stylesheet"
@@ -68,7 +68,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Quản lý thương hiệu</h1>
+							<h3  style="color: gray;">Quản lý thương hiệu</h3>
 						</div>
 					</div>
 				</div>
@@ -81,27 +81,61 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Danh sách thương hiệu</h3>
-									<button style="float: right" id="createBtn" type="button"
-										class="btn btn-success">Create new sub</button>
-								</div>
+								<div class="card card-default">
+									<div class="card-header card-header-border-bottom d-flex justify-content-between">
+										<div class="col-sm-3 col-md-2">
+											<label for="pagerSize">Hiển thị: </label>
+											<select class="form-control" ng-change="pagination()" ng-model="pageSize">
+												<option value="5">5</option>
+												<option value="10">10</option>
+												<option value="15">15</option>
+											</select>
+										</div>
+										
+										<div class="col-sm-9 col-md-6">
+												<label >Tìm kiếm</label>
+												<input class="form-control" type="text" ng-model="subSearch"
+													placeholder="Tìm kiếm">
+										</div>
+										<div class="col-sm-9 col-md-8">
+											<div class="col-sm-4 col-md-6">
+												<label for="sortProduct">Bộ lọc</label>
+												<select class="form-control" ng-change="sort()"
+													ng-model="sortProperty">
+													<option value="id">Mã thương hiệu ↑</option>
+													<option value="-id">Mã thương hiệu ↓</option>
+													<option value="name">Tên thương hiệu ↑</option>
+													<option value="-name">Tên thương hiệu ↓</option>
+													<option value="category">Danh mục ↑</option>
+													<option value="-category">Danh mục ↓</option>
+													
+								
+												</select>
+											</div>
+											
+										</div>
+										
+									</div>
+									<div>
+										<h6 style="font-style: italic;">Tổng thương hiệu: {{totalQuantity()}}</h6>
+									</div>
+								
+								
 								<!-- /.card-header -->
 								<div class="card-body">
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>STT</th>
 												<th>Hình ảnh</th>
 												<th>Mã thương hiệu</th>											
 												<th>Tên thương hiệu</th>
 												<th>Danh mục</th>
-												<th>Action</th>
+												<th>Hành động</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat = "sub in pager.subs">
-												<td>{{$index + 1}}</td>
+											<tr ng-repeat = "sub in subs | filter: subSearch | orderBy: sortProperty
+												| startFrom: currentPage*pageSize | limitTo: pageSize">
 												<td><img th:src="@{|/images/subcategories/{{sub.icon}}|}"></td>
 												<td>{{sub.id}}</td>
 												<td>{{sub.name}}</td>
@@ -118,23 +152,23 @@
 										</tbody>
 									</table>
 									<div class="panel-footer text-center">
-										<button ng-click="pager.first()" class="btn btn-danger">
-											<b>First</b>
+										<button ng-click="pagination()" class="btn btn-danger">
+											<b>Trang đầu</b>
 										</button>
-										<button ng-click="pager.prev()" class="btn btn-primary">
-											<b>Previous</b>
+										<button ng-disabled = "currentPage == 0" ng-click="currentPage=currentPage - 1" class="btn btn-primary">
+											<b>Trước</b>
 										</button>
-										<button class="btn btn-success">{{pager.page + 1}} of
-											{{pager.count}}</button>
-										<button ng-click="pager.next()" class="btn btn-primary">
-											<b>Next</b>
+										<button class="btn btn-success">{{currentPage + 1}} / {{numberOfPages()}}</button>
+										<button ng-disabled = "currentPage >= subs.length/pageSize-1" ng-click="currentPage=currentPage + 1" class="btn btn-primary">
+											<b>Tới</b>
 										</button>
-										<button ng-click="pager.last()" class="btn btn-danger">
-											<b>Last</b>
+										<button ng-click="currentPage = numberOfPages() - 1" class="btn btn-danger">
+											<b>Trang cuối</b>
 										</button>
 									</div>
 								</div>
 								<!-- /.card-body -->
+								</div>
 							</div>
 							<!-- /.card -->
 						</div>

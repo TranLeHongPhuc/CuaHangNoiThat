@@ -108,6 +108,8 @@ public class AccountRestController {
 		sendRandomCodeEmail(account, randomCode);
 		return accountService.create(account);
 	}
+	
+	
 
 	public void sendRandomCodeEmail(Account item, String randomCode) throws MessagingException {
 		String subject = "Please check YOUR Vevification Code";

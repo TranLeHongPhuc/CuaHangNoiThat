@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/checkout/**").authenticated()
 			.antMatchers("/order/**").authenticated()
-			.antMatchers("/assets/admin/**").hasAnyRole("ADMIN", "STAF")
+			.antMatchers("/admin/**").hasAnyRole("ADMIN", "STAF")
 			.antMatchers("/user/**").hasAnyRole("ADMIN", "STAF","USER")
 			.antMatchers("/order/**").hasAnyRole("ADMIN", "STAF","USER")
 			.antMatchers("/rest/roles").hasRole("ADMIN")
@@ -68,6 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginProcessingUrl("/security/login")
 				.defaultSuccessUrl("/home", false)
 				.failureUrl("/security/login/error");
+		
 
 		http.rememberMe().tokenValiditySeconds(86400);
 

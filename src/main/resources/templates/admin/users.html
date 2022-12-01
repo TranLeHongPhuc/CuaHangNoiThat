@@ -6,6 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 
+<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+<!-- User-Ctrl JS -->
+	<script th:src="@{/js/user/user-ctrl.js}"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -32,16 +37,20 @@
 <!-- Daterange picker -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/daterangepicker/daterangepicker.css}">
+
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/admin/plugins/summernote/summernote-bs4.min.css}">
+<link rel="stylesheet"
+	th:href="@{/admin/dist/css/css.css}">
 <style type="text/css">
+
  img {
  	width: 30px;
  }
 </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" ng-app = "subcategory-app" ng-controller = "subcategory-ctrl">
 
 	<div class="wrapper">
 
@@ -73,17 +82,51 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Danh sách người dùng</h3>
-									<button style="float: right" id="createBtn" type="button"
-										class="btn btn-success">Create new user</button>
-								</div>
+								<div class="card card-default">
+									<div class="card-header card-header-border-bottom d-flex justify-content-between">
+										<div class="col-sm-3 col-md-2">
+											<label for="pagerSize">Hiển thị: </label>
+											<select class="form-control" ng-change="pagination()" ng-model="pageSize">
+												<option value="3">3</option>
+												<option value="5">5</option>
+												<option value="10">10</option>
+											</select>
+										</div>
+										
+										<div class="col-sm-9 col-md-6">
+												<label >Tìm kiếm</label>
+												<input class="form-control" type="text" ng-model="userSearch"
+													placeholder="Tìm kiếm">
+										</div>
+										<div class="col-sm-9 col-md-8">
+											<div class="col-sm-4 col-md-6">
+												<label for="sortUser">Bộ lọc</label>
+												<select class="form-control" ng-change="sort()"
+													ng-model="sortProperty">
+													<option value="username">Mã người dùng ↑</option>
+													<option value="-username">Mã người dùg ↓</option>
+													<option value="fullname">Tên người dùng ↑</option>
+													<option value="-fullname">Tên người dùng ↓</option>
+													<option value="address">Địa chỉ ↑</option>
+													<option value="-address">Địa chỉ ↓</option>
+													
+								
+												</select>
+											</div>
+											
+										</div>
+										
+									</div>
+									<div>
+										<h6 style="font-style: italic;">Tổng người dùng: {{totalQuantity()}}</h6>
+									</div>
+								
 								<!-- /.card-header -->
 								<div class="card-body">
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th>STT</th>
+												
 												<th>Username</th>											
 												<th>Fullname </th>
 												<th>Email</th>
@@ -94,29 +137,41 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="account, index : ${account}">
-												<td th:text="${index.index + 1}" ></td>
-												<td th:text="${account.username}" ></td>
-												<td th:text="${account.fullname}"></td>
-												<td th:text="${account.email}"></td>
-												<td th:text="${account.phone}"></td>
-												<td> <img th:src="@{'/images/users/' + ${account.photo}}"/> </td>
-												<td th:text="${account.address}"></td>
+											<tr ng-repeat = "user in users | filter: userSearch | orderBy: sortProperty | startFrom: currentPage*pageSize
+												| limitTo: pageSize">
+												<td>{{user.username}}</td>
+												<td>{{user.fullname}}</td>
+												<td>{{user.email}}</td>
+												<td>{{user.phone}}</td>
+												<td><img class="vendor-thumb" ng-src="/images/users/{{user.photo}}"style="width: 50px;" /></td>
+												<td>{{user.address}}</td>
 												<td align="center">
-													<button class="btn btn-success"
-														>
+													<a href="#bruh" ng-click = "edit(user)" class="btn btn-success">
 														<i class="fa fa-edit" aria-hidden="true"></i>
-													</button>
-													<a class="btn btn-danger"
-														>
-														<i class="fa fa-trash" aria-hidden="true"></i>
 													</a>
+													
 												</td>
 											</tr>
 										</tbody>
 									</table>
+									<div class="panel-footer text-center">
+										<button ng-click="pagination()" class="btn btn-danger">
+											<b>Trang đầu</b>
+										</button>
+										<button ng-disabled = "currentPage == 0" ng-click="currentPage=currentPage - 1" class="btn btn-primary">
+											<b>Trước</b>
+										</button>
+										<button class="btn btn-success">{{currentPage + 1}} / {{numberOfPages()}}</button>
+										<button ng-disabled = "currentPage >= users.length/pageSize-1" ng-click="currentPage=currentPage + 1" class="btn btn-primary">
+											<b>Tới</b>
+										</button>
+										<button ng-click="currentPage = numberOfPages() - 1" class="btn btn-danger">
+											<b>Trang cuối</b>
+										</button>
+									</div>
 								</div>
 								<!-- /.card-body -->
+								</div>
 							</div>
 							<!-- /.card -->
 						</div>
@@ -129,7 +184,7 @@
 						<div class="col-12">
 							<!-- general form elements -->
 							<div class="card card-primary">
-								<div class="card-header">
+								<div id= "bruh" class="card-header">
 									<h3 class="card-title">Users</h3>
 								</div>
 								<!-- /.card-header -->
@@ -140,47 +195,32 @@
 										<div class="row">
 											<div class="col-8">
 												<div class="form-group">
-													<label for="username">Username</label> <input type="text"
-														class="form-control" id="username" readonly="true"
-														>
+													<label for="username">Username</label> <input ng-model = "form.username" type="text"
+														class="form-control" id="username" >
 												</div>
+												
 												<div class="form-group">
-													<label for="password">Password</label> <input
-														type="password" class="form-control" id="password"
-														readonly="true">
-												</div>
-												<div class="form-group">
-													<label for="email">Email</label> <input type="email"
-														class="form-control" id="email" readonly="true"
+													<label for="email">Email</label> <input ng-model = "form.email" type="email"
+														class="form-control" id="email" 
 														>
 												</div>
 						
 												<div class="form-group">
-													<label for="fullname">Fullname</label> <input type="text"
-														class="form-control" id="fullname" readonly="true"
-														> <input type="hidden"
-														id="hiddenImgUrl" /> <input type="hidden" id="sendImgUrl" />
+													<label for="fullname">Fullname</label> <input ng-model= "form.fullname" type="text"
+														class="form-control" id="fullname" 
+														> 
+												</div>
+											
+												<div class="form-group">
+													<label for="Phone">Phone</label> <input ng-model = "form.phone" type="text"
+														class="form-control" id="PhoneID"
+														> 
 												</div>
 												
 												<div class="form-group">
-													<label for="photo">photo</label> <input type="text"
-														class="form-control" id="photoID" readonly="true"
-														> <input type="hidden"
-														class="form-control" id="photo" readonly="true" />
-												</div>
-												
-												<div class="form-group">
-													<label for="Phone">Phone</label> <input type="text"
-														class="form-control" id="PhoneID" readonly="true"
-														> <input type="hidden"
-														class="form-control" id="phone" readonly="true" />
-												</div>
-												
-												<div class="form-group">
-													<label for="Address">Address</label> <input type="text"
-														class="form-control" id="AdressId" readonly="true"
-														> <input type="hidden"
-														id="Adress" /> <input type="hidden" id="Adress" />
+													<label for="Address">Address</label> <input ng-model = "form.address" type="text"
+														class="form-control" id="AdressId"
+														>
 												</div>
 											</div>
 											<div class="col-4">
@@ -191,19 +231,15 @@
 															
 														</div>
 														<br />
-														<div class="form-group">
-															<label for="inputFile">Avatar</label>
-															<div class="input-group">
-																<div class="custom-file">
-																	<input type="file" class="custom-file-input"
-																		id="inputFile" name="image"> <label
-																		class="custom-file-label" for="inputFile">Choose
-																		file</label>
-																</div>
-																<div class="input-group-append">
-																	<span class="input-group-text">Upload</span>
-																</div>
-															</div>
+														<div class="container">
+															<div class="picture-container">
+														        <div class="picture">
+														            <img ng-src="{{'/images/users/' + form.photo}}" class="picture-src" id="wizardPicturePreview" title="">
+														            <input type='file' name = "imageIcon" accept=".png, .jpg, .jpeg" id="wizard-picture" class=""  
+														            onchange ="angular.element(this).scope().imageChanged(this.files)" />
+														        </div>
+														         <h6 class="">Choose Picture</h6>
+														    </div>
 														</div>
 													</div>
 													<!-- /.card-body -->
@@ -214,13 +250,9 @@
 									</div>
 									<!-- /.card-body -->
 									<div class="card-footer">
-										<button type="button" id="submitCreate" disabled
-											class="btn btn-primary">Create</button>
-										<button type="button" id="submitUpdate"
-											th:attr="onclick='submitFormEdit()'" disabled
-											class="btn btn-success">Update</button>
-										<a th:href="@{/admin/user}"><button type="button"
-												class="btn btn-warning">Cancel</button></a>
+										<button ng-click = "update()" id="submitCreate"
+											class="btn btn-primary">Cập nhật</button>
+										
 									</div>
 								</form>
 							</div>
@@ -271,6 +303,7 @@
 	<script th:src="@{/admin/dist/js/demo.js}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script th:src="@{/admin/dist/js/pages/dashboard.js}"></script>
+	<script th:src="@{/admin/plugins/avatar/js/js.js}"></script>
 	<script>
 		$(document).ready(function() {
 		    $("#example1").DataTable({
