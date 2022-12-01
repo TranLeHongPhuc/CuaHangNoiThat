@@ -14,7 +14,7 @@
                     <div class="page-banner-content col-xs-12">
                         <h2>Product Details</h2>
                         <ul class="breadcrumb">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a th:href="@{|/home|}">Home</a></li>
                             <li class="active">Product Details</li>
                         </ul>
                     </div>
@@ -63,16 +63,7 @@
                                 <li><a href="#"><i class="pe-7s-repeat"></i> Compare</a></li>
                             </ul>
                             <div class="quantity-cart section">
-                                <div class="product-quantity">
-                                    <input type="text" value="0">
-                                </div>
                                 <button class="add-to-cart" th:attr="ng-click=@{|cart.add(${item.id})|}">add to cart</button>
-                            </div>
-                            <div class="share-icons section">
-                                <a class="twitter" href="#/"><i class="fa fa-facebook"></i> facebook</a>
-                                <a class="facebook" href="#/"><i class="fa fa-twitter"></i> twitter</a>
-                                <a class="google" href="#/"><i class="fa fa-google-plus"></i> linkedin</a>
-                                <a class="pinterest" href="#/"><i class="fa fa-pinterest"></i> facebook</a>
                             </div>
                         </div>
                     </div>

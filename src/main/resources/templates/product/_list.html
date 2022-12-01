@@ -21,7 +21,7 @@
                                     <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 mb-8" th:each=" p: ${items}">
                                         <div class="product-item text-center">
                                             <div class="product-img">
-                                                <a class="image" th:href="@{|/product/detail/${p.id}|}"><img th:src="@{|/admin/img/${p.image1}|}" alt=""/></a>
+                                                <a class="image" th:href="@{|/product/detail/${p.id}|}"><img th:src="@{|/images/products/${p.image1}|}" alt=""/></a>
                                                 <a href="" th:attr="ng-click=@{|cart.add(${p.id})|}" class="add-to-cart">Add to cart</a>
                                                 <div class="action-btn fix">
                                                     <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>
@@ -30,7 +30,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-info">
-                                                <h5 class="title"><a href="product-details.html" th:text="${p.name}"></a></h5>
+                                                <h5 class="title"><a th:href="@{|/product/detail/${p.id}|}" th:text="${p.name}"></a></h5>
                                                 <span class="price"><span class="new">[[*{#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]] VNĐ</span></span>
                                             </div>
                                         </div>

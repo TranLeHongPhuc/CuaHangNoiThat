@@ -46,7 +46,7 @@ public class Order implements Serializable{
 	OrderStatus orderstatus;
 	
 	@ManyToOne
-	@JoinColumn( name = "Username")
+	@JoinColumn(name = "username")
 	Account account;
 	
 	@JsonIgnore

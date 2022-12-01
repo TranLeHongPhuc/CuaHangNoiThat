@@ -32,4 +32,5 @@ public class OrderRestController {
 	public List<Order> getAllByUsername(@PathVariable("username") String username){
 		return orderService.findByUsername(username);
 	}
+	
 }

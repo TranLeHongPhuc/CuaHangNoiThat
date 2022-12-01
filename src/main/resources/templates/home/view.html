@@ -78,7 +78,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-8" th:each=" p: ${items}">
                         <div class="product-item text-center">
                             <div class="product-img">
-                                <a class="image" th:href="@{|/product/detail/${p.id}|}"><img th:src="@{|/admin/img/${p.image1}|}" alt="Image"/></a>
+                                <a class="image" th:href="@{|/product/detail/${p.id}|}"><img th:src="@{|/images/products/${p.image1}|}" alt="Image"/></a>
                                 <a class="add-to-cart" th:attr="ng-click=@{|cart.add(${p.id})|}">add to cart</a>
                                 <div class="action-btn fix">
                                     <a href="wishlist.html" title="Wishlist"><i class="pe-7s-like"></i></a>

@@ -59,4 +59,9 @@ public class OrderServiceImplement implements OrderService{
 	public List<Order> findByOrserStatus(String orderStatusId) {
 		return orderDAO.findByOrderstatus(orderStatusId);
 	}
+
+	@Override
+	public List<Order> findAll() {
+		return orderDAO.findAll();
+	}
 }
