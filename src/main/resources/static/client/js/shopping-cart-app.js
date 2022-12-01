@@ -135,8 +135,9 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 			if ($scope.cart.count > 0) {
 				var order = angular.copy(this);
 				$http.post(`/api/orders`, order).then(resp => {
-					alert("Đặt hàng thành công");
+					alert("Đặt hàng thành công");					
 					$scope.cart.clear();
+					location.href = "/order/track/" + resp.data.id;
 				}).catch(error => {
 					console.log(error)
 					alert("Đặt hàng lỗi!")

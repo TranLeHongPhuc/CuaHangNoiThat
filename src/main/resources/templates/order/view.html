@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-banner-content col-xs-12">
-                        <h2>Your Order [[${#request.remoteUser}]]</h2>
+                        <h2>Đơn hàng của tài khoản [[${#request.remoteUser}]]</h2>
                         <ul class="breadcrumb">
                             <li><a th:href="@{|/home|}">Home</a></li>
                             <li><a th:href="@{|/view/order|}" class="active">Order</a></li>
@@ -55,7 +55,6 @@
 			                                            <th class="pro-price">Địa chỉ</th>
 			                                            <th class="pro-price">Số điện thoại</th>
 			                                            <th class="pro-quantity">Tổng tiền</th>
-			                                            <th class="pro-subtotal">Số lượng sản phẩm</th>
 			                                            <th class="pro-remove">Chi tiết</th>
 			                                        </tr>
 			                                    </thead>
@@ -65,10 +64,8 @@
 			                                            <td class="pro-title"><a  th:text="${item.createDate}"></a></td>
 			                                            <td class="pro-title"><a  th:text="${item.address}"></a></td>
 			                                            <td class="pro-title"><a  th:text="${item.phone}"></a></td>
-			                                            <td class="pro-price"><span class="amount" th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![price*quantity]), 0, 'COMMA', 0, 'POINT')}+ VND"></span></td>
-			                                            <td class="pro-quantity" th:text="${#aggregates.sum(item.orderDetails.![quantity])}"></td>
-			                                           
-			                                            <td class="pro-remove"><a href="javascript:void(0)" class="remove" th:href="@{|/order/detail/${item.id}|}"><i class="pe-7s-trash"></i></a></td>
+			                                            <td class="pro-price"><span class="amount" th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![price*quantity]), 0, 'COMMA', 0, 'POINT')}+ VND"></span></td>			                                           
+			                                            <td class="pro-title"><a th:href="@{|/order/detail/${item.id}|}">Xem</a></td>
 			                                        </tr>
 			                                    </tbody>
 			                                </table>

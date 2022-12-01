@@ -30,8 +30,7 @@ import lombok.NoArgsConstructor;
 public class OrderStatus implements Serializable{
 	@Id
 	String id ;
-	
-	String name ;
+	String names ;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "orderstatus")
