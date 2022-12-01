@@ -4,11 +4,13 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 	
 	$scope.items = [];
 	$scope.formUser = {};
-
+	$scope.account = [];
 	var name = $("#username").text();
+	console.log(name)
 	$scope.initialize = function() {
 		$http.get(`/api/accounts/${name}`).then(resp => {
-			$scope.items = resp.data;
+			$scope.account = resp.data;
+			
 		});
 		$http.get("/api/accounts").then(resp => {
 			$scope.items = resp.data;
@@ -25,7 +27,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 			headers: { 'Content-type': undefined },
 			enctype: 'multipart/form-data'
 		}).then(resp => {
-			$scope.items.photo = resp.data.name;
+			$scope.account.photo = resp.data.name;
 		}).catch(error => {
 			alert("Lỗi upload hình ảnh!");
 			console.log("Error", error);
@@ -44,7 +46,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http, $window, $log) {
 	}
 
 	$scope.update = function() {
-		var sub = angular.copy($scope.items);
+		var sub = angular.copy($scope.account);
 		$http.put(`/api/accounts/${sub.username}`, sub).then(resp => {
 			alert("Cập nhật thành công!");
 		}).catch(error => {

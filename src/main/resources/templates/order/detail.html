@@ -45,7 +45,7 @@
 			                                    </thead>
 			                                    <tbody>
 			                                        <tr th:each="item : ${items}">
-			                                        	<td class="pro-thumbnail"><a ><img th:src="@{|/admin/img/${item.product.image1}|}" alt="Image"/></a></td>
+			                                        	<td class="pro-thumbnail"><a ><img th:src="@{|/images/products/${item.product.image1}|}" alt="Image"/></a></td>
 			                                            <td class="pro-title"><a  th:text="${item.order.id}"></a></td>
 			                                            <td class="pro-title"><a  th:text="${item.product.name}"></a></td>
 			                                            <td class="pro-quantity"><a  th:text="${item.quantity}"></a></td>
